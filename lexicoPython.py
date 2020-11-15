@@ -12,11 +12,15 @@ reserved = {
     "while": "WHILE",
     "and" : "AND",
     "not" : "NOT",
-    "is" : "IS"
+    "is" : "IS",
+    "for" : "FOR",
+    "True" : "TRUE",
+    "False" : "FALSE"
 }
 tokens = ("ID","EQUALS","ASSIGN","NUMBER",
           "PLUS","MINUS","TIMES","DIVIDE",
-          "NOT","LESSTHAN","MORETHAN","LPAREN","RPAREN")
+          "NOT","LESSTHAN","MORETHAN","LPAREN","RPAREN","COLON","WHILE","IF","ELSE"
+          ,"AND","IS","FOR","TRUE","FALSE")
 t_PLUS = r'\+'
 t_MINUS = r'-'
 t_TIMES = r'\*'
@@ -54,6 +58,10 @@ data = '''
 3 + 4 * 10
   + -20 *2
   _hola
+  while
+  for
+  if
+  else
 '''
 
 # Give the lexer some input
