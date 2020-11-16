@@ -2,8 +2,7 @@
 import ply
 import ply.lex as lex
 import ply.yacc as yacc
-
-
+import os
 
 reserved = {
     "if": "IF",
@@ -15,24 +14,49 @@ reserved = {
     "is" : "IS",
     "for" : "FOR",
     "True" : "TRUE",
-    "False" : "FALSE"
+    "False" : "FALSE",
+    "print":"PRINT",
+    "or":"OR",
+    "in":"IN",
+    "range":"RANGE",
+    "input":"INPUT",
+    "append":"APPEND",
+    "remove":"REMOVE",
+    "def":"DEF",
+    "return":"RETURN",
+    "open":"OPEN"
 }
 tokens = ("ID","EQUALS","ASSIGN","NUMBER",
-          "PLUS","MINUS","TIMES","DIVIDE",
-          "NOT","LESSTHAN","MORETHAN","LPAREN","RPAREN","COLON","WHILE","IF","ELSE"
-          ,"AND","IS","FOR","TRUE","FALSE")
+        "PLUS","MINUS","TIMES","DIVIDE","LESSTHAN","MORETHAN","LPAREN",
+        "RPAREN",'DIVISIONENTERA','DOSPUNTOS',"NOTS",
+        'COMILLAS','COMILLASSIMPLES','EXPONENTE','MOD','DIFERENTE','LLAVEDER',
+        'LLAVEIZQ','CORCHETEDER','CORCHETEIZQ','COMA','SUBGUION','PUNTO','PUNTOCOMA'
+        ) + tuple(reserved.values())
 t_PLUS = r'\+'
 t_MINUS = r'-'
 t_TIMES = r'\*'
 t_DIVIDE = r'/'
 t_LPAREN = r'\('
 t_RPAREN = r'\)'
-t_EQUALS = r'\=='
 t_ASSIGN = r'\='
-t_NOT = r'\!'
+t_NOTS = r'\!'
 t_LESSTHAN = r'\<'
 t_MORETHAN = r'\>'
-t_COLON = r':'
+t_DIVISIONENTERA = r'\/\/'
+t_MOD = r'\%'
+t_EXPONENTE = r'\*\*'
+t_DOSPUNTOS = r'\:'
+t_COMILLAS = r'\"'
+t_COMILLASSIMPLES = r'\''
+t_LLAVEDER = r'\}'
+t_LLAVEIZQ = r'\{'
+t_CORCHETEDER = r'\]'
+t_CORCHETEIZQ = r'\['
+t_COMA = r'\,'
+t_SUBGUION = r'\_'
+t_PUNTO = r'\.';
+t_PUNTOCOMA = r'\;'
+
 
 
 def t_NUMBER(t):
@@ -65,11 +89,20 @@ data = '''
 '''
 
 # Give the lexer some input
-lexer.input(data)
 
-# Tokenize
-while True:
-    tok = lexer.token()
-    if not tok:
-        break  # No more input
-    print(tok)
+def analizar(data):
+    lexer = lex.lex()
+    lexer.input(linea)
+    while True:
+        tok = lexer.token()
+        if not tok: 
+            break      # No more input
+        print(tok)
+# Give the lexer some input
+#lexer.input(data)
+THIS_FOLDER = os.path.dirname(os.path.abspath(__file__))
+my_file = os.path.join(THIS_FOLDER, 'archivo.txt')
+archivo = open(my_file,'r')
+for linea in archivo:
+    print(">> "+linea)
+    analizar(linea)
