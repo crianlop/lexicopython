@@ -1,5 +1,5 @@
 /*variables*/
-
+##henry
 VARIABLE = 12
 Variable = 1
 V_araible = 2
@@ -50,7 +50,7 @@ Lista.append(elemento)
 Lista.remove(elemento)
 
 /*Funcion*/
-def función(a,b,c):
+def funcion(a,b,c):
 	z = a+b+c
 	print(z)
 	return z 
