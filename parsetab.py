@@ -6,9 +6,9 @@ _tabversion = '3.10'
 
 _lr_method = 'LALR'
 
-_lr_signature = 'AND APPEND ASSIGN CADENA COMA COMILLAS COMILLASSIMPLES COMMENT COMMENTS CORCHETEDER CORCHETEIZQ DEF DIFERENTE DIVIDE DIVISIONENTERA DOSPUNTOS ELSE EQUALS EXPONENTE FALSE FOR ID IF IN INPUT IS LESSTHAN LLAVEDER LLAVEIZQ LPAREN MAYORIGUAL MENORIGUAL MINUS MOD MORETHAN NOT NOTS NUMBER OPEN OR PLUS PRINT PUNTO PUNTOCOMA RANGE REMOVE RETURN RPAREN STRING SUBGUION TIMES TRUE WHILEcuerpo : expression\n              | comentario\n              | asignacionexpression : expression PLUS termexpression : expression MINUS termexpression : termterm : term TIMES factorterm : term DIVIDE factorterm : factorfactor : NUMBER\n            | CADENAfactor : LPAREN expression RPARENcomentario : COMMENT\n                 | COMMENTSboolean : TRUE\n    | FALSEasignacion : ID ASSIGN expression\n                  | multipleAsignacion expression\n                  | ID ASSIGN booleanmultipleAsignacion : ID ASSIGN \n                          | ID ASSIGN multipleAsignacion \n                          | ID ASSIGN "(" COMA ID ASSIGN ")" "*" expression'
+_lr_signature = 'AND APPEND ASSIGN CADENA COMA COMILLAS COMILLASSIMPLES COMMENT COMMENTS CORCHETEDER CORCHETEIZQ DEF DIFERENTE DIVIDE DIVISIONENTERA DOSPUNTOS ELSE EQUALS EXPONENTE FALSE FOR ID IF IN INPUT IS LESSTHAN LLAVEDER LLAVEIZQ LPAREN MAYORIGUAL MENORIGUAL MINUS MOD MORETHAN NOT NOTS NUMBER OPEN OR PLUS PRINT PUNTO PUNTOCOMA RANGE REMOVE RETURN RPAREN STRING SUBGUION TIMES TRUE WHILEcuerpo : expression\n              | comentario\n              | asignacion\n              | list\n              expression : expression PLUS termexpression : expression MINUS termexpression : termterm : term TIMES factorterm : term DIVIDE factorterm : factorfactor : NUMBER\n            | STRINGfactor : LPAREN expression RPARENcomentario : COMMENT\n                 | COMMENTSboolean : TRUE\n    | FALSEasignacion : ID ASSIGN expression\n                  | multipleAsignacion expression\n                  | ID ASSIGN booleanmultipleAsignacion : ID ASSIGN \n                          | ID ASSIGN multipleAsignacion \n                          | ID ASSIGN "(" COMA ID ASSIGN ")" "*" expressionlist :  factor list : list COMA factor'
     
-_lr_action_items = {'COMMENT':([0,],[6,]),'COMMENTS':([0,],[7,]),'ID':([0,18,33,34,],[8,25,25,35,]),'NUMBER':([0,5,9,10,11,12,13,14,15,16,17,18,21,22,23,24,28,32,33,38,39,],[11,-6,11,-9,-10,-11,11,11,11,11,11,11,-4,-5,-7,-8,-21,-12,-20,11,-22,]),'CADENA':([0,5,9,10,11,12,13,14,15,16,17,18,21,22,23,24,28,32,33,38,39,],[12,-6,12,-9,-10,-11,12,12,12,12,12,12,-4,-5,-7,-8,-21,-12,-20,12,-22,]),'LPAREN':([0,5,9,10,11,12,13,14,15,16,17,18,21,22,23,24,28,32,33,38,39,],[13,-6,13,-9,-10,-11,13,13,13,13,13,13,-4,-5,-7,-8,-21,-12,-20,13,-22,]),'$end':([1,2,3,4,5,6,7,10,11,12,19,21,22,23,24,26,27,30,31,32,],[0,-1,-2,-3,-6,-13,-14,-9,-10,-11,-18,-4,-5,-7,-8,-17,-19,-15,-16,-12,]),'PLUS':([2,5,10,11,12,19,20,21,22,23,24,26,32,39,],[14,-6,-9,-10,-11,14,14,-4,-5,-7,-8,14,-12,14,]),'MINUS':([2,5,10,11,12,19,20,21,22,23,24,26,32,39,],[15,-6,-9,-10,-11,15,15,-4,-5,-7,-8,15,-12,15,]),'RPAREN':([5,10,11,12,20,21,22,23,24,32,],[-6,-9,-10,-11,32,-4,-5,-7,-8,-12,]),'TIMES':([5,10,11,12,21,22,23,24,32,],[16,-9,-10,-11,16,16,-7,-8,-12,]),'DIVIDE':([5,10,11,12,21,22,23,24,32,],[17,-9,-10,-11,17,17,-7,-8,-12,]),'ASSIGN':([8,25,35,],[18,33,36,]),'(':([18,33,],[29,29,]),'TRUE':([18,],[30,]),'FALSE':([18,],[31,]),'COMA':([29,],[34,]),')':([36,],[37,]),'*':([37,],[38,]),}
+_lr_action_items = {'COMMENT':([0,],[7,]),'COMMENTS':([0,],[8,]),'ID':([0,20,37,38,],[9,29,29,39,]),'NUMBER':([0,6,10,12,13,14,15,16,17,18,19,20,22,24,25,27,28,32,36,37,42,43,],[12,-7,12,-11,-12,12,12,12,12,12,12,12,-10,-5,-6,-8,-9,-22,-13,-21,12,-23,]),'STRING':([0,6,10,12,13,14,15,16,17,18,19,20,22,24,25,27,28,32,36,37,42,43,],[13,-7,13,-11,-12,13,13,13,13,13,13,13,-10,-5,-6,-8,-9,-22,-13,-21,13,-23,]),'LPAREN':([0,6,10,12,13,14,15,16,17,18,19,20,22,24,25,27,28,32,36,37,42,43,],[14,-7,14,-11,-12,14,14,14,14,14,14,14,-10,-5,-6,-8,-9,-22,-13,-21,14,-23,]),'$end':([1,2,3,4,5,6,7,8,11,12,13,21,22,24,25,26,27,28,30,31,34,35,36,],[0,-1,-2,-3,-4,-7,-14,-15,-10,-11,-12,-19,-10,-5,-6,-25,-8,-9,-18,-20,-16,-17,-13,]),'PLUS':([2,6,11,12,13,21,22,23,24,25,27,28,30,36,43,],[15,-7,-10,-11,-12,15,-10,15,-5,-6,-8,-9,15,-13,15,]),'MINUS':([2,6,11,12,13,21,22,23,24,25,27,28,30,36,43,],[16,-7,-10,-11,-12,16,-10,16,-5,-6,-8,-9,16,-13,16,]),'COMA':([5,11,12,13,26,33,36,],[17,-24,-11,-12,-25,38,-13,]),'RPAREN':([6,12,13,22,23,24,25,27,28,36,],[-7,-11,-12,-10,36,-5,-6,-8,-9,-13,]),'TIMES':([6,11,12,13,22,24,25,27,28,36,],[18,-10,-11,-12,-10,18,18,-8,-9,-13,]),'DIVIDE':([6,11,12,13,22,24,25,27,28,36,],[19,-10,-11,-12,-10,19,19,-8,-9,-13,]),'ASSIGN':([9,29,39,],[20,37,40,]),'(':([20,37,],[33,33,]),'TRUE':([20,],[34,]),'FALSE':([20,],[35,]),')':([40,],[41,]),'*':([41,],[42,]),}
 
 _lr_action = {}
 for _k, _v in _lr_action_items.items():
@@ -17,7 +17,7 @@ for _k, _v in _lr_action_items.items():
       _lr_action[_x][_k] = _y
 del _lr_action_items
 
-_lr_goto_items = {'cuerpo':([0,],[1,]),'expression':([0,9,13,18,38,],[2,19,20,26,39,]),'comentario':([0,],[3,]),'asignacion':([0,],[4,]),'term':([0,9,13,14,15,18,38,],[5,5,5,21,22,5,5,]),'multipleAsignacion':([0,18,33,],[9,28,28,]),'factor':([0,9,13,14,15,16,17,18,38,],[10,10,10,10,10,23,24,10,10,]),'boolean':([18,],[27,]),}
+_lr_goto_items = {'cuerpo':([0,],[1,]),'expression':([0,10,14,20,42,],[2,21,23,30,43,]),'comentario':([0,],[3,]),'asignacion':([0,],[4,]),'list':([0,],[5,]),'term':([0,10,14,15,16,20,42,],[6,6,6,24,25,6,6,]),'multipleAsignacion':([0,20,37,],[10,32,32,]),'factor':([0,10,14,15,16,17,18,19,20,42,],[11,22,22,22,22,26,27,28,22,22,]),'boolean':([20,],[31,]),}
 
 _lr_goto = {}
 for _k, _v in _lr_goto_items.items():
@@ -30,23 +30,26 @@ _lr_productions = [
   ('cuerpo -> expression','cuerpo',1,'p_cuerpo','sintatico.py',6),
   ('cuerpo -> comentario','cuerpo',1,'p_cuerpo','sintatico.py',7),
   ('cuerpo -> asignacion','cuerpo',1,'p_cuerpo','sintatico.py',8),
-  ('expression -> expression PLUS term','expression',3,'p_expression_plus','sintatico.py',12),
-  ('expression -> expression MINUS term','expression',3,'p_expression_minus','sintatico.py',16),
-  ('expression -> term','expression',1,'p_expression_term','sintatico.py',20),
-  ('term -> term TIMES factor','term',3,'p_term_times','sintatico.py',24),
-  ('term -> term DIVIDE factor','term',3,'p_term_div','sintatico.py',28),
-  ('term -> factor','term',1,'p_term_factor','sintatico.py',32),
-  ('factor -> NUMBER','factor',1,'p_factor_num','sintatico.py',36),
-  ('factor -> CADENA','factor',1,'p_factor_num','sintatico.py',37),
-  ('factor -> LPAREN expression RPAREN','factor',3,'p_factor_expr','sintatico.py',41),
-  ('comentario -> COMMENT','comentario',1,'p_comentario','sintatico.py',45),
-  ('comentario -> COMMENTS','comentario',1,'p_comentario','sintatico.py',46),
-  ('boolean -> TRUE','boolean',1,'p_boolean','sintatico.py',50),
-  ('boolean -> FALSE','boolean',1,'p_boolean','sintatico.py',51),
-  ('asignacion -> ID ASSIGN expression','asignacion',3,'p_asignacion','sintatico.py',54),
-  ('asignacion -> multipleAsignacion expression','asignacion',2,'p_asignacion','sintatico.py',55),
-  ('asignacion -> ID ASSIGN boolean','asignacion',3,'p_asignacion','sintatico.py',56),
-  ('multipleAsignacion -> ID ASSIGN','multipleAsignacion',2,'p_multipleAsignacion','sintatico.py',60),
-  ('multipleAsignacion -> ID ASSIGN multipleAsignacion','multipleAsignacion',3,'p_multipleAsignacion','sintatico.py',61),
-  ('multipleAsignacion -> ID ASSIGN ( COMA ID ASSIGN ) * expression','multipleAsignacion',9,'p_multipleAsignacion','sintatico.py',62),
+  ('cuerpo -> list','cuerpo',1,'p_cuerpo','sintatico.py',9),
+  ('expression -> expression PLUS term','expression',3,'p_expression_plus','sintatico.py',14),
+  ('expression -> expression MINUS term','expression',3,'p_expression_minus','sintatico.py',18),
+  ('expression -> term','expression',1,'p_expression_term','sintatico.py',22),
+  ('term -> term TIMES factor','term',3,'p_term_times','sintatico.py',26),
+  ('term -> term DIVIDE factor','term',3,'p_term_div','sintatico.py',30),
+  ('term -> factor','term',1,'p_term_factor','sintatico.py',34),
+  ('factor -> NUMBER','factor',1,'p_factor_num','sintatico.py',38),
+  ('factor -> STRING','factor',1,'p_factor_num','sintatico.py',39),
+  ('factor -> LPAREN expression RPAREN','factor',3,'p_factor_expr','sintatico.py',43),
+  ('comentario -> COMMENT','comentario',1,'p_comentario','sintatico.py',47),
+  ('comentario -> COMMENTS','comentario',1,'p_comentario','sintatico.py',48),
+  ('boolean -> TRUE','boolean',1,'p_boolean','sintatico.py',52),
+  ('boolean -> FALSE','boolean',1,'p_boolean','sintatico.py',53),
+  ('asignacion -> ID ASSIGN expression','asignacion',3,'p_asignacion','sintatico.py',61),
+  ('asignacion -> multipleAsignacion expression','asignacion',2,'p_asignacion','sintatico.py',62),
+  ('asignacion -> ID ASSIGN boolean','asignacion',3,'p_asignacion','sintatico.py',63),
+  ('multipleAsignacion -> ID ASSIGN','multipleAsignacion',2,'p_multipleAsignacion','sintatico.py',67),
+  ('multipleAsignacion -> ID ASSIGN multipleAsignacion','multipleAsignacion',3,'p_multipleAsignacion','sintatico.py',68),
+  ('multipleAsignacion -> ID ASSIGN ( COMA ID ASSIGN ) * expression','multipleAsignacion',9,'p_multipleAsignacion','sintatico.py',69),
+  ('list -> factor','list',1,'p_list1','sintatico.py',72),
+  ('list -> list COMA factor','list',3,'p_list2','sintatico.py',75),
 ]

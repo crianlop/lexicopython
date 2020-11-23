@@ -5,7 +5,9 @@ from lexicoPython import tokens
 def p_cuerpo(p):
     '''cuerpo : expression
               | comentario
-              | asignacion'''
+              | asignacion
+              | list
+              '''
     p[0] = p[1]
 
 def p_expression_plus(p):
@@ -34,7 +36,7 @@ def p_term_factor(p):
 
 def p_factor_num(p):
     '''factor : NUMBER
-            | CADENA'''
+            | STRING'''
     p[0] = p[1]
 
 def p_factor_expr(p):
@@ -49,6 +51,11 @@ def p_comentario(p):
 def p_boolean(p):
     '''boolean : TRUE
     | FALSE'''
+    p[0] = p[1]
+
+
+
+
 
 def p_asignacion(p):
     '''asignacion : ID ASSIGN expression
@@ -60,6 +67,18 @@ def p_multipleAsignacion(p):
     '''multipleAsignacion : ID ASSIGN 
                           | ID ASSIGN multipleAsignacion 
                           | ID ASSIGN "(" COMA ID ASSIGN ")" "*" expression'''
+
+def p_list1(p):
+    'list :  factor '
+    p[0] = [p[1]]
+def p_list2(p):
+    '''list : list COMA factor'''
+    p[0] = p[1] + [p[3]]
+
+
+    
+    
+
 
 """ def p_multipleAsignacionComa(p):
     '''multipleAsignacionComa : ID ASSIGN "(" COMA ID ASSIGN ")" "*" expression''' """
@@ -82,12 +101,12 @@ for linea in archivo:
     result = parser.parse(s)
     print(result)
 archivo.close()
-
-""" while True:
+while True:
     try:
         s = input('calc > ')
     except EOFError:
         break
     if not s: continue
     result = parser.parse(s)
-     """
+    print(result)
+     
