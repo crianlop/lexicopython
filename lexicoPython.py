@@ -6,21 +6,22 @@ import os
 
 conectoresLogicos = {"and" : "AND","not" : "NOT","is" : "IS","or":"OR","in":"IN",}
 
-estructuras_control = {"if": "IF", "else": "ELSE", "while": "WHILE", "for" : "FOR",}
-
-booleanos = {"True" : "TRUE", "False" : "FALSE"}
+estructuras_control = {"if": "IF", "else": "ELSE", "while": "WHILE", "for" : "FOR","range":"RANGE",}
 
 IO_reserved = {"print":"PRINT","input":"INPUT","open":"OPEN",}
 
 funcion = {"def":"DEF","return":"RETURN",}
 
 metodos = {"append":"APPEND","remove":"REMOVE",}
+
+tipo_datos = {"number":"NUMBER","float":"FLOAT", "boolean" : "BOOLEAN"}
     
-otros = {"number":"NUMBER","id":"ID","range":"RANGE", "comments":"COMMENTS","comment":"COMMENT", "cadena":"CADENA","string":"STRING"}   
+otros = {"id":"ID","comments":"COMMENTS","comment":"COMMENT", "cadena":"CADENA","string":"STRING"}   
     
-reserved = {**conectoresLogicos, **estructuras_control, **booleanos, **IO_reserved, **funcion, **metodos, **otros}
+reserved = {**tipo_datos, **conectoresLogicos, **estructuras_control, **IO_reserved, **funcion, **metodos, **otros}
 
 t_CADENA = r'(("[a-zA-Z0-9]*")|(\'[a-zA-Z0-9]*\'))'
+
 tokens_puntuacion = ('DOSPUNTOS','COMILLAS','COMILLASSIMPLES','COMA','PUNTOCOMA','PUNTO','SUBGUION')
 #puntuacion
 t_DOSPUNTOS = r'\:'
@@ -62,12 +63,23 @@ t_CORCHETEDER = r'\]'
 t_CORCHETEIZQ = r'\['
 
 #UNION de todos los tokens
-tokens = tokens_operadores + tokens_logicos + tokens_llaves + tokens_puntuacion + tuple(reserved.values())
+tokens = tuple(reserved.values()) + tokens_operadores + tokens_logicos + tokens_llaves + tokens_puntuacion 
+print(tokens)
 #Funciones dicionales
+def t_BOOLEAN(t):
+    r'(True) | (False)'
+    return t
+
 def t_STRING(t):
     r'^"[a-zA-Z_0-9\s]*"$'
     t.value = str(t.value)
     return t
+
+def t_FLOAT(t):
+    r'\d+\.\d+'
+    t.value = float(t.value)
+    return t
+
 def t_NUMBER(t):
     r'\d+'
     t.value = int(t.value)
@@ -107,12 +119,11 @@ def analizar(linea):
         if not tok: 
             break      
         print(tok)
-
-""" THIS_FOLDER = os.path.dirname(os.path.abspath(__file__))
+""" 
+THIS_FOLDER = os.path.dirname(os.path.abspath(__file__))
 my_file = os.path.join(THIS_FOLDER, 'archivo.txt')
 archivo = open('archivo.txt','r',encoding="utf-8")
 for linea in archivo:
     print(">> "+linea)
     analizar(linea)
-archivo.close() """
-
+archivo.close()   """

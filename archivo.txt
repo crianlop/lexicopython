@@ -14,8 +14,9 @@ Variale = False
 Variable = True
 
 /*Estructuras de datos*/
-Lista = [ 1, 2, 3 ]
+Lista = [1,2,3]
 lista = [2.1 , 3.5, 2.3] 
+lista = ["3","4","5"]
 
 Tupla = (2,3)
 tupla = (2,5,3,)

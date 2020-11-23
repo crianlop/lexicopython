@@ -6,7 +6,8 @@ def p_cuerpo(p):
     '''cuerpo : expression
               | comentario
               | asignacion
-              | list
+              | valoresComa
+              | lista
               '''
     p[0] = p[1]
 
@@ -36,7 +37,9 @@ def p_term_factor(p):
 
 def p_factor_num(p):
     '''factor : NUMBER
-            | STRING'''
+              | STRING
+              | FLOAT
+              | CADENA'''
     p[0] = p[1]
 
 def p_factor_expr(p):
@@ -48,33 +51,26 @@ def p_comentario(p):
                  | COMMENTS'''
     p[0] = "COMENTARIO"
 
-def p_boolean(p):
-    '''boolean : TRUE
-    | FALSE'''
-    p[0] = p[1]
-
-
-
-
-
 def p_asignacion(p):
     '''asignacion : ID ASSIGN expression
                   | multipleAsignacion expression
-                  | ID ASSIGN boolean'''
+                  | ID ASSIGN BOOLEAN
+                  | ID ASSIGN lista'''
     p[0] = "ASIGNACION"
 
 def p_multipleAsignacion(p):
     '''multipleAsignacion : ID ASSIGN 
                           | ID ASSIGN multipleAsignacion 
-                          | ID ASSIGN "(" COMA ID ASSIGN ")" "*" expression'''
+                          '''
 
-def p_list1(p):
-    'list :  factor '
-    p[0] = [p[1]]
-def p_list2(p):
-    '''list : list COMA factor'''
-    p[0] = p[1] + [p[3]]
+def p_valoresComa(p):
+    '''valoresComa : factor
+                   | valoresComa COMA factor'''
+    p[0] = "COMAS"
 
+def p_lista(p):
+    '''lista : CORCHETEIZQ valoresComa CORCHETEDER'''
+    p[0] = "LISTA"
 
     
     
@@ -101,12 +97,12 @@ for linea in archivo:
     result = parser.parse(s)
     print(result)
 archivo.close()
-while True:
+""" while True:
     try:
         s = input('calc > ')
     except EOFError:
         break
     if not s: continue
     result = parser.parse(s)
-    print(result)
+    print(result) """
      
