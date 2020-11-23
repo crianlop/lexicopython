@@ -7,15 +7,10 @@ def p_cuerpo(p):
               | comentario
               | asignacion
               | valoresComa
-              | lista
-              | if
-              | while   
-              | for 
-              | print  
-              | inputF
-              | openF 
-              | funcion 
-              | comparacion   
+              | lista    
+              | comparacion
+              | if 
+              | while        
               '''
     p[0] = p[1]
 
@@ -76,8 +71,7 @@ def p_asignacion(p):
                   | multipleAsignacion expression
                   | asignacionComa
                   | ID ASSIGN BOOLEAN
-                  | ID ASSIGN lista
-                  | ID ASSIGN tupla'''
+                  | ID ASSIGN lista'''
     p[0] = "ASIGNACION"
 
 def p_multipleAsignacion(p):
@@ -87,14 +81,14 @@ def p_multipleAsignacion(p):
 def p_asignacionComa(p):
     'asignacionComa : valoresComaID ASSIGN valoresComa'
 
+
 def p_valoresComaID(p):
     '''valoresComaID : ID
                    | valoresComaID COMA ID'''
 
 def p_valoresComa(p):
     '''valoresComa : factor
-                   | valoresComa COMA factor
-                   | valoresComa COMA'''
+                   | valoresComa COMA factor'''
     p[0] = "COMAS"
 
 def p_lista(p):
@@ -104,61 +98,24 @@ def p_lista(p):
 def p_tupla(p):
     '''tupla : LPAREN valoresComa RPAREN'''
     p[0] = "TUPLA"
-
 def p_comparacion(p):
     '''comparacion : BOOLEAN
-                   | NOTS BOOLEAN
-                   | expression operadorLogico expression
-                   | ID operadorLogico ID'''
-    p[0] = "COMPARACION"
-
-def p_operadorLogico(p):
-    '''operadorLogico : EQUALS
-                      | MAYORIGUAL
-                      | MENORIGUAL
-                      | LESSTHAN
-                      | MORETHAN
-                      | DIFERENTE
-    '''
-def p_conectoresLogicos(p):
-    '''conectoresLogicos : AND
-                         | OR'''
-
-def p_operacionConectoresLogicos(p):
-    '''operacionConectoresLogicos : 
-    '''
+                   |  NOTS BOOLEAN
+                   | expression EQUALS expression
+                   | expression MAYORIGUAL expression
+                   | expression MENORIGUAL expression
+                   | expression LESSTHAN expression
+                   | expression MORETHAN expression
+                   | expression DIFERENTE expression'''
+    p[0] = "comparacion"
 
 def p_if(p):
-    '''if : IF LPAREN comparacion RPAREN DOSPUNTOS'''
+    '''if : MOD LPAREN comparacion RPAREN DOSPUNTOS'''
     p[0] = "IF"
-
 def p_while(p):
-    '''while : WHILE LPAREN comparacion RPAREN DOSPUNTOS'''
+    '''while : MOD LPAREN comparacion RPAREN DOSPUNTOS'''
     p[0] = "while"
 
-def p_for(p):
-    '''for : FOR ID IN RANGE LPAREN NUMBER RPAREN DOSPUNTOS'''
-    p[0] = "FOR"
-
-def p_print(p):
-    '''print : PRINT LPAREN factor RPAREN
-             | PRINT LPAREN ID RPAREN'''
-    p[0] = "PRINT"
-
-def p_input(p):
-    '''inputF : ID ASSIGN INPUT LPAREN RPAREN
-              | INPUT LPAREN RPAREN'''
-    p[0] = "INPUT"
-
-def p_open(p):
-    '''openF : OPEN LPAREN CADENA RPAREN
-             | OPEN LPAREN CADENA COMA CADENA RPAREN
-             | ID ASSIGN OPEN LPAREN CADENA COMA CADENA RPAREN'''
-    p[0] = "OPEN"
-
-def p_funcion(p):
-    '''funcion : DEF ID LPAREN valoresComa RPAREN DOSPUNTOS'''
-    p[0] = "FUNCION"
 
 
 
