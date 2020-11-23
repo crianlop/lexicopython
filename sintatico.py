@@ -7,7 +7,10 @@ def p_cuerpo(p):
               | comentario
               | asignacion
               | valoresComa
-              | lista           
+              | lista    
+              | comparacion
+              | if 
+              | while        
               '''
     p[0] = p[1]
 
