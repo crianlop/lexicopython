@@ -7,7 +7,7 @@ def p_cuerpo(p):
               | comentario
               | asignacion
               | valoresComa
-              | lista
+              | lista           
               '''
     p[0] = p[1]
 
@@ -30,6 +30,18 @@ def p_term_times(p):
 def p_term_div(p):
     'term : term DIVIDE factor'
     p[0] = p[1] / p[3]
+
+def p_term_cuadrado(p):
+    'term : term EXPONENTE factor'
+    p[0] = p[1] ** p[3]
+
+def p_term_divEntera(p):
+    'term : term DIVISIONENTERA factor'
+    p[0] = p[1] // p[3]
+
+def p_term_Mod(p):
+    'term : term MOD factor'
+    p[0] = p[1] % p[3]
 
 def p_term_factor(p):
     'term : factor'
@@ -54,6 +66,7 @@ def p_comentario(p):
 def p_asignacion(p):
     '''asignacion : ID ASSIGN expression
                   | multipleAsignacion expression
+                  | asignacionComa
                   | ID ASSIGN BOOLEAN
                   | ID ASSIGN lista'''
     p[0] = "ASIGNACION"
@@ -62,6 +75,13 @@ def p_multipleAsignacion(p):
     '''multipleAsignacion : ID ASSIGN 
                           | ID ASSIGN multipleAsignacion 
                           '''
+def p_asignacionComa(p):
+    'asignacionComa : valoresComaID ASSIGN valoresComa'
+
+
+def p_valoresComaID(p):
+    '''valoresComaID : ID
+                   | valoresComaID COMA ID'''
 
 def p_valoresComa(p):
     '''valoresComa : factor
@@ -72,12 +92,7 @@ def p_lista(p):
     '''lista : CORCHETEIZQ valoresComa CORCHETEDER'''
     p[0] = "LISTA"
 
-    
-    
 
-
-""" def p_multipleAsignacionComa(p):
-    '''multipleAsignacionComa : ID ASSIGN "(" COMA ID ASSIGN ")" "*" expression''' """
 
 
 # Error rule for syntax errors

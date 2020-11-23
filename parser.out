@@ -8,11 +8,9 @@ Unused terminals:
     COMILLASSIMPLES
     DEF
     DIFERENTE
-    DIVISIONENTERA
     DOSPUNTOS
     ELSE
     EQUALS
-    EXPONENTE
     FOR
     IF
     IN
@@ -23,7 +21,6 @@ Unused terminals:
     LLAVEIZQ
     MAYORIGUAL
     MENORIGUAL
-    MOD
     MORETHAN
     NOT
     NOTS
@@ -51,49 +48,56 @@ Rule 7     expression -> expression MINUS term
 Rule 8     expression -> term
 Rule 9     term -> term TIMES factor
 Rule 10    term -> term DIVIDE factor
-Rule 11    term -> factor
-Rule 12    factor -> NUMBER
-Rule 13    factor -> STRING
-Rule 14    factor -> FLOAT
-Rule 15    factor -> CADENA
-Rule 16    factor -> LPAREN expression RPAREN
-Rule 17    comentario -> COMMENT
-Rule 18    comentario -> COMMENTS
-Rule 19    asignacion -> ID ASSIGN expression
-Rule 20    asignacion -> multipleAsignacion expression
-Rule 21    asignacion -> ID ASSIGN BOOLEAN
-Rule 22    asignacion -> ID ASSIGN lista
-Rule 23    multipleAsignacion -> ID ASSIGN
-Rule 24    multipleAsignacion -> ID ASSIGN multipleAsignacion
-Rule 25    valoresComa -> factor
-Rule 26    valoresComa -> valoresComa COMA factor
-Rule 27    lista -> CORCHETEIZQ valoresComa CORCHETEDER
+Rule 11    term -> term EXPONENTE factor
+Rule 12    term -> term DIVISIONENTERA factor
+Rule 13    term -> term MOD factor
+Rule 14    term -> factor
+Rule 15    factor -> NUMBER
+Rule 16    factor -> STRING
+Rule 17    factor -> FLOAT
+Rule 18    factor -> CADENA
+Rule 19    factor -> LPAREN expression RPAREN
+Rule 20    comentario -> COMMENT
+Rule 21    comentario -> COMMENTS
+Rule 22    asignacion -> ID ASSIGN expression
+Rule 23    asignacion -> multipleAsignacion expression
+Rule 24    asignacion -> asignacionComa
+Rule 25    asignacion -> ID ASSIGN BOOLEAN
+Rule 26    asignacion -> ID ASSIGN lista
+Rule 27    multipleAsignacion -> ID ASSIGN
+Rule 28    multipleAsignacion -> ID ASSIGN multipleAsignacion
+Rule 29    asignacionComa -> valoresComaID ASSIGN valoresComa
+Rule 30    valoresComaID -> ID
+Rule 31    valoresComaID -> valoresComaID COMA ID
+Rule 32    valoresComa -> factor
+Rule 33    valoresComa -> valoresComa COMA factor
+Rule 34    lista -> CORCHETEIZQ valoresComa CORCHETEDER
 
 Terminals, with rules where they appear
 
 AND                  : 
 APPEND               : 
-ASSIGN               : 19 21 22 23 24
-BOOLEAN              : 21
-CADENA               : 15
-COMA                 : 26
+ASSIGN               : 22 25 26 27 28 29
+BOOLEAN              : 25
+CADENA               : 18
+COMA                 : 31 33
 COMILLAS             : 
 COMILLASSIMPLES      : 
-COMMENT              : 17
-COMMENTS             : 18
-CORCHETEDER          : 27
-CORCHETEIZQ          : 27
+COMMENT              : 20
+COMMENTS             : 21
+CORCHETEDER          : 34
+CORCHETEIZQ          : 34
 DEF                  : 
 DIFERENTE            : 
 DIVIDE               : 10
-DIVISIONENTERA       : 
+DIVISIONENTERA       : 12
 DOSPUNTOS            : 
 ELSE                 : 
 EQUALS               : 
-EXPONENTE            : 
-FLOAT                : 14
+EXPONENTE            : 11
+FLOAT                : 17
 FOR                  : 
-ID                   : 19 21 22 23 24
+ID                   : 22 25 26 27 28 30 31
 IF                   : 
 IN                   : 
 INPUT                : 
@@ -101,15 +105,15 @@ IS                   :
 LESSTHAN             : 
 LLAVEDER             : 
 LLAVEIZQ             : 
-LPAREN               : 16
+LPAREN               : 19
 MAYORIGUAL           : 
 MENORIGUAL           : 
 MINUS                : 7
-MOD                  : 
+MOD                  : 13
 MORETHAN             : 
 NOT                  : 
 NOTS                 : 
-NUMBER               : 12
+NUMBER               : 15
 OPEN                 : 
 OR                   : 
 PLUS                 : 6
@@ -119,8 +123,8 @@ PUNTOCOMA            :
 RANGE                : 
 REMOVE               : 
 RETURN               : 
-RPAREN               : 16
-STRING               : 13
+RPAREN               : 19
+STRING               : 16
 SUBGUION             : 
 TIMES                : 9
 WHILE                : 
@@ -129,14 +133,16 @@ error                :
 Nonterminals, with rules where they appear
 
 asignacion           : 3
+asignacionComa       : 24
 comentario           : 2
 cuerpo               : 0
-expression           : 1 6 7 16 19 20
-factor               : 9 10 11 25 26
-lista                : 5 22
-multipleAsignacion   : 20 24
-term                 : 6 7 8 9 10
-valoresComa          : 4 26 27
+expression           : 1 6 7 19 22 23
+factor               : 9 10 11 12 13 14 32 33
+lista                : 5 26
+multipleAsignacion   : 23 28
+term                 : 6 7 8 9 10 11 12 13
+valoresComa          : 4 29 33 34
+valoresComaID        : 29 31
 
 Parsing method: LALR
 
@@ -151,35 +157,42 @@ state 0
     (6) expression -> . expression PLUS term
     (7) expression -> . expression MINUS term
     (8) expression -> . term
-    (17) comentario -> . COMMENT
-    (18) comentario -> . COMMENTS
-    (19) asignacion -> . ID ASSIGN expression
-    (20) asignacion -> . multipleAsignacion expression
-    (21) asignacion -> . ID ASSIGN BOOLEAN
-    (22) asignacion -> . ID ASSIGN lista
-    (25) valoresComa -> . factor
-    (26) valoresComa -> . valoresComa COMA factor
-    (27) lista -> . CORCHETEIZQ valoresComa CORCHETEDER
+    (20) comentario -> . COMMENT
+    (21) comentario -> . COMMENTS
+    (22) asignacion -> . ID ASSIGN expression
+    (23) asignacion -> . multipleAsignacion expression
+    (24) asignacion -> . asignacionComa
+    (25) asignacion -> . ID ASSIGN BOOLEAN
+    (26) asignacion -> . ID ASSIGN lista
+    (32) valoresComa -> . factor
+    (33) valoresComa -> . valoresComa COMA factor
+    (34) lista -> . CORCHETEIZQ valoresComa CORCHETEDER
     (9) term -> . term TIMES factor
     (10) term -> . term DIVIDE factor
-    (11) term -> . factor
-    (23) multipleAsignacion -> . ID ASSIGN
-    (24) multipleAsignacion -> . ID ASSIGN multipleAsignacion
-    (12) factor -> . NUMBER
-    (13) factor -> . STRING
-    (14) factor -> . FLOAT
-    (15) factor -> . CADENA
-    (16) factor -> . LPAREN expression RPAREN
+    (11) term -> . term EXPONENTE factor
+    (12) term -> . term DIVISIONENTERA factor
+    (13) term -> . term MOD factor
+    (14) term -> . factor
+    (27) multipleAsignacion -> . ID ASSIGN
+    (28) multipleAsignacion -> . ID ASSIGN multipleAsignacion
+    (29) asignacionComa -> . valoresComaID ASSIGN valoresComa
+    (15) factor -> . NUMBER
+    (16) factor -> . STRING
+    (17) factor -> . FLOAT
+    (18) factor -> . CADENA
+    (19) factor -> . LPAREN expression RPAREN
+    (30) valoresComaID -> . ID
+    (31) valoresComaID -> . valoresComaID COMA ID
 
     COMMENT         shift and go to state 8
     COMMENTS        shift and go to state 9
     ID              shift and go to state 10
-    CORCHETEIZQ     shift and go to state 13
-    NUMBER          shift and go to state 14
-    STRING          shift and go to state 15
-    FLOAT           shift and go to state 16
-    CADENA          shift and go to state 17
-    LPAREN          shift and go to state 18
+    CORCHETEIZQ     shift and go to state 14
+    NUMBER          shift and go to state 16
+    STRING          shift and go to state 17
+    FLOAT           shift and go to state 18
+    CADENA          shift and go to state 19
+    LPAREN          shift and go to state 20
 
     cuerpo                         shift and go to state 1
     expression                     shift and go to state 2
@@ -189,7 +202,9 @@ state 0
     lista                          shift and go to state 6
     term                           shift and go to state 7
     multipleAsignacion             shift and go to state 11
-    factor                         shift and go to state 12
+    asignacionComa                 shift and go to state 12
+    factor                         shift and go to state 13
+    valoresComaID                  shift and go to state 15
 
 state 1
 
@@ -204,8 +219,8 @@ state 2
     (7) expression -> expression . MINUS term
 
     $end            reduce using rule 1 (cuerpo -> expression .)
-    PLUS            shift and go to state 19
-    MINUS           shift and go to state 20
+    PLUS            shift and go to state 21
+    MINUS           shift and go to state 22
 
 
 state 3
@@ -225,10 +240,10 @@ state 4
 state 5
 
     (4) cuerpo -> valoresComa .
-    (26) valoresComa -> valoresComa . COMA factor
+    (33) valoresComa -> valoresComa . COMA factor
 
     $end            reduce using rule 4 (cuerpo -> valoresComa .)
-    COMA            shift and go to state 21
+    COMA            shift and go to state 23
 
 
 state 6
@@ -243,522 +258,745 @@ state 7
     (8) expression -> term .
     (9) term -> term . TIMES factor
     (10) term -> term . DIVIDE factor
+    (11) term -> term . EXPONENTE factor
+    (12) term -> term . DIVISIONENTERA factor
+    (13) term -> term . MOD factor
 
     PLUS            reduce using rule 8 (expression -> term .)
     MINUS           reduce using rule 8 (expression -> term .)
     $end            reduce using rule 8 (expression -> term .)
     RPAREN          reduce using rule 8 (expression -> term .)
-    TIMES           shift and go to state 22
-    DIVIDE          shift and go to state 23
+    TIMES           shift and go to state 24
+    DIVIDE          shift and go to state 25
+    EXPONENTE       shift and go to state 26
+    DIVISIONENTERA  shift and go to state 27
+    MOD             shift and go to state 28
 
 
 state 8
 
-    (17) comentario -> COMMENT .
+    (20) comentario -> COMMENT .
 
-    $end            reduce using rule 17 (comentario -> COMMENT .)
+    $end            reduce using rule 20 (comentario -> COMMENT .)
 
 
 state 9
 
-    (18) comentario -> COMMENTS .
+    (21) comentario -> COMMENTS .
 
-    $end            reduce using rule 18 (comentario -> COMMENTS .)
+    $end            reduce using rule 21 (comentario -> COMMENTS .)
 
 
 state 10
 
-    (19) asignacion -> ID . ASSIGN expression
-    (21) asignacion -> ID . ASSIGN BOOLEAN
-    (22) asignacion -> ID . ASSIGN lista
-    (23) multipleAsignacion -> ID . ASSIGN
-    (24) multipleAsignacion -> ID . ASSIGN multipleAsignacion
+    (22) asignacion -> ID . ASSIGN expression
+    (25) asignacion -> ID . ASSIGN BOOLEAN
+    (26) asignacion -> ID . ASSIGN lista
+    (27) multipleAsignacion -> ID . ASSIGN
+    (28) multipleAsignacion -> ID . ASSIGN multipleAsignacion
+    (30) valoresComaID -> ID .
 
-    ASSIGN          shift and go to state 24
+  ! shift/reduce conflict for ASSIGN resolved as shift
+    ASSIGN          shift and go to state 29
+    COMA            reduce using rule 30 (valoresComaID -> ID .)
+
+  ! ASSIGN          [ reduce using rule 30 (valoresComaID -> ID .) ]
 
 
 state 11
 
-    (20) asignacion -> multipleAsignacion . expression
+    (23) asignacion -> multipleAsignacion . expression
     (6) expression -> . expression PLUS term
     (7) expression -> . expression MINUS term
     (8) expression -> . term
     (9) term -> . term TIMES factor
     (10) term -> . term DIVIDE factor
-    (11) term -> . factor
-    (12) factor -> . NUMBER
-    (13) factor -> . STRING
-    (14) factor -> . FLOAT
-    (15) factor -> . CADENA
-    (16) factor -> . LPAREN expression RPAREN
+    (11) term -> . term EXPONENTE factor
+    (12) term -> . term DIVISIONENTERA factor
+    (13) term -> . term MOD factor
+    (14) term -> . factor
+    (15) factor -> . NUMBER
+    (16) factor -> . STRING
+    (17) factor -> . FLOAT
+    (18) factor -> . CADENA
+    (19) factor -> . LPAREN expression RPAREN
 
-    NUMBER          shift and go to state 14
-    STRING          shift and go to state 15
-    FLOAT           shift and go to state 16
-    CADENA          shift and go to state 17
-    LPAREN          shift and go to state 18
+    NUMBER          shift and go to state 16
+    STRING          shift and go to state 17
+    FLOAT           shift and go to state 18
+    CADENA          shift and go to state 19
+    LPAREN          shift and go to state 20
 
-    expression                     shift and go to state 25
+    expression                     shift and go to state 30
     term                           shift and go to state 7
-    factor                         shift and go to state 26
+    factor                         shift and go to state 31
 
 state 12
 
-    (25) valoresComa -> factor .
-    (11) term -> factor .
+    (24) asignacion -> asignacionComa .
 
-  ! reduce/reduce conflict for $end resolved using rule 11 (term -> factor .)
-    COMA            reduce using rule 25 (valoresComa -> factor .)
-    TIMES           reduce using rule 11 (term -> factor .)
-    DIVIDE          reduce using rule 11 (term -> factor .)
-    PLUS            reduce using rule 11 (term -> factor .)
-    MINUS           reduce using rule 11 (term -> factor .)
-    $end            reduce using rule 11 (term -> factor .)
-
-  ! $end            [ reduce using rule 25 (valoresComa -> factor .) ]
+    $end            reduce using rule 24 (asignacion -> asignacionComa .)
 
 
 state 13
 
-    (27) lista -> CORCHETEIZQ . valoresComa CORCHETEDER
-    (25) valoresComa -> . factor
-    (26) valoresComa -> . valoresComa COMA factor
-    (12) factor -> . NUMBER
-    (13) factor -> . STRING
-    (14) factor -> . FLOAT
-    (15) factor -> . CADENA
-    (16) factor -> . LPAREN expression RPAREN
+    (32) valoresComa -> factor .
+    (14) term -> factor .
 
-    NUMBER          shift and go to state 14
-    STRING          shift and go to state 15
-    FLOAT           shift and go to state 16
-    CADENA          shift and go to state 17
-    LPAREN          shift and go to state 18
+  ! reduce/reduce conflict for $end resolved using rule 14 (term -> factor .)
+    COMA            reduce using rule 32 (valoresComa -> factor .)
+    TIMES           reduce using rule 14 (term -> factor .)
+    DIVIDE          reduce using rule 14 (term -> factor .)
+    EXPONENTE       reduce using rule 14 (term -> factor .)
+    DIVISIONENTERA  reduce using rule 14 (term -> factor .)
+    MOD             reduce using rule 14 (term -> factor .)
+    PLUS            reduce using rule 14 (term -> factor .)
+    MINUS           reduce using rule 14 (term -> factor .)
+    $end            reduce using rule 14 (term -> factor .)
 
-    valoresComa                    shift and go to state 27
-    factor                         shift and go to state 28
+  ! $end            [ reduce using rule 32 (valoresComa -> factor .) ]
+
 
 state 14
 
-    (12) factor -> NUMBER .
+    (34) lista -> CORCHETEIZQ . valoresComa CORCHETEDER
+    (32) valoresComa -> . factor
+    (33) valoresComa -> . valoresComa COMA factor
+    (15) factor -> . NUMBER
+    (16) factor -> . STRING
+    (17) factor -> . FLOAT
+    (18) factor -> . CADENA
+    (19) factor -> . LPAREN expression RPAREN
 
-    COMA            reduce using rule 12 (factor -> NUMBER .)
-    $end            reduce using rule 12 (factor -> NUMBER .)
-    TIMES           reduce using rule 12 (factor -> NUMBER .)
-    DIVIDE          reduce using rule 12 (factor -> NUMBER .)
-    PLUS            reduce using rule 12 (factor -> NUMBER .)
-    MINUS           reduce using rule 12 (factor -> NUMBER .)
-    CORCHETEDER     reduce using rule 12 (factor -> NUMBER .)
-    RPAREN          reduce using rule 12 (factor -> NUMBER .)
+    NUMBER          shift and go to state 16
+    STRING          shift and go to state 17
+    FLOAT           shift and go to state 18
+    CADENA          shift and go to state 19
+    LPAREN          shift and go to state 20
 
+    valoresComa                    shift and go to state 32
+    factor                         shift and go to state 33
 
 state 15
 
-    (13) factor -> STRING .
+    (29) asignacionComa -> valoresComaID . ASSIGN valoresComa
+    (31) valoresComaID -> valoresComaID . COMA ID
 
-    COMA            reduce using rule 13 (factor -> STRING .)
-    $end            reduce using rule 13 (factor -> STRING .)
-    TIMES           reduce using rule 13 (factor -> STRING .)
-    DIVIDE          reduce using rule 13 (factor -> STRING .)
-    PLUS            reduce using rule 13 (factor -> STRING .)
-    MINUS           reduce using rule 13 (factor -> STRING .)
-    CORCHETEDER     reduce using rule 13 (factor -> STRING .)
-    RPAREN          reduce using rule 13 (factor -> STRING .)
+    ASSIGN          shift and go to state 34
+    COMA            shift and go to state 35
 
 
 state 16
 
-    (14) factor -> FLOAT .
+    (15) factor -> NUMBER .
 
-    COMA            reduce using rule 14 (factor -> FLOAT .)
-    $end            reduce using rule 14 (factor -> FLOAT .)
-    TIMES           reduce using rule 14 (factor -> FLOAT .)
-    DIVIDE          reduce using rule 14 (factor -> FLOAT .)
-    PLUS            reduce using rule 14 (factor -> FLOAT .)
-    MINUS           reduce using rule 14 (factor -> FLOAT .)
-    CORCHETEDER     reduce using rule 14 (factor -> FLOAT .)
-    RPAREN          reduce using rule 14 (factor -> FLOAT .)
+    COMA            reduce using rule 15 (factor -> NUMBER .)
+    $end            reduce using rule 15 (factor -> NUMBER .)
+    TIMES           reduce using rule 15 (factor -> NUMBER .)
+    DIVIDE          reduce using rule 15 (factor -> NUMBER .)
+    EXPONENTE       reduce using rule 15 (factor -> NUMBER .)
+    DIVISIONENTERA  reduce using rule 15 (factor -> NUMBER .)
+    MOD             reduce using rule 15 (factor -> NUMBER .)
+    PLUS            reduce using rule 15 (factor -> NUMBER .)
+    MINUS           reduce using rule 15 (factor -> NUMBER .)
+    CORCHETEDER     reduce using rule 15 (factor -> NUMBER .)
+    RPAREN          reduce using rule 15 (factor -> NUMBER .)
 
 
 state 17
 
-    (15) factor -> CADENA .
+    (16) factor -> STRING .
 
-    COMA            reduce using rule 15 (factor -> CADENA .)
-    $end            reduce using rule 15 (factor -> CADENA .)
-    TIMES           reduce using rule 15 (factor -> CADENA .)
-    DIVIDE          reduce using rule 15 (factor -> CADENA .)
-    PLUS            reduce using rule 15 (factor -> CADENA .)
-    MINUS           reduce using rule 15 (factor -> CADENA .)
-    CORCHETEDER     reduce using rule 15 (factor -> CADENA .)
-    RPAREN          reduce using rule 15 (factor -> CADENA .)
+    COMA            reduce using rule 16 (factor -> STRING .)
+    $end            reduce using rule 16 (factor -> STRING .)
+    TIMES           reduce using rule 16 (factor -> STRING .)
+    DIVIDE          reduce using rule 16 (factor -> STRING .)
+    EXPONENTE       reduce using rule 16 (factor -> STRING .)
+    DIVISIONENTERA  reduce using rule 16 (factor -> STRING .)
+    MOD             reduce using rule 16 (factor -> STRING .)
+    PLUS            reduce using rule 16 (factor -> STRING .)
+    MINUS           reduce using rule 16 (factor -> STRING .)
+    CORCHETEDER     reduce using rule 16 (factor -> STRING .)
+    RPAREN          reduce using rule 16 (factor -> STRING .)
 
 
 state 18
 
-    (16) factor -> LPAREN . expression RPAREN
+    (17) factor -> FLOAT .
+
+    COMA            reduce using rule 17 (factor -> FLOAT .)
+    $end            reduce using rule 17 (factor -> FLOAT .)
+    TIMES           reduce using rule 17 (factor -> FLOAT .)
+    DIVIDE          reduce using rule 17 (factor -> FLOAT .)
+    EXPONENTE       reduce using rule 17 (factor -> FLOAT .)
+    DIVISIONENTERA  reduce using rule 17 (factor -> FLOAT .)
+    MOD             reduce using rule 17 (factor -> FLOAT .)
+    PLUS            reduce using rule 17 (factor -> FLOAT .)
+    MINUS           reduce using rule 17 (factor -> FLOAT .)
+    CORCHETEDER     reduce using rule 17 (factor -> FLOAT .)
+    RPAREN          reduce using rule 17 (factor -> FLOAT .)
+
+
+state 19
+
+    (18) factor -> CADENA .
+
+    COMA            reduce using rule 18 (factor -> CADENA .)
+    $end            reduce using rule 18 (factor -> CADENA .)
+    TIMES           reduce using rule 18 (factor -> CADENA .)
+    DIVIDE          reduce using rule 18 (factor -> CADENA .)
+    EXPONENTE       reduce using rule 18 (factor -> CADENA .)
+    DIVISIONENTERA  reduce using rule 18 (factor -> CADENA .)
+    MOD             reduce using rule 18 (factor -> CADENA .)
+    PLUS            reduce using rule 18 (factor -> CADENA .)
+    MINUS           reduce using rule 18 (factor -> CADENA .)
+    CORCHETEDER     reduce using rule 18 (factor -> CADENA .)
+    RPAREN          reduce using rule 18 (factor -> CADENA .)
+
+
+state 20
+
+    (19) factor -> LPAREN . expression RPAREN
     (6) expression -> . expression PLUS term
     (7) expression -> . expression MINUS term
     (8) expression -> . term
     (9) term -> . term TIMES factor
     (10) term -> . term DIVIDE factor
-    (11) term -> . factor
-    (12) factor -> . NUMBER
-    (13) factor -> . STRING
-    (14) factor -> . FLOAT
-    (15) factor -> . CADENA
-    (16) factor -> . LPAREN expression RPAREN
+    (11) term -> . term EXPONENTE factor
+    (12) term -> . term DIVISIONENTERA factor
+    (13) term -> . term MOD factor
+    (14) term -> . factor
+    (15) factor -> . NUMBER
+    (16) factor -> . STRING
+    (17) factor -> . FLOAT
+    (18) factor -> . CADENA
+    (19) factor -> . LPAREN expression RPAREN
 
-    NUMBER          shift and go to state 14
-    STRING          shift and go to state 15
-    FLOAT           shift and go to state 16
-    CADENA          shift and go to state 17
-    LPAREN          shift and go to state 18
+    NUMBER          shift and go to state 16
+    STRING          shift and go to state 17
+    FLOAT           shift and go to state 18
+    CADENA          shift and go to state 19
+    LPAREN          shift and go to state 20
 
-    expression                     shift and go to state 29
+    expression                     shift and go to state 36
     term                           shift and go to state 7
-    factor                         shift and go to state 26
+    factor                         shift and go to state 31
 
-state 19
+state 21
 
     (6) expression -> expression PLUS . term
     (9) term -> . term TIMES factor
     (10) term -> . term DIVIDE factor
-    (11) term -> . factor
-    (12) factor -> . NUMBER
-    (13) factor -> . STRING
-    (14) factor -> . FLOAT
-    (15) factor -> . CADENA
-    (16) factor -> . LPAREN expression RPAREN
+    (11) term -> . term EXPONENTE factor
+    (12) term -> . term DIVISIONENTERA factor
+    (13) term -> . term MOD factor
+    (14) term -> . factor
+    (15) factor -> . NUMBER
+    (16) factor -> . STRING
+    (17) factor -> . FLOAT
+    (18) factor -> . CADENA
+    (19) factor -> . LPAREN expression RPAREN
 
-    NUMBER          shift and go to state 14
-    STRING          shift and go to state 15
-    FLOAT           shift and go to state 16
-    CADENA          shift and go to state 17
-    LPAREN          shift and go to state 18
+    NUMBER          shift and go to state 16
+    STRING          shift and go to state 17
+    FLOAT           shift and go to state 18
+    CADENA          shift and go to state 19
+    LPAREN          shift and go to state 20
 
-    term                           shift and go to state 30
-    factor                         shift and go to state 26
+    term                           shift and go to state 37
+    factor                         shift and go to state 31
 
-state 20
+state 22
 
     (7) expression -> expression MINUS . term
     (9) term -> . term TIMES factor
     (10) term -> . term DIVIDE factor
-    (11) term -> . factor
-    (12) factor -> . NUMBER
-    (13) factor -> . STRING
-    (14) factor -> . FLOAT
-    (15) factor -> . CADENA
-    (16) factor -> . LPAREN expression RPAREN
+    (11) term -> . term EXPONENTE factor
+    (12) term -> . term DIVISIONENTERA factor
+    (13) term -> . term MOD factor
+    (14) term -> . factor
+    (15) factor -> . NUMBER
+    (16) factor -> . STRING
+    (17) factor -> . FLOAT
+    (18) factor -> . CADENA
+    (19) factor -> . LPAREN expression RPAREN
 
-    NUMBER          shift and go to state 14
-    STRING          shift and go to state 15
-    FLOAT           shift and go to state 16
-    CADENA          shift and go to state 17
-    LPAREN          shift and go to state 18
+    NUMBER          shift and go to state 16
+    STRING          shift and go to state 17
+    FLOAT           shift and go to state 18
+    CADENA          shift and go to state 19
+    LPAREN          shift and go to state 20
 
-    term                           shift and go to state 31
-    factor                         shift and go to state 26
-
-state 21
-
-    (26) valoresComa -> valoresComa COMA . factor
-    (12) factor -> . NUMBER
-    (13) factor -> . STRING
-    (14) factor -> . FLOAT
-    (15) factor -> . CADENA
-    (16) factor -> . LPAREN expression RPAREN
-
-    NUMBER          shift and go to state 14
-    STRING          shift and go to state 15
-    FLOAT           shift and go to state 16
-    CADENA          shift and go to state 17
-    LPAREN          shift and go to state 18
-
-    factor                         shift and go to state 32
-
-state 22
-
-    (9) term -> term TIMES . factor
-    (12) factor -> . NUMBER
-    (13) factor -> . STRING
-    (14) factor -> . FLOAT
-    (15) factor -> . CADENA
-    (16) factor -> . LPAREN expression RPAREN
-
-    NUMBER          shift and go to state 14
-    STRING          shift and go to state 15
-    FLOAT           shift and go to state 16
-    CADENA          shift and go to state 17
-    LPAREN          shift and go to state 18
-
-    factor                         shift and go to state 33
+    term                           shift and go to state 38
+    factor                         shift and go to state 31
 
 state 23
 
-    (10) term -> term DIVIDE . factor
-    (12) factor -> . NUMBER
-    (13) factor -> . STRING
-    (14) factor -> . FLOAT
-    (15) factor -> . CADENA
-    (16) factor -> . LPAREN expression RPAREN
+    (33) valoresComa -> valoresComa COMA . factor
+    (15) factor -> . NUMBER
+    (16) factor -> . STRING
+    (17) factor -> . FLOAT
+    (18) factor -> . CADENA
+    (19) factor -> . LPAREN expression RPAREN
 
-    NUMBER          shift and go to state 14
-    STRING          shift and go to state 15
-    FLOAT           shift and go to state 16
-    CADENA          shift and go to state 17
-    LPAREN          shift and go to state 18
+    NUMBER          shift and go to state 16
+    STRING          shift and go to state 17
+    FLOAT           shift and go to state 18
+    CADENA          shift and go to state 19
+    LPAREN          shift and go to state 20
 
-    factor                         shift and go to state 34
+    factor                         shift and go to state 39
 
 state 24
 
-    (19) asignacion -> ID ASSIGN . expression
-    (21) asignacion -> ID ASSIGN . BOOLEAN
-    (22) asignacion -> ID ASSIGN . lista
-    (23) multipleAsignacion -> ID ASSIGN .
-    (24) multipleAsignacion -> ID ASSIGN . multipleAsignacion
+    (9) term -> term TIMES . factor
+    (15) factor -> . NUMBER
+    (16) factor -> . STRING
+    (17) factor -> . FLOAT
+    (18) factor -> . CADENA
+    (19) factor -> . LPAREN expression RPAREN
+
+    NUMBER          shift and go to state 16
+    STRING          shift and go to state 17
+    FLOAT           shift and go to state 18
+    CADENA          shift and go to state 19
+    LPAREN          shift and go to state 20
+
+    factor                         shift and go to state 40
+
+state 25
+
+    (10) term -> term DIVIDE . factor
+    (15) factor -> . NUMBER
+    (16) factor -> . STRING
+    (17) factor -> . FLOAT
+    (18) factor -> . CADENA
+    (19) factor -> . LPAREN expression RPAREN
+
+    NUMBER          shift and go to state 16
+    STRING          shift and go to state 17
+    FLOAT           shift and go to state 18
+    CADENA          shift and go to state 19
+    LPAREN          shift and go to state 20
+
+    factor                         shift and go to state 41
+
+state 26
+
+    (11) term -> term EXPONENTE . factor
+    (15) factor -> . NUMBER
+    (16) factor -> . STRING
+    (17) factor -> . FLOAT
+    (18) factor -> . CADENA
+    (19) factor -> . LPAREN expression RPAREN
+
+    NUMBER          shift and go to state 16
+    STRING          shift and go to state 17
+    FLOAT           shift and go to state 18
+    CADENA          shift and go to state 19
+    LPAREN          shift and go to state 20
+
+    factor                         shift and go to state 42
+
+state 27
+
+    (12) term -> term DIVISIONENTERA . factor
+    (15) factor -> . NUMBER
+    (16) factor -> . STRING
+    (17) factor -> . FLOAT
+    (18) factor -> . CADENA
+    (19) factor -> . LPAREN expression RPAREN
+
+    NUMBER          shift and go to state 16
+    STRING          shift and go to state 17
+    FLOAT           shift and go to state 18
+    CADENA          shift and go to state 19
+    LPAREN          shift and go to state 20
+
+    factor                         shift and go to state 43
+
+state 28
+
+    (13) term -> term MOD . factor
+    (15) factor -> . NUMBER
+    (16) factor -> . STRING
+    (17) factor -> . FLOAT
+    (18) factor -> . CADENA
+    (19) factor -> . LPAREN expression RPAREN
+
+    NUMBER          shift and go to state 16
+    STRING          shift and go to state 17
+    FLOAT           shift and go to state 18
+    CADENA          shift and go to state 19
+    LPAREN          shift and go to state 20
+
+    factor                         shift and go to state 44
+
+state 29
+
+    (22) asignacion -> ID ASSIGN . expression
+    (25) asignacion -> ID ASSIGN . BOOLEAN
+    (26) asignacion -> ID ASSIGN . lista
+    (27) multipleAsignacion -> ID ASSIGN .
+    (28) multipleAsignacion -> ID ASSIGN . multipleAsignacion
     (6) expression -> . expression PLUS term
     (7) expression -> . expression MINUS term
     (8) expression -> . term
-    (27) lista -> . CORCHETEIZQ valoresComa CORCHETEDER
-    (23) multipleAsignacion -> . ID ASSIGN
-    (24) multipleAsignacion -> . ID ASSIGN multipleAsignacion
+    (34) lista -> . CORCHETEIZQ valoresComa CORCHETEDER
+    (27) multipleAsignacion -> . ID ASSIGN
+    (28) multipleAsignacion -> . ID ASSIGN multipleAsignacion
     (9) term -> . term TIMES factor
     (10) term -> . term DIVIDE factor
-    (11) term -> . factor
-    (12) factor -> . NUMBER
-    (13) factor -> . STRING
-    (14) factor -> . FLOAT
-    (15) factor -> . CADENA
-    (16) factor -> . LPAREN expression RPAREN
+    (11) term -> . term EXPONENTE factor
+    (12) term -> . term DIVISIONENTERA factor
+    (13) term -> . term MOD factor
+    (14) term -> . factor
+    (15) factor -> . NUMBER
+    (16) factor -> . STRING
+    (17) factor -> . FLOAT
+    (18) factor -> . CADENA
+    (19) factor -> . LPAREN expression RPAREN
 
   ! shift/reduce conflict for NUMBER resolved as shift
   ! shift/reduce conflict for STRING resolved as shift
   ! shift/reduce conflict for FLOAT resolved as shift
   ! shift/reduce conflict for CADENA resolved as shift
   ! shift/reduce conflict for LPAREN resolved as shift
-    BOOLEAN         shift and go to state 37
-    CORCHETEIZQ     shift and go to state 13
-    ID              shift and go to state 35
-    NUMBER          shift and go to state 14
-    STRING          shift and go to state 15
-    FLOAT           shift and go to state 16
-    CADENA          shift and go to state 17
-    LPAREN          shift and go to state 18
+    BOOLEAN         shift and go to state 47
+    CORCHETEIZQ     shift and go to state 14
+    ID              shift and go to state 45
+    NUMBER          shift and go to state 16
+    STRING          shift and go to state 17
+    FLOAT           shift and go to state 18
+    CADENA          shift and go to state 19
+    LPAREN          shift and go to state 20
 
-  ! NUMBER          [ reduce using rule 23 (multipleAsignacion -> ID ASSIGN .) ]
-  ! STRING          [ reduce using rule 23 (multipleAsignacion -> ID ASSIGN .) ]
-  ! FLOAT           [ reduce using rule 23 (multipleAsignacion -> ID ASSIGN .) ]
-  ! CADENA          [ reduce using rule 23 (multipleAsignacion -> ID ASSIGN .) ]
-  ! LPAREN          [ reduce using rule 23 (multipleAsignacion -> ID ASSIGN .) ]
+  ! NUMBER          [ reduce using rule 27 (multipleAsignacion -> ID ASSIGN .) ]
+  ! STRING          [ reduce using rule 27 (multipleAsignacion -> ID ASSIGN .) ]
+  ! FLOAT           [ reduce using rule 27 (multipleAsignacion -> ID ASSIGN .) ]
+  ! CADENA          [ reduce using rule 27 (multipleAsignacion -> ID ASSIGN .) ]
+  ! LPAREN          [ reduce using rule 27 (multipleAsignacion -> ID ASSIGN .) ]
 
-    expression                     shift and go to state 36
-    lista                          shift and go to state 38
-    multipleAsignacion             shift and go to state 39
+    expression                     shift and go to state 46
+    lista                          shift and go to state 48
+    multipleAsignacion             shift and go to state 49
     term                           shift and go to state 7
-    factor                         shift and go to state 26
-
-state 25
-
-    (20) asignacion -> multipleAsignacion expression .
-    (6) expression -> expression . PLUS term
-    (7) expression -> expression . MINUS term
-
-    $end            reduce using rule 20 (asignacion -> multipleAsignacion expression .)
-    PLUS            shift and go to state 19
-    MINUS           shift and go to state 20
-
-
-state 26
-
-    (11) term -> factor .
-
-    TIMES           reduce using rule 11 (term -> factor .)
-    DIVIDE          reduce using rule 11 (term -> factor .)
-    PLUS            reduce using rule 11 (term -> factor .)
-    MINUS           reduce using rule 11 (term -> factor .)
-    $end            reduce using rule 11 (term -> factor .)
-    RPAREN          reduce using rule 11 (term -> factor .)
-
-
-state 27
-
-    (27) lista -> CORCHETEIZQ valoresComa . CORCHETEDER
-    (26) valoresComa -> valoresComa . COMA factor
-
-    CORCHETEDER     shift and go to state 40
-    COMA            shift and go to state 21
-
-
-state 28
-
-    (25) valoresComa -> factor .
-
-    CORCHETEDER     reduce using rule 25 (valoresComa -> factor .)
-    COMA            reduce using rule 25 (valoresComa -> factor .)
-
-
-state 29
-
-    (16) factor -> LPAREN expression . RPAREN
-    (6) expression -> expression . PLUS term
-    (7) expression -> expression . MINUS term
-
-    RPAREN          shift and go to state 41
-    PLUS            shift and go to state 19
-    MINUS           shift and go to state 20
-
+    factor                         shift and go to state 31
 
 state 30
+
+    (23) asignacion -> multipleAsignacion expression .
+    (6) expression -> expression . PLUS term
+    (7) expression -> expression . MINUS term
+
+    $end            reduce using rule 23 (asignacion -> multipleAsignacion expression .)
+    PLUS            shift and go to state 21
+    MINUS           shift and go to state 22
+
+
+state 31
+
+    (14) term -> factor .
+
+    TIMES           reduce using rule 14 (term -> factor .)
+    DIVIDE          reduce using rule 14 (term -> factor .)
+    EXPONENTE       reduce using rule 14 (term -> factor .)
+    DIVISIONENTERA  reduce using rule 14 (term -> factor .)
+    MOD             reduce using rule 14 (term -> factor .)
+    PLUS            reduce using rule 14 (term -> factor .)
+    MINUS           reduce using rule 14 (term -> factor .)
+    $end            reduce using rule 14 (term -> factor .)
+    RPAREN          reduce using rule 14 (term -> factor .)
+
+
+state 32
+
+    (34) lista -> CORCHETEIZQ valoresComa . CORCHETEDER
+    (33) valoresComa -> valoresComa . COMA factor
+
+    CORCHETEDER     shift and go to state 50
+    COMA            shift and go to state 23
+
+
+state 33
+
+    (32) valoresComa -> factor .
+
+    CORCHETEDER     reduce using rule 32 (valoresComa -> factor .)
+    COMA            reduce using rule 32 (valoresComa -> factor .)
+    $end            reduce using rule 32 (valoresComa -> factor .)
+
+
+state 34
+
+    (29) asignacionComa -> valoresComaID ASSIGN . valoresComa
+    (32) valoresComa -> . factor
+    (33) valoresComa -> . valoresComa COMA factor
+    (15) factor -> . NUMBER
+    (16) factor -> . STRING
+    (17) factor -> . FLOAT
+    (18) factor -> . CADENA
+    (19) factor -> . LPAREN expression RPAREN
+
+    NUMBER          shift and go to state 16
+    STRING          shift and go to state 17
+    FLOAT           shift and go to state 18
+    CADENA          shift and go to state 19
+    LPAREN          shift and go to state 20
+
+    valoresComa                    shift and go to state 51
+    factor                         shift and go to state 33
+
+state 35
+
+    (31) valoresComaID -> valoresComaID COMA . ID
+
+    ID              shift and go to state 52
+
+
+state 36
+
+    (19) factor -> LPAREN expression . RPAREN
+    (6) expression -> expression . PLUS term
+    (7) expression -> expression . MINUS term
+
+    RPAREN          shift and go to state 53
+    PLUS            shift and go to state 21
+    MINUS           shift and go to state 22
+
+
+state 37
 
     (6) expression -> expression PLUS term .
     (9) term -> term . TIMES factor
     (10) term -> term . DIVIDE factor
+    (11) term -> term . EXPONENTE factor
+    (12) term -> term . DIVISIONENTERA factor
+    (13) term -> term . MOD factor
 
     PLUS            reduce using rule 6 (expression -> expression PLUS term .)
     MINUS           reduce using rule 6 (expression -> expression PLUS term .)
     $end            reduce using rule 6 (expression -> expression PLUS term .)
     RPAREN          reduce using rule 6 (expression -> expression PLUS term .)
-    TIMES           shift and go to state 22
-    DIVIDE          shift and go to state 23
+    TIMES           shift and go to state 24
+    DIVIDE          shift and go to state 25
+    EXPONENTE       shift and go to state 26
+    DIVISIONENTERA  shift and go to state 27
+    MOD             shift and go to state 28
 
 
-state 31
+state 38
 
     (7) expression -> expression MINUS term .
     (9) term -> term . TIMES factor
     (10) term -> term . DIVIDE factor
+    (11) term -> term . EXPONENTE factor
+    (12) term -> term . DIVISIONENTERA factor
+    (13) term -> term . MOD factor
 
     PLUS            reduce using rule 7 (expression -> expression MINUS term .)
     MINUS           reduce using rule 7 (expression -> expression MINUS term .)
     $end            reduce using rule 7 (expression -> expression MINUS term .)
     RPAREN          reduce using rule 7 (expression -> expression MINUS term .)
-    TIMES           shift and go to state 22
-    DIVIDE          shift and go to state 23
+    TIMES           shift and go to state 24
+    DIVIDE          shift and go to state 25
+    EXPONENTE       shift and go to state 26
+    DIVISIONENTERA  shift and go to state 27
+    MOD             shift and go to state 28
 
 
-state 32
+state 39
 
-    (26) valoresComa -> valoresComa COMA factor .
+    (33) valoresComa -> valoresComa COMA factor .
 
-    COMA            reduce using rule 26 (valoresComa -> valoresComa COMA factor .)
-    $end            reduce using rule 26 (valoresComa -> valoresComa COMA factor .)
-    CORCHETEDER     reduce using rule 26 (valoresComa -> valoresComa COMA factor .)
+    COMA            reduce using rule 33 (valoresComa -> valoresComa COMA factor .)
+    $end            reduce using rule 33 (valoresComa -> valoresComa COMA factor .)
+    CORCHETEDER     reduce using rule 33 (valoresComa -> valoresComa COMA factor .)
 
 
-state 33
+state 40
 
     (9) term -> term TIMES factor .
 
     TIMES           reduce using rule 9 (term -> term TIMES factor .)
     DIVIDE          reduce using rule 9 (term -> term TIMES factor .)
+    EXPONENTE       reduce using rule 9 (term -> term TIMES factor .)
+    DIVISIONENTERA  reduce using rule 9 (term -> term TIMES factor .)
+    MOD             reduce using rule 9 (term -> term TIMES factor .)
     PLUS            reduce using rule 9 (term -> term TIMES factor .)
     MINUS           reduce using rule 9 (term -> term TIMES factor .)
     $end            reduce using rule 9 (term -> term TIMES factor .)
     RPAREN          reduce using rule 9 (term -> term TIMES factor .)
 
 
-state 34
+state 41
 
     (10) term -> term DIVIDE factor .
 
     TIMES           reduce using rule 10 (term -> term DIVIDE factor .)
     DIVIDE          reduce using rule 10 (term -> term DIVIDE factor .)
+    EXPONENTE       reduce using rule 10 (term -> term DIVIDE factor .)
+    DIVISIONENTERA  reduce using rule 10 (term -> term DIVIDE factor .)
+    MOD             reduce using rule 10 (term -> term DIVIDE factor .)
     PLUS            reduce using rule 10 (term -> term DIVIDE factor .)
     MINUS           reduce using rule 10 (term -> term DIVIDE factor .)
     $end            reduce using rule 10 (term -> term DIVIDE factor .)
     RPAREN          reduce using rule 10 (term -> term DIVIDE factor .)
 
 
-state 35
+state 42
 
-    (23) multipleAsignacion -> ID . ASSIGN
-    (24) multipleAsignacion -> ID . ASSIGN multipleAsignacion
+    (11) term -> term EXPONENTE factor .
 
-    ASSIGN          shift and go to state 42
+    TIMES           reduce using rule 11 (term -> term EXPONENTE factor .)
+    DIVIDE          reduce using rule 11 (term -> term EXPONENTE factor .)
+    EXPONENTE       reduce using rule 11 (term -> term EXPONENTE factor .)
+    DIVISIONENTERA  reduce using rule 11 (term -> term EXPONENTE factor .)
+    MOD             reduce using rule 11 (term -> term EXPONENTE factor .)
+    PLUS            reduce using rule 11 (term -> term EXPONENTE factor .)
+    MINUS           reduce using rule 11 (term -> term EXPONENTE factor .)
+    $end            reduce using rule 11 (term -> term EXPONENTE factor .)
+    RPAREN          reduce using rule 11 (term -> term EXPONENTE factor .)
 
 
-state 36
+state 43
 
-    (19) asignacion -> ID ASSIGN expression .
+    (12) term -> term DIVISIONENTERA factor .
+
+    TIMES           reduce using rule 12 (term -> term DIVISIONENTERA factor .)
+    DIVIDE          reduce using rule 12 (term -> term DIVISIONENTERA factor .)
+    EXPONENTE       reduce using rule 12 (term -> term DIVISIONENTERA factor .)
+    DIVISIONENTERA  reduce using rule 12 (term -> term DIVISIONENTERA factor .)
+    MOD             reduce using rule 12 (term -> term DIVISIONENTERA factor .)
+    PLUS            reduce using rule 12 (term -> term DIVISIONENTERA factor .)
+    MINUS           reduce using rule 12 (term -> term DIVISIONENTERA factor .)
+    $end            reduce using rule 12 (term -> term DIVISIONENTERA factor .)
+    RPAREN          reduce using rule 12 (term -> term DIVISIONENTERA factor .)
+
+
+state 44
+
+    (13) term -> term MOD factor .
+
+    TIMES           reduce using rule 13 (term -> term MOD factor .)
+    DIVIDE          reduce using rule 13 (term -> term MOD factor .)
+    EXPONENTE       reduce using rule 13 (term -> term MOD factor .)
+    DIVISIONENTERA  reduce using rule 13 (term -> term MOD factor .)
+    MOD             reduce using rule 13 (term -> term MOD factor .)
+    PLUS            reduce using rule 13 (term -> term MOD factor .)
+    MINUS           reduce using rule 13 (term -> term MOD factor .)
+    $end            reduce using rule 13 (term -> term MOD factor .)
+    RPAREN          reduce using rule 13 (term -> term MOD factor .)
+
+
+state 45
+
+    (27) multipleAsignacion -> ID . ASSIGN
+    (28) multipleAsignacion -> ID . ASSIGN multipleAsignacion
+
+    ASSIGN          shift and go to state 54
+
+
+state 46
+
+    (22) asignacion -> ID ASSIGN expression .
     (6) expression -> expression . PLUS term
     (7) expression -> expression . MINUS term
 
-    $end            reduce using rule 19 (asignacion -> ID ASSIGN expression .)
-    PLUS            shift and go to state 19
-    MINUS           shift and go to state 20
+    $end            reduce using rule 22 (asignacion -> ID ASSIGN expression .)
+    PLUS            shift and go to state 21
+    MINUS           shift and go to state 22
 
 
-state 37
+state 47
 
-    (21) asignacion -> ID ASSIGN BOOLEAN .
+    (25) asignacion -> ID ASSIGN BOOLEAN .
 
-    $end            reduce using rule 21 (asignacion -> ID ASSIGN BOOLEAN .)
-
-
-state 38
-
-    (22) asignacion -> ID ASSIGN lista .
-
-    $end            reduce using rule 22 (asignacion -> ID ASSIGN lista .)
+    $end            reduce using rule 25 (asignacion -> ID ASSIGN BOOLEAN .)
 
 
-state 39
+state 48
 
-    (24) multipleAsignacion -> ID ASSIGN multipleAsignacion .
+    (26) asignacion -> ID ASSIGN lista .
 
-    NUMBER          reduce using rule 24 (multipleAsignacion -> ID ASSIGN multipleAsignacion .)
-    STRING          reduce using rule 24 (multipleAsignacion -> ID ASSIGN multipleAsignacion .)
-    FLOAT           reduce using rule 24 (multipleAsignacion -> ID ASSIGN multipleAsignacion .)
-    CADENA          reduce using rule 24 (multipleAsignacion -> ID ASSIGN multipleAsignacion .)
-    LPAREN          reduce using rule 24 (multipleAsignacion -> ID ASSIGN multipleAsignacion .)
+    $end            reduce using rule 26 (asignacion -> ID ASSIGN lista .)
 
 
-state 40
+state 49
 
-    (27) lista -> CORCHETEIZQ valoresComa CORCHETEDER .
+    (28) multipleAsignacion -> ID ASSIGN multipleAsignacion .
 
-    $end            reduce using rule 27 (lista -> CORCHETEIZQ valoresComa CORCHETEDER .)
-
-
-state 41
-
-    (16) factor -> LPAREN expression RPAREN .
-
-    COMA            reduce using rule 16 (factor -> LPAREN expression RPAREN .)
-    $end            reduce using rule 16 (factor -> LPAREN expression RPAREN .)
-    TIMES           reduce using rule 16 (factor -> LPAREN expression RPAREN .)
-    DIVIDE          reduce using rule 16 (factor -> LPAREN expression RPAREN .)
-    PLUS            reduce using rule 16 (factor -> LPAREN expression RPAREN .)
-    MINUS           reduce using rule 16 (factor -> LPAREN expression RPAREN .)
-    CORCHETEDER     reduce using rule 16 (factor -> LPAREN expression RPAREN .)
-    RPAREN          reduce using rule 16 (factor -> LPAREN expression RPAREN .)
+    NUMBER          reduce using rule 28 (multipleAsignacion -> ID ASSIGN multipleAsignacion .)
+    STRING          reduce using rule 28 (multipleAsignacion -> ID ASSIGN multipleAsignacion .)
+    FLOAT           reduce using rule 28 (multipleAsignacion -> ID ASSIGN multipleAsignacion .)
+    CADENA          reduce using rule 28 (multipleAsignacion -> ID ASSIGN multipleAsignacion .)
+    LPAREN          reduce using rule 28 (multipleAsignacion -> ID ASSIGN multipleAsignacion .)
 
 
-state 42
+state 50
 
-    (23) multipleAsignacion -> ID ASSIGN .
-    (24) multipleAsignacion -> ID ASSIGN . multipleAsignacion
-    (23) multipleAsignacion -> . ID ASSIGN
-    (24) multipleAsignacion -> . ID ASSIGN multipleAsignacion
+    (34) lista -> CORCHETEIZQ valoresComa CORCHETEDER .
 
-    NUMBER          reduce using rule 23 (multipleAsignacion -> ID ASSIGN .)
-    STRING          reduce using rule 23 (multipleAsignacion -> ID ASSIGN .)
-    FLOAT           reduce using rule 23 (multipleAsignacion -> ID ASSIGN .)
-    CADENA          reduce using rule 23 (multipleAsignacion -> ID ASSIGN .)
-    LPAREN          reduce using rule 23 (multipleAsignacion -> ID ASSIGN .)
-    ID              shift and go to state 35
+    $end            reduce using rule 34 (lista -> CORCHETEIZQ valoresComa CORCHETEDER .)
 
-    multipleAsignacion             shift and go to state 39
+
+state 51
+
+    (29) asignacionComa -> valoresComaID ASSIGN valoresComa .
+    (33) valoresComa -> valoresComa . COMA factor
+
+    $end            reduce using rule 29 (asignacionComa -> valoresComaID ASSIGN valoresComa .)
+    COMA            shift and go to state 23
+
+
+state 52
+
+    (31) valoresComaID -> valoresComaID COMA ID .
+
+    ASSIGN          reduce using rule 31 (valoresComaID -> valoresComaID COMA ID .)
+    COMA            reduce using rule 31 (valoresComaID -> valoresComaID COMA ID .)
+
+
+state 53
+
+    (19) factor -> LPAREN expression RPAREN .
+
+    COMA            reduce using rule 19 (factor -> LPAREN expression RPAREN .)
+    $end            reduce using rule 19 (factor -> LPAREN expression RPAREN .)
+    TIMES           reduce using rule 19 (factor -> LPAREN expression RPAREN .)
+    DIVIDE          reduce using rule 19 (factor -> LPAREN expression RPAREN .)
+    EXPONENTE       reduce using rule 19 (factor -> LPAREN expression RPAREN .)
+    DIVISIONENTERA  reduce using rule 19 (factor -> LPAREN expression RPAREN .)
+    MOD             reduce using rule 19 (factor -> LPAREN expression RPAREN .)
+    PLUS            reduce using rule 19 (factor -> LPAREN expression RPAREN .)
+    MINUS           reduce using rule 19 (factor -> LPAREN expression RPAREN .)
+    CORCHETEDER     reduce using rule 19 (factor -> LPAREN expression RPAREN .)
+    RPAREN          reduce using rule 19 (factor -> LPAREN expression RPAREN .)
+
+
+state 54
+
+    (27) multipleAsignacion -> ID ASSIGN .
+    (28) multipleAsignacion -> ID ASSIGN . multipleAsignacion
+    (27) multipleAsignacion -> . ID ASSIGN
+    (28) multipleAsignacion -> . ID ASSIGN multipleAsignacion
+
+    NUMBER          reduce using rule 27 (multipleAsignacion -> ID ASSIGN .)
+    STRING          reduce using rule 27 (multipleAsignacion -> ID ASSIGN .)
+    FLOAT           reduce using rule 27 (multipleAsignacion -> ID ASSIGN .)
+    CADENA          reduce using rule 27 (multipleAsignacion -> ID ASSIGN .)
+    LPAREN          reduce using rule 27 (multipleAsignacion -> ID ASSIGN .)
+    ID              shift and go to state 45
+
+    multipleAsignacion             shift and go to state 49
 WARNING: 
 WARNING: Conflicts:
 WARNING: 
-WARNING: shift/reduce conflict for NUMBER in state 24 resolved as shift
-WARNING: shift/reduce conflict for STRING in state 24 resolved as shift
-WARNING: shift/reduce conflict for FLOAT in state 24 resolved as shift
-WARNING: shift/reduce conflict for CADENA in state 24 resolved as shift
-WARNING: shift/reduce conflict for LPAREN in state 24 resolved as shift
-WARNING: reduce/reduce conflict in state 12 resolved using rule (term -> factor)
-WARNING: rejected rule (valoresComa -> factor) in state 12
+WARNING: shift/reduce conflict for ASSIGN in state 10 resolved as shift
+WARNING: shift/reduce conflict for NUMBER in state 29 resolved as shift
+WARNING: shift/reduce conflict for STRING in state 29 resolved as shift
+WARNING: shift/reduce conflict for FLOAT in state 29 resolved as shift
+WARNING: shift/reduce conflict for CADENA in state 29 resolved as shift
+WARNING: shift/reduce conflict for LPAREN in state 29 resolved as shift
+WARNING: reduce/reduce conflict in state 13 resolved using rule (term -> factor)
+WARNING: rejected rule (valoresComa -> factor) in state 13
