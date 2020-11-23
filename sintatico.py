@@ -6,7 +6,6 @@ def p_cuerpo(p):
     '''cuerpo : expression
               | comentario
               | asignacion
-              | valoresComa
               | if
               | else
               | while   
@@ -84,7 +83,7 @@ def p_comentario(p):
 def p_asignacion(p):
     '''asignacion : ID ASSIGN expression
                   | multipleAsignacion expression
-                  | asignacionComa
+                  | valoresID ASSIGN valoresComa
                   | ID ASSIGN BOOLEAN'''
     p[0] = "ASIGNACION"
 
@@ -92,12 +91,9 @@ def p_multipleAsignacion(p):
     '''multipleAsignacion : ID ASSIGN 
                           | ID ASSIGN multipleAsignacion'''
 
-def p_asignacionComa(p):
-    'asignacionComa : valoresComaID ASSIGN valoresComa'
-
-def p_valoresComaID(p):
-    '''valoresComaID : ID
-                     | valoresComaID COMA ID'''
+def p_valoresID(p):
+    '''valoresID : ID
+                | valoresID COMA ID'''
 
 def p_valoresComa(p):
     '''valoresComa : expression
@@ -198,7 +194,7 @@ def p_open(p):
     p[0] = "OPEN"
 
 def p_funcion(p):
-    '''funcion : DEF ID LPAREN valoresComaID RPAREN DOSPUNTOS'''
+    '''funcion : DEF ID LPAREN valoresID RPAREN DOSPUNTOS'''
     p[0] = "FUNCION"
 
 def p_estructuraDatos(p):
