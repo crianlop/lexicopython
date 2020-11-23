@@ -157,7 +157,8 @@ def p_operacionConectoresLogicos(p):
 
 def p_if(p):
     '''if : IF LPAREN comparacion RPAREN DOSPUNTOS
-          | IF comparacion DOSPUNTOS'''
+          | IF comparacion DOSPUNTOS
+          | IF ID DOSPUNTOS'''
     p[0] = "IF"
 
 def p_else(p):
@@ -166,7 +167,8 @@ def p_else(p):
 
 def p_while(p):
     '''while : WHILE LPAREN comparacion RPAREN DOSPUNTOS
-             | WHILE comparacion DOSPUNTOS'''
+             | WHILE comparacion DOSPUNTOS
+             | WHILE ID DOSPUNTOS'''
     p[0] = "while"
 
 def p_for(p):
@@ -239,12 +241,12 @@ for linea in archivo:
     result = parser.parse(s)
     print(result)
 archivo.close()
-""" while True:
+'''while True:
     try:
         s = input('calc > ')
     except EOFError:
         break
     if not s: continue
     result = parser.parse(s)
-    print(result)  """
+    print(result) '''
      
