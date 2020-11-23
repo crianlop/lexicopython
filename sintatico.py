@@ -92,6 +92,27 @@ def p_lista(p):
     '''lista : CORCHETEIZQ valoresComa CORCHETEDER'''
     p[0] = "LISTA"
 
+def p_tupla(p):
+    '''tupla : LPAREN valoresComa RPAREN'''
+    p[0] = "TUPLA"
+def p_comparacion(p):
+    '''comparacion : BOOLEAN
+                   |  NOTS BOOLEAN
+                   | expression EQUALS expression
+                   | expression MAYORIGUAL expression
+                   | expression MENORIGUAL expression
+                   | expression LESSTHAN expression
+                   | expression MORETHAN expression
+                   | expression DIFERENTE expression'''
+    p[0] = "comparacion"
+
+def p_if(p):
+    '''if : MOD LPAREN comparacion RPAREN DOSPUNTOS'''
+    p[0] = "IF"
+def p_while(p):
+    '''while : MOD LPAREN comparacion RPAREN DOSPUNTOS'''
+    p[0] = "while"
+
 
 
 
