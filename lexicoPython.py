@@ -90,6 +90,8 @@ def t_ID(t):
     t.type = otros.get(t.value,'ID')    # Check for reserved words
     return t
 
+
+
 t_ignore  = ' \t'
 
 def t_newline(t):

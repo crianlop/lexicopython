@@ -6,9 +6,9 @@ _tabversion = '3.10'
 
 _lr_method = 'LALR'
 
-_lr_signature = 'AND APPEND ASSIGN BOOLEAN CADENA COMA COMILLAS COMILLASSIMPLES COMMENT COMMENTS CORCHETEDER CORCHETEIZQ DEF DIFERENTE DIVIDE DIVISIONENTERA DOSPUNTOS ELSE EQUALS EXPONENTE FLOAT FOR ID IF IN INPUT IS LESSTHAN LLAVEDER LLAVEIZQ LPAREN MAYORIGUAL MENORIGUAL MINUS MOD MORETHAN NOT NOTS NUMBER OPEN OR PLUS PRINT PUNTO PUNTOCOMA RANGE REMOVE RETURN RPAREN STRING SUBGUION TIMES WHILEcuerpo : expression\n              | comentario\n              | asignacion\n              | valoresComa\n              | lista\n              expression : expression PLUS termexpression : expression MINUS termexpression : termterm : term TIMES factorterm : term DIVIDE factorterm : factorfactor : NUMBER\n              | STRING\n              | FLOAT\n              | CADENAfactor : LPAREN expression RPARENcomentario : COMMENT\n                 | COMMENTSasignacion : ID ASSIGN expression\n                  | multipleAsignacion expression\n                  | ID ASSIGN BOOLEAN\n                  | ID ASSIGN listamultipleAsignacion : ID ASSIGN \n                          | ID ASSIGN multipleAsignacion \n                          valoresComa : factor\n                   | valoresComa COMA factorlista : CORCHETEIZQ valoresComa CORCHETEDER'
+_lr_signature = 'AND APPEND ASSIGN BOOLEAN CADENA COMA COMILLAS COMILLASSIMPLES COMMENT COMMENTS CORCHETEDER CORCHETEIZQ DEF DIFERENTE DIVIDE DIVISIONENTERA DOSPUNTOS ELSE EQUALS EXPONENTE FLOAT FOR ID IF IN INPUT IS LESSTHAN LLAVEDER LLAVEIZQ LPAREN MAYORIGUAL MENORIGUAL MINUS MOD MORETHAN NOT NOTS NUMBER OPEN OR PLUS PRINT PUNTO PUNTOCOMA RANGE REMOVE RETURN RPAREN STRING SUBGUION TIMES WHILEcuerpo : expression\n              | comentario\n              | asignacion\n              | valoresComa\n              | lista\n              | tupla\n              | comparacion\n              | if\n              expression : expression PLUS termexpression : expression MINUS termexpression : termterm : term TIMES factorterm : term DIVIDE factorterm : factorfactor : NUMBER\n              | STRING\n              | FLOAT\n              | CADENAfactor : LPAREN expression RPARENcomentario : COMMENT\n                 | COMMENTSasignacion : ID ASSIGN expression\n                  | multipleAsignacion expression\n                  | ID ASSIGN BOOLEAN\n                  | ID ASSIGN listamultipleAsignacion : ID ASSIGN \n                          | ID ASSIGN multipleAsignacion \n                          valoresComa : factor\n                   | valoresComa COMA factorlista : CORCHETEIZQ valoresComa CORCHETEDERtupla : LPAREN valoresComa RPARENcomparacion : BOOLEAN\n                   |  NOTS BOOLEAN\n                   | expression EQUALS expression\n                   | expression MAYORIGUAL expression\n                   | expression MENORIGUAL expression\n                   | expression LESSTHAN expression\n                   | expression MORETHAN expression\n                   | expression DIFERENTE expressionif : MOD LPAREN comparacion RPAREN DOSPUNTOS'
     
-_lr_action_items = {'COMMENT':([0,],[8,]),'COMMENTS':([0,],[9,]),'ID':([0,24,42,],[10,35,35,]),'CORCHETEIZQ':([0,24,],[13,13,]),'NUMBER':([0,11,13,18,19,20,21,22,23,24,39,42,],[14,14,14,14,14,14,14,14,14,14,-24,-23,]),'STRING':([0,11,13,18,19,20,21,22,23,24,39,42,],[15,15,15,15,15,15,15,15,15,15,-24,-23,]),'FLOAT':([0,11,13,18,19,20,21,22,23,24,39,42,],[16,16,16,16,16,16,16,16,16,16,-24,-23,]),'CADENA':([0,11,13,18,19,20,21,22,23,24,39,42,],[17,17,17,17,17,17,17,17,17,17,-24,-23,]),'LPAREN':([0,11,13,18,19,20,21,22,23,24,39,42,],[18,18,18,18,18,18,18,18,18,18,-24,-23,]),'$end':([1,2,3,4,5,6,7,8,9,12,14,15,16,17,25,26,30,31,32,33,34,36,37,38,40,41,],[0,-1,-2,-3,-4,-5,-8,-17,-18,-11,-12,-13,-14,-15,-20,-11,-6,-7,-26,-9,-10,-19,-21,-22,-27,-16,]),'PLUS':([2,7,12,14,15,16,17,25,26,29,30,31,33,34,36,41,],[19,-8,-11,-12,-13,-14,-15,19,-11,19,-6,-7,-9,-10,19,-16,]),'MINUS':([2,7,12,14,15,16,17,25,26,29,30,31,33,34,36,41,],[20,-8,-11,-12,-13,-14,-15,20,-11,20,-6,-7,-9,-10,20,-16,]),'COMA':([5,12,14,15,16,17,27,28,32,41,],[21,-25,-12,-13,-14,-15,21,-25,-26,-16,]),'RPAREN':([7,14,15,16,17,26,29,30,31,33,34,41,],[-8,-12,-13,-14,-15,-11,41,-6,-7,-9,-10,-16,]),'TIMES':([7,12,14,15,16,17,26,30,31,33,34,41,],[22,-11,-12,-13,-14,-15,-11,22,22,-9,-10,-16,]),'DIVIDE':([7,12,14,15,16,17,26,30,31,33,34,41,],[23,-11,-12,-13,-14,-15,-11,23,23,-9,-10,-16,]),'ASSIGN':([10,35,],[24,42,]),'CORCHETEDER':([14,15,16,17,27,28,32,41,],[-12,-13,-14,-15,40,-25,-26,-16,]),'BOOLEAN':([24,],[37,]),}
+_lr_action_items = {'COMMENT':([0,],[11,]),'COMMENTS':([0,],[12,]),'ID':([0,36,67,],[13,57,57,]),'CORCHETEIZQ':([0,36,],[17,17,]),'LPAREN':([0,14,17,18,20,25,26,27,28,29,30,31,32,33,34,35,36,39,45,61,67,],[18,39,39,39,45,39,39,39,39,39,39,39,39,39,39,39,39,39,39,-27,-26,]),'BOOLEAN':([0,19,36,45,],[15,44,59,15,]),'NOTS':([0,45,],[19,19,]),'MOD':([0,],[20,]),'NUMBER':([0,14,17,18,25,26,27,28,29,30,31,32,33,34,35,36,39,45,61,67,],[21,21,21,21,21,21,21,21,21,21,21,21,21,21,21,21,21,21,-27,-26,]),'STRING':([0,14,17,18,25,26,27,28,29,30,31,32,33,34,35,36,39,45,61,67,],[22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,-27,-26,]),'FLOAT':([0,14,17,18,25,26,27,28,29,30,31,32,33,34,35,36,39,45,61,67,],[23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,-27,-26,]),'CADENA':([0,14,17,18,25,26,27,28,29,30,31,32,33,34,35,36,39,45,61,67,],[24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,-27,-26,]),'$end':([1,2,3,4,5,6,7,8,9,10,11,12,15,16,21,22,23,24,37,38,44,46,47,48,49,50,51,52,53,54,55,56,58,59,60,62,63,64,69,],[0,-1,-2,-3,-4,-5,-6,-7,-8,-11,-20,-21,-32,-14,-15,-16,-17,-18,-23,-14,-33,-9,-10,-34,-35,-36,-37,-38,-39,-29,-12,-13,-22,-24,-25,-30,-31,-19,-40,]),'PLUS':([2,10,16,21,22,23,24,37,38,43,46,47,48,49,50,51,52,53,55,56,58,64,66,],[25,-11,-14,-15,-16,-17,-18,25,-14,25,-9,-10,25,25,25,25,25,25,-12,-13,25,-19,25,]),'MINUS':([2,10,16,21,22,23,24,37,38,43,46,47,48,49,50,51,52,53,55,56,58,64,66,],[26,-11,-14,-15,-16,-17,-18,26,-14,26,-9,-10,26,26,26,26,26,26,-12,-13,26,-19,26,]),'EQUALS':([2,10,16,21,22,23,24,38,46,47,55,56,64,66,],[27,-11,-14,-15,-16,-17,-18,-14,-9,-10,-12,-13,-19,27,]),'MAYORIGUAL':([2,10,16,21,22,23,24,38,46,47,55,56,64,66,],[28,-11,-14,-15,-16,-17,-18,-14,-9,-10,-12,-13,-19,28,]),'MENORIGUAL':([2,10,16,21,22,23,24,38,46,47,55,56,64,66,],[29,-11,-14,-15,-16,-17,-18,-14,-9,-10,-12,-13,-19,29,]),'LESSTHAN':([2,10,16,21,22,23,24,38,46,47,55,56,64,66,],[30,-11,-14,-15,-16,-17,-18,-14,-9,-10,-12,-13,-19,30,]),'MORETHAN':([2,10,16,21,22,23,24,38,46,47,55,56,64,66,],[31,-11,-14,-15,-16,-17,-18,-14,-9,-10,-12,-13,-19,31,]),'DIFERENTE':([2,10,16,21,22,23,24,38,46,47,55,56,64,66,],[32,-11,-14,-15,-16,-17,-18,-14,-9,-10,-12,-13,-19,32,]),'COMA':([5,16,21,22,23,24,40,41,42,54,64,],[33,-28,-15,-16,-17,-18,33,-28,33,-29,-19,]),'RPAREN':([10,15,16,21,22,23,24,38,42,43,44,46,47,48,49,50,51,52,53,54,55,56,64,65,],[-11,-32,-14,-15,-16,-17,-18,-14,63,64,-33,-9,-10,-34,-35,-36,-37,-38,-39,-29,-12,-13,-19,68,]),'TIMES':([10,16,21,22,23,24,38,46,47,55,56,64,],[34,-14,-15,-16,-17,-18,-14,34,34,-12,-13,-19,]),'DIVIDE':([10,16,21,22,23,24,38,46,47,55,56,64,],[35,-14,-15,-16,-17,-18,-14,35,35,-12,-13,-19,]),'ASSIGN':([13,57,],[36,67,]),'CORCHETEDER':([21,22,23,24,40,41,54,64,],[-15,-16,-17,-18,62,-28,-29,-19,]),'DOSPUNTOS':([68,],[69,]),}
 
 _lr_action = {}
 for _k, _v in _lr_action_items.items():
@@ -17,7 +17,7 @@ for _k, _v in _lr_action_items.items():
       _lr_action[_x][_k] = _y
 del _lr_action_items
 
-_lr_goto_items = {'cuerpo':([0,],[1,]),'expression':([0,11,18,24,],[2,25,29,36,]),'comentario':([0,],[3,]),'asignacion':([0,],[4,]),'valoresComa':([0,13,],[5,27,]),'lista':([0,24,],[6,38,]),'term':([0,11,18,19,20,24,],[7,7,7,30,31,7,]),'multipleAsignacion':([0,24,42,],[11,39,39,]),'factor':([0,11,13,18,19,20,21,22,23,24,],[12,26,28,26,26,26,32,33,34,26,]),}
+_lr_goto_items = {'cuerpo':([0,],[1,]),'expression':([0,14,18,27,28,29,30,31,32,36,39,45,],[2,37,43,48,49,50,51,52,53,58,43,66,]),'comentario':([0,],[3,]),'asignacion':([0,],[4,]),'valoresComa':([0,17,18,],[5,40,42,]),'lista':([0,36,],[6,60,]),'tupla':([0,],[7,]),'comparacion':([0,45,],[8,65,]),'if':([0,],[9,]),'term':([0,14,18,25,26,27,28,29,30,31,32,36,39,45,],[10,10,10,46,47,10,10,10,10,10,10,10,10,10,]),'multipleAsignacion':([0,36,67,],[14,61,61,]),'factor':([0,14,17,18,25,26,27,28,29,30,31,32,33,34,35,36,39,45,],[16,38,41,16,38,38,38,38,38,38,38,38,54,55,56,38,38,38,]),}
 
 _lr_goto = {}
 for _k, _v in _lr_goto_items.items():
@@ -32,26 +32,39 @@ _lr_productions = [
   ('cuerpo -> asignacion','cuerpo',1,'p_cuerpo','sintatico.py',8),
   ('cuerpo -> valoresComa','cuerpo',1,'p_cuerpo','sintatico.py',9),
   ('cuerpo -> lista','cuerpo',1,'p_cuerpo','sintatico.py',10),
-  ('expression -> expression PLUS term','expression',3,'p_expression_plus','sintatico.py',15),
-  ('expression -> expression MINUS term','expression',3,'p_expression_minus','sintatico.py',19),
-  ('expression -> term','expression',1,'p_expression_term','sintatico.py',23),
-  ('term -> term TIMES factor','term',3,'p_term_times','sintatico.py',27),
-  ('term -> term DIVIDE factor','term',3,'p_term_div','sintatico.py',31),
-  ('term -> factor','term',1,'p_term_factor','sintatico.py',35),
-  ('factor -> NUMBER','factor',1,'p_factor_num','sintatico.py',39),
-  ('factor -> STRING','factor',1,'p_factor_num','sintatico.py',40),
-  ('factor -> FLOAT','factor',1,'p_factor_num','sintatico.py',41),
-  ('factor -> CADENA','factor',1,'p_factor_num','sintatico.py',42),
-  ('factor -> LPAREN expression RPAREN','factor',3,'p_factor_expr','sintatico.py',46),
-  ('comentario -> COMMENT','comentario',1,'p_comentario','sintatico.py',50),
-  ('comentario -> COMMENTS','comentario',1,'p_comentario','sintatico.py',51),
-  ('asignacion -> ID ASSIGN expression','asignacion',3,'p_asignacion','sintatico.py',55),
-  ('asignacion -> multipleAsignacion expression','asignacion',2,'p_asignacion','sintatico.py',56),
-  ('asignacion -> ID ASSIGN BOOLEAN','asignacion',3,'p_asignacion','sintatico.py',57),
-  ('asignacion -> ID ASSIGN lista','asignacion',3,'p_asignacion','sintatico.py',58),
-  ('multipleAsignacion -> ID ASSIGN','multipleAsignacion',2,'p_multipleAsignacion','sintatico.py',62),
-  ('multipleAsignacion -> ID ASSIGN multipleAsignacion','multipleAsignacion',3,'p_multipleAsignacion','sintatico.py',63),
-  ('valoresComa -> factor','valoresComa',1,'p_valoresComa','sintatico.py',67),
-  ('valoresComa -> valoresComa COMA factor','valoresComa',3,'p_valoresComa','sintatico.py',68),
-  ('lista -> CORCHETEIZQ valoresComa CORCHETEDER','lista',3,'p_lista','sintatico.py',72),
+  ('cuerpo -> tupla','cuerpo',1,'p_cuerpo','sintatico.py',11),
+  ('cuerpo -> comparacion','cuerpo',1,'p_cuerpo','sintatico.py',12),
+  ('cuerpo -> if','cuerpo',1,'p_cuerpo','sintatico.py',13),
+  ('expression -> expression PLUS term','expression',3,'p_expression_plus','sintatico.py',18),
+  ('expression -> expression MINUS term','expression',3,'p_expression_minus','sintatico.py',22),
+  ('expression -> term','expression',1,'p_expression_term','sintatico.py',26),
+  ('term -> term TIMES factor','term',3,'p_term_times','sintatico.py',30),
+  ('term -> term DIVIDE factor','term',3,'p_term_div','sintatico.py',34),
+  ('term -> factor','term',1,'p_term_factor','sintatico.py',38),
+  ('factor -> NUMBER','factor',1,'p_factor_num','sintatico.py',42),
+  ('factor -> STRING','factor',1,'p_factor_num','sintatico.py',43),
+  ('factor -> FLOAT','factor',1,'p_factor_num','sintatico.py',44),
+  ('factor -> CADENA','factor',1,'p_factor_num','sintatico.py',45),
+  ('factor -> LPAREN expression RPAREN','factor',3,'p_factor_expr','sintatico.py',49),
+  ('comentario -> COMMENT','comentario',1,'p_comentario','sintatico.py',53),
+  ('comentario -> COMMENTS','comentario',1,'p_comentario','sintatico.py',54),
+  ('asignacion -> ID ASSIGN expression','asignacion',3,'p_asignacion','sintatico.py',58),
+  ('asignacion -> multipleAsignacion expression','asignacion',2,'p_asignacion','sintatico.py',59),
+  ('asignacion -> ID ASSIGN BOOLEAN','asignacion',3,'p_asignacion','sintatico.py',60),
+  ('asignacion -> ID ASSIGN lista','asignacion',3,'p_asignacion','sintatico.py',61),
+  ('multipleAsignacion -> ID ASSIGN','multipleAsignacion',2,'p_multipleAsignacion','sintatico.py',65),
+  ('multipleAsignacion -> ID ASSIGN multipleAsignacion','multipleAsignacion',3,'p_multipleAsignacion','sintatico.py',66),
+  ('valoresComa -> factor','valoresComa',1,'p_valoresComa','sintatico.py',70),
+  ('valoresComa -> valoresComa COMA factor','valoresComa',3,'p_valoresComa','sintatico.py',71),
+  ('lista -> CORCHETEIZQ valoresComa CORCHETEDER','lista',3,'p_lista','sintatico.py',75),
+  ('tupla -> LPAREN valoresComa RPAREN','tupla',3,'p_tupla','sintatico.py',78),
+  ('comparacion -> BOOLEAN','comparacion',1,'p_comparacion','sintatico.py',81),
+  ('comparacion -> NOTS BOOLEAN','comparacion',2,'p_comparacion','sintatico.py',82),
+  ('comparacion -> expression EQUALS expression','comparacion',3,'p_comparacion','sintatico.py',83),
+  ('comparacion -> expression MAYORIGUAL expression','comparacion',3,'p_comparacion','sintatico.py',84),
+  ('comparacion -> expression MENORIGUAL expression','comparacion',3,'p_comparacion','sintatico.py',85),
+  ('comparacion -> expression LESSTHAN expression','comparacion',3,'p_comparacion','sintatico.py',86),
+  ('comparacion -> expression MORETHAN expression','comparacion',3,'p_comparacion','sintatico.py',87),
+  ('comparacion -> expression DIFERENTE expression','comparacion',3,'p_comparacion','sintatico.py',88),
+  ('if -> MOD LPAREN comparacion RPAREN DOSPUNTOS','if',5,'p_if','sintatico.py',92),
 ]
