@@ -10,7 +10,7 @@ estructuras_control = {"if": "IF", "else": "ELSE", "while": "WHILE", "for" : "FO
 
 IO_reserved = {"print":"PRINT","input":"INPUT","open":"OPEN"}
 
-funcion = {"def":"DEF","return":"RETURN",}
+funcion = {"def":"DEF","return":"RETURN","None":"NONE"}
 
 metodos = {"append":"APPEND","remove":"REMOVE",}
 
@@ -105,7 +105,7 @@ def t_COMMENT(t):
      return t
 
 def t_COMMENTS(t):
-     r'\/\*[a-zA-Z0-9\w\s]*\*\/'
+     r'\'\'\'[a-zA-Z0-9\w\s]*\'\'\''
      t.type = otros.get(t.value,"COMMENTS")
      return t
 

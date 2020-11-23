@@ -7,9 +7,8 @@ def p_cuerpo(p):
               | comentario
               | asignacion
               | valoresComa
-              | lista
-              | tupla
               | if
+              | else
               | while   
               | for 
               | print  
@@ -18,9 +17,14 @@ def p_cuerpo(p):
               | funcion 
               | comparacion 
               | operacionConectoresLogicos  
-              | conjunto
-              | valoresDic
+              | tupla
+              | lista
               | diccionario
+              | conjunto
+              | return
+              | append
+              | remove
+
               '''
     p[0] = p[1]
 
@@ -57,14 +61,16 @@ def p_term_Mod(p):
     p[0] = p[1] % p[3]
 
 def p_term_factor(p):
-    'term : factor'
+    '''term : factor'''
     p[0] = p[1]
 
 def p_factor_num(p):
     '''factor : NUMBER
               | STRING
               | FLOAT
-              | CADENA'''
+              | CADENA
+              | ID
+              '''
     p[0] = p[1]
 
 def p_factor_expr(p):
@@ -81,10 +87,7 @@ def p_asignacion(p):
                   | multipleAsignacion expression
                   | asignacionComa
                   | ID ASSIGN BOOLEAN
-                  | ID ASSIGN lista
-                  | ID ASSIGN conjunto
-                  | ID ASSIGN tupla
-                  | ID ASSIGN diccionario'''
+                  '''
     p[0] = "ASIGNACION"
 
 def p_multipleAsignacion(p):
@@ -94,14 +97,13 @@ def p_multipleAsignacion(p):
 def p_asignacionComa(p):
     'asignacionComa : valoresComaID ASSIGN valoresComa'
 
-
 def p_valoresComaID(p):
     '''valoresComaID : ID
                      | valoresComaID COMA ID'''
 
 def p_valoresComa(p):
-    '''valoresComa : factor
-                   | valoresComa COMA factor
+    '''valoresComa : expression
+                   | valoresComa COMA expression
                    | valoresComa COMA'''
     p[0] = "COMAS"
 
@@ -110,31 +112,33 @@ def p_valoresDic(p):
                    | valoresDic COMA factor DOSPUNTOS factor
                    | valoresDic COMA'''
     p[0] = "valoresDic"
+    
 def p_diccionario(p):
     '''diccionario : LLAVEIZQ valoresDic LLAVEDER
                 | ID ASSIGN diccionario'''
     p[0] = "DICCIONARIO"
 
-
 def p_lista(p):
-    '''lista : CORCHETEIZQ valoresComa CORCHETEDER'''
+    '''lista : CORCHETEIZQ valoresComa CORCHETEDER
+             | ID ASSIGN lista'''
     p[0] = "LISTA"
 
 def p_tupla(p):
     '''tupla : LPAREN valoresComa RPAREN
              | ID ASSIGN tupla'''
     p[0] = "TUPLA"
+
 def p_conjunto(p):
     '''conjunto : LLAVEIZQ valoresComa LLAVEDER
-             | ID ASSIGN conjunto'''
+                | ID ASSIGN conjunto'''
     p[0] = "CONJUNTO"
 
 def p_comparacion(p):
-    '''comparacion : BOOLEAN
+    '''comparacion : ID operadorLogico expression
+                   | BOOLEAN
                    | NOTS BOOLEAN
                    | expression operadorLogico expression
-                   | ID operadorLogico ID
-                   | ID operadorLogico factor
+                   | comparacion operadorLogico ID
                    | ID operadorLogico BOOLEAN'''
     p[0] = "COMPARACION"
 
@@ -146,6 +150,7 @@ def p_operadorLogico(p):
                       | MORETHAN
                       | DIFERENTE
     '''
+
 def p_conectoresLogicos(p):
     '''conectoresLogicos : AND
                          | OR'''
@@ -157,15 +162,25 @@ def p_operacionConectoresLogicos(p):
     p[0] = "OPERACION CON CONECTORES LOGICOS"
 
 def p_if(p):
-    '''if : IF LPAREN comparacion RPAREN DOSPUNTOS'''
+    '''if : IF LPAREN comparacion RPAREN DOSPUNTOS
+          | IF comparacion DOSPUNTOS'''
     p[0] = "IF"
 
+def p_else(p):
+    '''else : ELSE DOSPUNTOS'''
+    p[0] = "ELSE"
+
 def p_while(p):
-    '''while : WHILE LPAREN comparacion RPAREN DOSPUNTOS'''
+    '''while : WHILE LPAREN comparacion RPAREN DOSPUNTOS
+             | WHILE comparacion DOSPUNTOS'''
     p[0] = "while"
 
 def p_for(p):
-    '''for : FOR ID IN RANGE LPAREN NUMBER RPAREN DOSPUNTOS'''
+    '''for : FOR ID IN RANGE LPAREN NUMBER RPAREN DOSPUNTOS
+           | FOR ID IN ID DOSPUNTOS
+           | FOR ID IN lista
+           | FOR ID IN tupla
+           | FOR ID IN conjunto'''
     p[0] = "FOR"
 
 def p_print(p):
@@ -188,9 +203,28 @@ def p_funcion(p):
     '''funcion : DEF ID LPAREN valoresComaID RPAREN DOSPUNTOS'''
     p[0] = "FUNCION"
 
+def p_estructuraDatos(p):
+    '''datos : lista
+             | tupla
+             | conjunto
+             | diccionario
+    '''
+def p_return(p):
+    '''return : RETURN expression
+             | RETURN NONE'''
+    p[0] = "RETURN"
 
+def p_append(p):
+    '''append : ID PUNTO APPEND LPAREN ID RPAREN
+              | ID PUNTO APPEND LPAREN expression RPAREN
+              | ID PUNTO APPEND LPAREN datos RPAREN'''
+    p[0] = "APPEND"
 
-
+def p_remove(p):
+    '''remove : ID PUNTO REMOVE LPAREN ID RPAREN
+              | ID PUNTO REMOVE LPAREN RPAREN
+              | ID PUNTO REMOVE LPAREN expression RPAREN'''
+    p[0] = "REMOVE"
 
 
 # Error rule for syntax errors
@@ -211,12 +245,12 @@ for linea in archivo:
     result = parser.parse(s)
     print(result)
 archivo.close()
-while True:
+""" while True:
     try:
         s = input('calc > ')
     except EOFError:
         break
     if not s: continue
     result = parser.parse(s)
-    print(result) 
+    print(result)  """
      

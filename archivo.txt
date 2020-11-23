@@ -1,4 +1,4 @@
-/*variables*/
+'''variables'''
 ##henry
 VARIABLE = 12
 Variable = 1
@@ -8,12 +8,12 @@ a , b = 5, 12
 a = b = 10
 cadena1 = ' "Cadena" "
 cadena2 = 'cadenaa'
-/*tipo de datos*/
+'''tipo de datos'''
 variable = 1.2
 Variale = False
 Variable = True
 
-/*Estructuras de datos*/
+'''Estructuras de datos'''
 Lista = [1,2,3]
 lista = [2.1 , 3.5, 2.3] 
 lista = ["3","4","5"]
@@ -26,7 +26,7 @@ conjunto = {2.1 , 3.5, 2.3}
 
 Diccionario =  { 'Clave1' : 'Valor1', 'Clave2' : 'Valor2'}
 
-/*Operaciones Matematicas*/
+'''Operaciones Matematicas'''
 a = 4 + 5
 d = 4 - 5
 c = 4 * 5
@@ -37,30 +37,34 @@ f = 4 % 5
 4 * 5
 5 - 6
 
-/*Imprecion y lectura de datos*/
+
+'''Imprecion y lectura de datos'''
 a = input()
 f = open('nombrearchivo', 'r')
 
-/*Estructuras de control*/
-if (variable == 2):
+'''Estructuras de control'''
+if (variable = = 2):
 	print('Es igual')
+else:
+	print("bueno")
 while(variable = = True ):
 	print('infinito')
 for i in range(10):
 	print('For ejecutandose')
 
-/*Metodos*/
+'''Metodos'''
 Lista.append(elemento)
 Lista.remove(elemento)
 
-/*Funcion*/
+'''Funcion'''
 def funcion(a,b,c):
 	z = a+b+c
 	print(z)
 	return z 
 
-/*Operaciones Logicas*/
+'''Operaciones Logicas'''
 Variable and Variable2
+Variable and Variable2 and Variable and Variable2 or v
 Variable or Variable2
 not Variable
 x >= y
@@ -68,5 +72,6 @@ y <= y
 x > = y
 y < = x
 z = = z
+x >= x == c <= o != z
 
 
