@@ -24,7 +24,6 @@ def p_cuerpo(p):
               | return
               | append
               | remove
-
               '''
     p[0] = p[1]
 
@@ -69,7 +68,7 @@ def p_factor_num(p):
               | STRING
               | FLOAT
               | CADENA
-              | ID
+              | ID   
               '''
     p[0] = p[1]
 
@@ -86,14 +85,13 @@ def p_asignacion(p):
     '''asignacion : ID ASSIGN expression
                   | multipleAsignacion expression
                   | asignacionComa
-                  | ID ASSIGN BOOLEAN
-                  '''
+                  | ID ASSIGN BOOLEAN'''
     p[0] = "ASIGNACION"
 
 def p_multipleAsignacion(p):
     '''multipleAsignacion : ID ASSIGN 
-                          | ID ASSIGN multipleAsignacion 
-                          '''
+                          | ID ASSIGN multipleAsignacion'''
+
 def p_asignacionComa(p):
     'asignacionComa : valoresComaID ASSIGN valoresComa'
 
@@ -211,7 +209,7 @@ def p_estructuraDatos(p):
     '''
 def p_return(p):
     '''return : RETURN expression
-             | RETURN NONE'''
+              | RETURN NONE'''
     p[0] = "RETURN"
 
 def p_append(p):

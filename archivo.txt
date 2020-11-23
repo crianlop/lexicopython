@@ -5,6 +5,7 @@ Variable = 1
 V_araible = 2
 v_ariable = 3
 a , b = 5, 12
+a , 5 = a ,6
 a = b = 10
 cadena1 = ' "Cadena" "
 cadena2 = 'cadenaa'
