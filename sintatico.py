@@ -18,6 +18,9 @@ def p_cuerpo(p):
               | funcion 
               | comparacion 
               | operacionConectoresLogicos  
+              | conjunto
+              | valoresDic
+              | diccionario
               '''
     p[0] = p[1]
 
@@ -78,7 +81,10 @@ def p_asignacion(p):
                   | multipleAsignacion expression
                   | asignacionComa
                   | ID ASSIGN BOOLEAN
-                  | ID ASSIGN lista'''
+                  | ID ASSIGN lista
+                  | ID ASSIGN conjunto
+                  | ID ASSIGN tupla
+                  | ID ASSIGN diccionario'''
     p[0] = "ASIGNACION"
 
 def p_multipleAsignacion(p):
@@ -99,6 +105,17 @@ def p_valoresComa(p):
                    | valoresComa COMA'''
     p[0] = "COMAS"
 
+def p_valoresDic(p):
+    '''valoresDic  : factor DOSPUNTOS factor
+                   | valoresDic COMA factor DOSPUNTOS factor
+                   | valoresDic COMA'''
+    p[0] = "valoresDic"
+def p_diccionario(p):
+    '''diccionario : LLAVEIZQ valoresDic LLAVEDER
+                | ID ASSIGN diccionario'''
+    p[0] = "DICCIONARIO"
+
+
 def p_lista(p):
     '''lista : CORCHETEIZQ valoresComa CORCHETEDER'''
     p[0] = "LISTA"
@@ -107,6 +124,10 @@ def p_tupla(p):
     '''tupla : LPAREN valoresComa RPAREN
              | ID ASSIGN tupla'''
     p[0] = "TUPLA"
+def p_conjunto(p):
+    '''conjunto : LLAVEIZQ valoresComa LLAVEDER
+             | ID ASSIGN conjunto'''
+    p[0] = "CONJUNTO"
 
 def p_comparacion(p):
     '''comparacion : BOOLEAN
@@ -170,6 +191,8 @@ def p_funcion(p):
 
 
 
+
+
 # Error rule for syntax errors
 def p_error(p):
     print("Syntax error in input!")
@@ -188,12 +211,12 @@ for linea in archivo:
     result = parser.parse(s)
     print(result)
 archivo.close()
-""" while True:
+while True:
     try:
         s = input('calc > ')
     except EOFError:
         break
     if not s: continue
     result = parser.parse(s)
-    print(result) """
+    print(result) 
      
