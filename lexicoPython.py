@@ -45,7 +45,7 @@ t_DIVIDE = r'\/'
 tokens_logicos = ('MAYORIGUAL','MENORIGUAL','ASSIGN','NOTS','LESSTHAN','MORETHAN','EQUALS','DIFERENTE')
 #operadores logicos
 t_MAYORIGUAL = r'\>(\ )?\='
-t_MENORIGUAL = r'\<(\ )\='
+t_MENORIGUAL = r'\<(\ )?\='
 t_EQUALS = r'\=(\ )?\='
 t_DIFERENTE = r'\!(\ )?\='
 t_ASSIGN = r'\='
@@ -90,7 +90,7 @@ def t_ID(t):
     t.type = reserved.get(t.value,'ID')    # Check for reserved words
     return t
 
-t_ignore  = ' \t\n'
+t_ignore  = ' \t'
 
 def t_newline(t):
     r'\n+'
@@ -120,10 +120,10 @@ def analizar(linea):
             break      
         print(tok)
  
-THIS_FOLDER = os.path.dirname(os.path.abspath(__file__))
+""" THIS_FOLDER = os.path.dirname(os.path.abspath(__file__))
 my_file = os.path.join(THIS_FOLDER, 'archivo.txt')
 archivo = open('archivo.txt','r',encoding="utf-8")
 for linea in archivo:
     print(">> "+linea)
     analizar(linea)
-archivo.close()   
+archivo.close()     """

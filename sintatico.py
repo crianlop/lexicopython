@@ -8,6 +8,7 @@ def p_cuerpo(p):
               | asignacion
               | valoresComa
               | lista
+              | tupla
               | if
               | while   
               | for 
@@ -15,7 +16,8 @@ def p_cuerpo(p):
               | inputF
               | openF 
               | funcion 
-              | comparacion   
+              | comparacion 
+              | operacionConectoresLogicos  
               '''
     p[0] = p[1]
 
@@ -89,11 +91,12 @@ def p_asignacionComa(p):
 
 def p_valoresComaID(p):
     '''valoresComaID : ID
-                   | valoresComaID COMA ID'''
+                     | valoresComaID COMA ID'''
 
 def p_valoresComa(p):
     '''valoresComa : factor
-                   | valoresComa COMA factor'''
+                   | valoresComa COMA factor
+                   | valoresComa COMA'''
     p[0] = "COMAS"
 
 def p_lista(p):
@@ -101,14 +104,17 @@ def p_lista(p):
     p[0] = "LISTA"
 
 def p_tupla(p):
-    '''tupla : LPAREN valoresComa RPAREN'''
+    '''tupla : LPAREN valoresComa RPAREN
+             | ID ASSIGN tupla'''
     p[0] = "TUPLA"
 
 def p_comparacion(p):
     '''comparacion : BOOLEAN
                    | NOTS BOOLEAN
                    | expression operadorLogico expression
-                   | ID operadorLogico ID'''
+                   | ID operadorLogico ID
+                   | ID operadorLogico factor
+                   | ID operadorLogico BOOLEAN'''
     p[0] = "COMPARACION"
 
 def p_operadorLogico(p):
@@ -124,8 +130,10 @@ def p_conectoresLogicos(p):
                          | OR'''
 
 def p_operacionConectoresLogicos(p):
-    '''operacionConectoresLogicos : 
-    '''
+    '''operacionConectoresLogicos : NOT ID
+                                  | ID conectoresLogicos ID
+                                  | operacionConectoresLogicos conectoresLogicos ID'''
+    p[0] = "OPERACION CON CONECTORES LOGICOS"
 
 def p_if(p):
     '''if : IF LPAREN comparacion RPAREN DOSPUNTOS'''
@@ -156,7 +164,7 @@ def p_open(p):
     p[0] = "OPEN"
 
 def p_funcion(p):
-    '''funcion : DEF ID LPAREN valoresComa RPAREN DOSPUNTOS'''
+    '''funcion : DEF ID LPAREN valoresComaID RPAREN DOSPUNTOS'''
     p[0] = "FUNCION"
 
 
@@ -174,6 +182,7 @@ THIS_FOLDER = os.path.dirname(os.path.abspath(__file__))
 my_file = os.path.join(THIS_FOLDER, 'archivo.txt')
 archivo = open(my_file,'r',encoding="utf-8")
 for linea in archivo:
+    if(linea == "\n"): continue
     print(">> "+linea)
     s = linea
     result = parser.parse(s)
