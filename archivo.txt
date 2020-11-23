@@ -38,7 +38,7 @@ f = 4 % 5
 5 - 6
 
 /*Imprecion y lectura de datos*/
-a = input();
+a = input()
 f = open('nombrearchivo', 'r')
 
 /*Estructuras de control*/

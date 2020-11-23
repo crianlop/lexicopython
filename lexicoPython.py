@@ -6,9 +6,9 @@ import os
 
 conectoresLogicos = {"and" : "AND","not" : "NOT","is" : "IS","or":"OR","in":"IN",}
 
-estructuras_control = {"if": "IF", "else": "ELSE", "while": "WHILE", "for" : "FOR","range":"RANGE",}
+estructuras_control = {"if": "IF", "else": "ELSE", "while": "WHILE", "for" : "FOR","range":"RANGE"}
 
-IO_reserved = {"print":"PRINT","input":"INPUT","open":"OPEN",}
+IO_reserved = {"print":"PRINT","input":"INPUT","open":"OPEN"}
 
 funcion = {"def":"DEF","return":"RETURN",}
 
@@ -18,9 +18,9 @@ tipo_datos = {"number":"NUMBER","float":"FLOAT", "boolean" : "BOOLEAN"}
     
 otros = {"id":"ID","comments":"COMMENTS","comment":"COMMENT", "cadena":"CADENA","string":"STRING"}   
     
-reserved = {**tipo_datos, **conectoresLogicos, **estructuras_control, **IO_reserved, **funcion, **metodos, **otros}
+reserved = { **conectoresLogicos, **tipo_datos,**estructuras_control, **IO_reserved, **funcion, **metodos, **otros}
 
-t_CADENA = r'(("[a-zA-Z0-9]*")|(\'[a-zA-Z0-9]*\'))'
+t_CADENA = r'((\"[a-zA-Z0-9\ ]*\")|(\'[a-zA-Z0-9\ ]*\'))'
 
 tokens_puntuacion = ('DOSPUNTOS','COMILLAS','COMILLASSIMPLES','COMA','PUNTOCOMA','PUNTO','SUBGUION')
 #puntuacion
@@ -42,16 +42,16 @@ t_MOD = r'\%'
 t_DIVISIONENTERA = r'\/\/'
 t_DIVIDE = r'\/'
 
-tokens_logicos = ('ASSIGN','NOTS','LESSTHAN','MORETHAN','EQUALS','DIFERENTE','MAYORIGUAL','MENORIGUAL')
+tokens_logicos = ('MAYORIGUAL','MENORIGUAL','ASSIGN','NOTS','LESSTHAN','MORETHAN','EQUALS','DIFERENTE')
 #operadores logicos
+t_MAYORIGUAL = r'\>(\ )?\='
+t_MENORIGUAL = r'\<(\ )\='
+t_EQUALS = r'\=(\ )?\='
+t_DIFERENTE = r'\!(\ )?\='
 t_ASSIGN = r'\='
 t_NOTS = r'\!'
-t_MAYORIGUAL = r'\>\='
-t_MENORIGUAL = r'\<\='
 t_LESSTHAN = r'\<'
 t_MORETHAN = r'\>'
-t_EQUALS = r'\=\='
-t_DIFERENTE = r'\!\='
 
 tokens_llaves = ('LPAREN','RPAREN','LLAVEIZQ','LLAVEDER','CORCHETEDER','CORCHETEIZQ',)
 #llaves,corechetes,parentesis
@@ -71,7 +71,7 @@ def t_BOOLEAN(t):
     return t
 
 def t_STRING(t):
-    r'^"[a-zA-Z_0-9\s]*"$'
+    r'^"[a-zA-Z_0-9\s\ ]*"$'
     t.value = str(t.value)
     return t
 
@@ -87,7 +87,7 @@ def t_NUMBER(t):
 
 def t_ID(t):
     r'[a-zA-Z_][a-zA-Z_0-9]*'
-    t.type = otros.get(t.value,'ID')    # Check for reserved words
+    t.type = reserved.get(t.value,'ID')    # Check for reserved words
     return t
 
 t_ignore  = ' \t\n'
@@ -101,7 +101,7 @@ def t_error(t):
     t.lexer.skip(1)
 
 def t_COMMENT(t):
-     r'\#.*'
+     r'\#. *'
      return t
 
 def t_COMMENTS(t):
@@ -119,11 +119,11 @@ def analizar(linea):
         if not tok: 
             break      
         print(tok)
-""" 
+ 
 THIS_FOLDER = os.path.dirname(os.path.abspath(__file__))
 my_file = os.path.join(THIS_FOLDER, 'archivo.txt')
 archivo = open('archivo.txt','r',encoding="utf-8")
 for linea in archivo:
     print(">> "+linea)
     analizar(linea)
-archivo.close()   """
+archivo.close()   
