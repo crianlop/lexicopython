@@ -11,6 +11,7 @@ def p_cuerpo(p):
               | tupla
               | comparacion
               | if
+              | while
               '''
     p[0] = p[1]
 
@@ -91,7 +92,9 @@ def p_comparacion(p):
 def p_if(p):
     '''if : MOD LPAREN comparacion RPAREN DOSPUNTOS'''
     p[0] = "IF"
-
+def p_while(p):
+    '''while : MOD LPAREN comparacion RPAREN DOSPUNTOS'''
+    p[0] = "while"
 
     
     
