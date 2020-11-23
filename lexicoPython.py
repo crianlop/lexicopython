@@ -8,7 +8,7 @@ conectoresLogicos = {"and" : "AND","not" : "NOT","is" : "IS","or":"OR","in":"IN"
 
 estructuras_control = {"if": "IF", "else": "ELSE", "while": "WHILE", "for" : "FOR",}
 
-booleanos = {"True" : "TRUE","False" : "FALSE",}
+booleanos = {"True" : "TRUE", "False" : "FALSE"}
 
 IO_reserved = {"print":"PRINT","input":"INPUT","open":"OPEN",}
 
@@ -16,10 +16,11 @@ funcion = {"def":"DEF","return":"RETURN",}
 
 metodos = {"append":"APPEND","remove":"REMOVE",}
     
-otros = {"number":"NUMBER","id":"ID","range":"RANGE", "comments":"COMMENTS"}   
+otros = {"number":"NUMBER","id":"ID","range":"RANGE", "comments":"COMMENTS","comment":"COMMENT", "cadena":"CADENA","string":"STRING"}   
     
-reserved = conectoresLogicos and estructuras_control and booleanos and IO_reserved and funcion and metodos and otros
+reserved = {**conectoresLogicos, **estructuras_control, **booleanos, **IO_reserved, **funcion, **metodos, **otros}
 
+t_CADENA = r'(("[a-zA-Z0-9]*")|(\'[a-zA-Z0-9]*\'))'
 tokens_puntuacion = ('DOSPUNTOS','COMILLAS','COMILLASSIMPLES','COMA','PUNTOCOMA','PUNTO','SUBGUION')
 #puntuacion
 t_DOSPUNTOS = r'\:'
@@ -63,6 +64,10 @@ t_CORCHETEIZQ = r'\['
 #UNION de todos los tokens
 tokens = tokens_operadores + tokens_logicos + tokens_llaves + tokens_puntuacion + tuple(reserved.values())
 #Funciones dicionales
+def t_STRING(t):
+    r'^"[a-zA-Z_0-9\s]*"$'
+    t.value = str(t.value)
+    return t
 def t_NUMBER(t):
     r'\d+'
     t.value = int(t.value)
@@ -85,7 +90,7 @@ def t_error(t):
 
 def t_COMMENT(t):
      r'\#.*'
-     pass
+     return t
 
 def t_COMMENTS(t):
      r'\/\*[a-zA-Z0-9\w\s]*\*\/'
@@ -94,7 +99,7 @@ def t_COMMENTS(t):
 
 lexer = lex.lex()
 
-def analizar(data):
+def analizar(linea):
     lexer = lex.lex()
     lexer.input(linea)
     while True:
@@ -104,9 +109,9 @@ def analizar(data):
         print(tok)
 
 """ THIS_FOLDER = os.path.dirname(os.path.abspath(__file__))
-my_file = os.path.join(THIS_FOLDER, 'archivo.txt') """
+my_file = os.path.join(THIS_FOLDER, 'archivo.txt')
 archivo = open('archivo.txt','r',encoding="utf-8")
 for linea in archivo:
     print(">> "+linea)
     analizar(linea)
-archivo.close()
+archivo.close() """
