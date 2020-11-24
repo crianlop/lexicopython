@@ -116,6 +116,7 @@ def p_valoresDic(p):
     
 def p_diccionario(p):
     '''diccionario : LLAVEIZQ valoresDic LLAVEDER
+                | LLAVEIZQ LLAVEDER
                 | ID ASSIGN diccionario'''
     p[0] = "DICCIONARIO"
 
@@ -241,7 +242,7 @@ parser = yacc.yacc()
 
 
 THIS_FOLDER = os.path.dirname(os.path.abspath(__file__))
-my_file = os.path.join(THIS_FOLDER, 'algoritmoPrueba\henryAlgoritmo.py')
+my_file = os.path.join(THIS_FOLDER, 'algoritmoPrueba\codigoLopez.py')
 archivo = open(my_file,'r',encoding="utf-8")
 for linea in archivo:
     if(linea == "\n"): continue
