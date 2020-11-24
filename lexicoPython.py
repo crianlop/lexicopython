@@ -20,7 +20,8 @@ otros = {"id":"ID","comments":"COMMENTS","comment":"COMMENT", "cadena":"CADENA",
     
 reserved = { **conectoresLogicos, **tipo_datos,**estructuras_control, **IO_reserved, **funcion, **metodos, **otros}
 
-t_CADENA = r'((\"[a-zA-Z0-9\ ]*\")|(\'[a-zA-Z0-9\ ]*\'))'
+t_CADENA = r'(\"[a-zA-Z0-9.*]*\")|(\'[a-zA-Z0-9.*]*\')'
+
 
 tokens_puntuacion = ('DOSPUNTOS','COMILLAS','COMILLASSIMPLES','COMA','PUNTOCOMA','PUNTO','SUBGUION')
 #puntuacion
@@ -64,7 +65,6 @@ t_CORCHETEIZQ = r'\['
 
 #UNION de todos los tokens
 tokens = tuple(reserved.values()) + tokens_operadores + tokens_logicos + tokens_llaves + tokens_puntuacion 
-print(tokens)
 #Funciones dicionales
 def t_BOOLEAN(t):
     r'(True) | (False)'
@@ -119,11 +119,12 @@ def analizar(linea):
         if not tok: 
             break      
         print(tok)
- 
-""" THIS_FOLDER = os.path.dirname(os.path.abspath(__file__))
-my_file = os.path.join(THIS_FOLDER, 'archivo.txt')
-archivo = open('archivo.txt','r',encoding="utf-8")
+""" 
+THIS_FOLDER = os.path.dirname(os.path.abspath(__file__))
+my_file = os.path.join(THIS_FOLDER, 'algoritmoPrueba\henryAlgoritmo.py')
+
+archivo = open(my_file,'r',encoding="utf-8")
 for linea in archivo:
     print(">> "+linea)
     analizar(linea)
-archivo.close()     """
+archivo.close()      """

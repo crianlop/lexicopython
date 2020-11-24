@@ -28,11 +28,13 @@ def p_cuerpo(p):
 
 def p_expression_plus(p):
     'expression : expression PLUS term'
-    p[0] = p[1] + p[3]
+    if type(p[1]) == int and type(p[3]) == int:
+        p[0] = p[1] + p[3]
 
 def p_expression_minus(p):
     'expression : expression MINUS term'
-    p[0] = p[1] - p[3]
+    if type(p[1]) == int and type(p[3]) == int:
+        p[0] = p[1] - p[3]
 
 def p_expression_term(p):
     'expression : term'
@@ -40,23 +42,28 @@ def p_expression_term(p):
 
 def p_term_times(p):
     'term : term TIMES factor'
-    p[0] = p[1] * p[3]
+    if type(p[1]) == int and type(p[3]) == int:
+        p[0] = p[1] * p[3]
 
 def p_term_div(p):
     'term : term DIVIDE factor'
-    p[0] = p[1] / p[3]
+    if type(p[1]) == int and type(p[3]) == int:
+        p[0] = p[1] / p[3]
 
 def p_term_cuadrado(p):
     'term : term EXPONENTE factor'
-    p[0] = p[1] ** p[3]
+    if type(p[1]) == int and type(p[3]) == int:
+        p[0] = p[1] ** p[3]
 
 def p_term_divEntera(p):
     'term : term DIVISIONENTERA factor'
-    p[0] = p[1] // p[3]
+    if type(p[1]) == int and type(p[3]) == int:
+        p[0] = p[1] // p[3]
 
 def p_term_Mod(p):
     'term : term MOD factor'
-    p[0] = p[1] % p[3]
+    if type(p[1]) == int and type(p[3]) == int:
+        p[0] = p[1] % p[3]
 
 def p_term_factor(p):
     '''term : factor'''
@@ -114,7 +121,8 @@ def p_diccionario(p):
 
 def p_lista(p):
     '''lista : CORCHETEIZQ valoresComa CORCHETEDER
-             | ID ASSIGN lista'''
+             | ID ASSIGN lista
+             | ID ASSIGN CORCHETEIZQ CORCHETEDER'''
     p[0] = "LISTA"
 
 def p_tupla(p):
@@ -192,7 +200,8 @@ def p_input(p):
 def p_open(p):
     '''openF : OPEN LPAREN CADENA RPAREN
              | OPEN LPAREN CADENA COMA CADENA RPAREN
-             | ID ASSIGN OPEN LPAREN CADENA COMA CADENA RPAREN'''
+             | ID ASSIGN OPEN LPAREN CADENA COMA CADENA RPAREN
+             | ID ASSIGN OPEN LPAREN ID COMA CADENA RPAREN'''
     p[0] = "OPEN"
 
 def p_funcion(p):
@@ -232,7 +241,7 @@ parser = yacc.yacc()
 
 
 THIS_FOLDER = os.path.dirname(os.path.abspath(__file__))
-my_file = os.path.join(THIS_FOLDER, 'archivo.txt')
+my_file = os.path.join(THIS_FOLDER, 'algoritmoPrueba\henryAlgoritmo.py')
 archivo = open(my_file,'r',encoding="utf-8")
 for linea in archivo:
     if(linea == "\n"): continue

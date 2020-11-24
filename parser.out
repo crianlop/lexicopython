@@ -66,116 +66,118 @@ Rule 52    diccionario -> LLAVEIZQ valoresDic LLAVEDER
 Rule 53    diccionario -> ID ASSIGN diccionario
 Rule 54    lista -> CORCHETEIZQ valoresComa CORCHETEDER
 Rule 55    lista -> ID ASSIGN lista
-Rule 56    tupla -> LPAREN valoresComa RPAREN
-Rule 57    tupla -> ID ASSIGN tupla
-Rule 58    conjunto -> LLAVEIZQ valoresComa LLAVEDER
-Rule 59    conjunto -> ID ASSIGN conjunto
-Rule 60    comparacion -> ID operadorLogico expression
-Rule 61    comparacion -> BOOLEAN
-Rule 62    comparacion -> NOTS BOOLEAN
-Rule 63    comparacion -> expression operadorLogico expression
-Rule 64    comparacion -> comparacion operadorLogico ID
-Rule 65    comparacion -> ID operadorLogico BOOLEAN
-Rule 66    operadorLogico -> EQUALS
-Rule 67    operadorLogico -> MAYORIGUAL
-Rule 68    operadorLogico -> MENORIGUAL
-Rule 69    operadorLogico -> LESSTHAN
-Rule 70    operadorLogico -> MORETHAN
-Rule 71    operadorLogico -> DIFERENTE
-Rule 72    conectoresLogicos -> AND
-Rule 73    conectoresLogicos -> OR
-Rule 74    operacionConectoresLogicos -> NOT ID
-Rule 75    operacionConectoresLogicos -> ID conectoresLogicos ID
-Rule 76    operacionConectoresLogicos -> operacionConectoresLogicos conectoresLogicos ID
-Rule 77    if -> IF LPAREN comparacion RPAREN DOSPUNTOS
-Rule 78    if -> IF comparacion DOSPUNTOS
-Rule 79    if -> IF ID DOSPUNTOS
-Rule 80    else -> ELSE DOSPUNTOS
-Rule 81    while -> WHILE LPAREN comparacion RPAREN DOSPUNTOS
-Rule 82    while -> WHILE comparacion DOSPUNTOS
-Rule 83    while -> WHILE ID DOSPUNTOS
-Rule 84    for -> FOR ID IN RANGE LPAREN NUMBER RPAREN DOSPUNTOS
-Rule 85    for -> FOR ID IN ID DOSPUNTOS
-Rule 86    for -> FOR ID IN lista
-Rule 87    for -> FOR ID IN tupla
-Rule 88    for -> FOR ID IN conjunto
-Rule 89    print -> PRINT LPAREN factor RPAREN
-Rule 90    print -> PRINT LPAREN ID RPAREN
-Rule 91    inputF -> ID ASSIGN INPUT LPAREN RPAREN
-Rule 92    inputF -> INPUT LPAREN RPAREN
-Rule 93    openF -> OPEN LPAREN CADENA RPAREN
-Rule 94    openF -> OPEN LPAREN CADENA COMA CADENA RPAREN
-Rule 95    openF -> ID ASSIGN OPEN LPAREN CADENA COMA CADENA RPAREN
-Rule 96    funcion -> DEF ID LPAREN valoresID RPAREN DOSPUNTOS
-Rule 97    datos -> lista
-Rule 98    datos -> tupla
-Rule 99    datos -> conjunto
-Rule 100   datos -> diccionario
-Rule 101   return -> RETURN expression
-Rule 102   return -> RETURN NONE
-Rule 103   append -> ID PUNTO APPEND LPAREN ID RPAREN
-Rule 104   append -> ID PUNTO APPEND LPAREN expression RPAREN
-Rule 105   append -> ID PUNTO APPEND LPAREN datos RPAREN
-Rule 106   remove -> ID PUNTO REMOVE LPAREN ID RPAREN
-Rule 107   remove -> ID PUNTO REMOVE LPAREN RPAREN
-Rule 108   remove -> ID PUNTO REMOVE LPAREN expression RPAREN
+Rule 56    lista -> ID ASSIGN CORCHETEIZQ CORCHETEDER
+Rule 57    tupla -> LPAREN valoresComa RPAREN
+Rule 58    tupla -> ID ASSIGN tupla
+Rule 59    conjunto -> LLAVEIZQ valoresComa LLAVEDER
+Rule 60    conjunto -> ID ASSIGN conjunto
+Rule 61    comparacion -> ID operadorLogico expression
+Rule 62    comparacion -> BOOLEAN
+Rule 63    comparacion -> NOTS BOOLEAN
+Rule 64    comparacion -> expression operadorLogico expression
+Rule 65    comparacion -> comparacion operadorLogico ID
+Rule 66    comparacion -> ID operadorLogico BOOLEAN
+Rule 67    operadorLogico -> EQUALS
+Rule 68    operadorLogico -> MAYORIGUAL
+Rule 69    operadorLogico -> MENORIGUAL
+Rule 70    operadorLogico -> LESSTHAN
+Rule 71    operadorLogico -> MORETHAN
+Rule 72    operadorLogico -> DIFERENTE
+Rule 73    conectoresLogicos -> AND
+Rule 74    conectoresLogicos -> OR
+Rule 75    operacionConectoresLogicos -> NOT ID
+Rule 76    operacionConectoresLogicos -> ID conectoresLogicos ID
+Rule 77    operacionConectoresLogicos -> operacionConectoresLogicos conectoresLogicos ID
+Rule 78    if -> IF LPAREN comparacion RPAREN DOSPUNTOS
+Rule 79    if -> IF comparacion DOSPUNTOS
+Rule 80    if -> IF ID DOSPUNTOS
+Rule 81    else -> ELSE DOSPUNTOS
+Rule 82    while -> WHILE LPAREN comparacion RPAREN DOSPUNTOS
+Rule 83    while -> WHILE comparacion DOSPUNTOS
+Rule 84    while -> WHILE ID DOSPUNTOS
+Rule 85    for -> FOR ID IN RANGE LPAREN NUMBER RPAREN DOSPUNTOS
+Rule 86    for -> FOR ID IN ID DOSPUNTOS
+Rule 87    for -> FOR ID IN lista
+Rule 88    for -> FOR ID IN tupla
+Rule 89    for -> FOR ID IN conjunto
+Rule 90    print -> PRINT LPAREN factor RPAREN
+Rule 91    print -> PRINT LPAREN ID RPAREN
+Rule 92    inputF -> ID ASSIGN INPUT LPAREN RPAREN
+Rule 93    inputF -> INPUT LPAREN RPAREN
+Rule 94    openF -> OPEN LPAREN CADENA RPAREN
+Rule 95    openF -> OPEN LPAREN CADENA COMA CADENA RPAREN
+Rule 96    openF -> ID ASSIGN OPEN LPAREN CADENA COMA CADENA RPAREN
+Rule 97    openF -> ID ASSIGN OPEN LPAREN ID COMA CADENA RPAREN
+Rule 98    funcion -> DEF ID LPAREN valoresID RPAREN DOSPUNTOS
+Rule 99    datos -> lista
+Rule 100   datos -> tupla
+Rule 101   datos -> conjunto
+Rule 102   datos -> diccionario
+Rule 103   return -> RETURN expression
+Rule 104   return -> RETURN NONE
+Rule 105   append -> ID PUNTO APPEND LPAREN ID RPAREN
+Rule 106   append -> ID PUNTO APPEND LPAREN expression RPAREN
+Rule 107   append -> ID PUNTO APPEND LPAREN datos RPAREN
+Rule 108   remove -> ID PUNTO REMOVE LPAREN ID RPAREN
+Rule 109   remove -> ID PUNTO REMOVE LPAREN RPAREN
+Rule 110   remove -> ID PUNTO REMOVE LPAREN expression RPAREN
 
 Terminals, with rules where they appear
 
-AND                  : 72
-APPEND               : 103 104 105
-ASSIGN               : 38 40 41 42 43 53 55 57 59 91 95
-BOOLEAN              : 41 61 62 65
-CADENA               : 33 93 94 94 95 95
-COMA                 : 45 47 48 50 51 94 95
+AND                  : 73
+APPEND               : 105 106 107
+ASSIGN               : 38 40 41 42 43 53 55 56 58 60 92 96 97
+BOOLEAN              : 41 62 63 66
+CADENA               : 33 94 95 95 96 96 97
+COMA                 : 45 47 48 50 51 95 96 97
 COMILLAS             : 
 COMILLASSIMPLES      : 
 COMMENT              : 36
 COMMENTS             : 37
-CORCHETEDER          : 54
-CORCHETEIZQ          : 54
-DEF                  : 96
-DIFERENTE            : 71
+CORCHETEDER          : 54 56
+CORCHETEIZQ          : 54 56
+DEF                  : 98
+DIFERENTE            : 72
 DIVIDE               : 25
 DIVISIONENTERA       : 27
-DOSPUNTOS            : 49 50 77 78 79 80 81 82 83 84 85 96
-ELSE                 : 80
-EQUALS               : 66
+DOSPUNTOS            : 49 50 78 79 80 81 82 83 84 85 86 98
+ELSE                 : 81
+EQUALS               : 67
 EXPONENTE            : 26
 FLOAT                : 32
-FOR                  : 84 85 86 87 88
-ID                   : 34 38 41 42 43 44 45 53 55 57 59 60 64 65 74 75 75 76 79 83 84 85 85 86 87 88 90 91 95 96 103 103 104 105 106 106 107 108
-IF                   : 77 78 79
-IN                   : 84 85 86 87 88
-INPUT                : 91 92
+FOR                  : 85 86 87 88 89
+ID                   : 34 38 41 42 43 44 45 53 55 56 58 60 61 65 66 75 76 76 77 80 84 85 86 86 87 88 89 91 92 96 97 97 98 105 105 106 107 108 108 109 110
+IF                   : 78 79 80
+IN                   : 85 86 87 88 89
+INPUT                : 92 93
 IS                   : 
-LESSTHAN             : 69
-LLAVEDER             : 52 58
-LLAVEIZQ             : 52 58
-LPAREN               : 35 56 77 81 84 89 90 91 92 93 94 95 96 103 104 105 106 107 108
-MAYORIGUAL           : 67
-MENORIGUAL           : 68
+LESSTHAN             : 70
+LLAVEDER             : 52 59
+LLAVEIZQ             : 52 59
+LPAREN               : 35 57 78 82 85 90 91 92 93 94 95 96 97 98 105 106 107 108 109 110
+MAYORIGUAL           : 68
+MENORIGUAL           : 69
 MINUS                : 22
 MOD                  : 28
-MORETHAN             : 70
-NONE                 : 102
-NOT                  : 74
-NOTS                 : 62
-NUMBER               : 30 84
-OPEN                 : 93 94 95
-OR                   : 73
+MORETHAN             : 71
+NONE                 : 104
+NOT                  : 75
+NOTS                 : 63
+NUMBER               : 30 85
+OPEN                 : 94 95 96 97
+OR                   : 74
 PLUS                 : 21
-PRINT                : 89 90
-PUNTO                : 103 104 105 106 107 108
+PRINT                : 90 91
+PUNTO                : 105 106 107 108 109 110
 PUNTOCOMA            : 
-RANGE                : 84
-REMOVE               : 106 107 108
-RETURN               : 101 102
-RPAREN               : 35 56 77 81 84 89 90 91 92 93 94 95 96 103 104 105 106 107 108
+RANGE                : 85
+REMOVE               : 108 109 110
+RETURN               : 103 104
+RPAREN               : 35 57 78 82 85 90 91 92 93 94 95 96 97 98 105 106 107 108 109 110
 STRING               : 31
 SUBGUION             : 
 TIMES                : 24
-WHILE                : 81 82 83
+WHILE                : 82 83 84
 error                : 
 
 Nonterminals, with rules where they appear
@@ -183,32 +185,32 @@ Nonterminals, with rules where they appear
 append               : 19
 asignacion           : 3
 comentario           : 2
-comparacion          : 12 64 77 78 81 82
-conectoresLogicos    : 75 76
-conjunto             : 17 59 88 99
+comparacion          : 12 65 78 79 82 83
+conectoresLogicos    : 76 77
+conjunto             : 17 60 89 101
 cuerpo               : 0
-datos                : 105
-diccionario          : 16 53 100
+datos                : 107
+diccionario          : 16 53 102
 else                 : 5
-expression           : 1 21 22 35 38 39 46 47 60 63 63 101 104 108
-factor               : 24 25 26 27 28 29 49 49 50 50 89
+expression           : 1 21 22 35 38 39 46 47 61 64 64 103 106 110
+factor               : 24 25 26 27 28 29 49 49 50 50 90
 for                  : 7
 funcion              : 11
 if                   : 4
 inputF               : 9
-lista                : 15 55 86 97
+lista                : 15 55 87 99
 multipleAsignacion   : 39 43
 openF                : 10
-operacionConectoresLogicos : 13 76
-operadorLogico       : 60 63 64 65
+operacionConectoresLogicos : 13 77
+operadorLogico       : 61 64 65 66
 print                : 8
 remove               : 20
 return               : 18
 term                 : 21 22 23 24 25 26 27 28
-tupla                : 14 57 87 98
-valoresComa          : 40 47 48 54 56 58
+tupla                : 14 58 88 100
+valoresComa          : 40 47 48 54 57 59
 valoresDic           : 50 51 52
-valoresID            : 40 45 96
+valoresID            : 40 45 98
 while                : 6
 
 Parsing method: LALR
@@ -245,51 +247,53 @@ state 0
     (39) asignacion -> . multipleAsignacion expression
     (40) asignacion -> . valoresID ASSIGN valoresComa
     (41) asignacion -> . ID ASSIGN BOOLEAN
-    (77) if -> . IF LPAREN comparacion RPAREN DOSPUNTOS
-    (78) if -> . IF comparacion DOSPUNTOS
-    (79) if -> . IF ID DOSPUNTOS
-    (80) else -> . ELSE DOSPUNTOS
-    (81) while -> . WHILE LPAREN comparacion RPAREN DOSPUNTOS
-    (82) while -> . WHILE comparacion DOSPUNTOS
-    (83) while -> . WHILE ID DOSPUNTOS
-    (84) for -> . FOR ID IN RANGE LPAREN NUMBER RPAREN DOSPUNTOS
-    (85) for -> . FOR ID IN ID DOSPUNTOS
-    (86) for -> . FOR ID IN lista
-    (87) for -> . FOR ID IN tupla
-    (88) for -> . FOR ID IN conjunto
-    (89) print -> . PRINT LPAREN factor RPAREN
-    (90) print -> . PRINT LPAREN ID RPAREN
-    (91) inputF -> . ID ASSIGN INPUT LPAREN RPAREN
-    (92) inputF -> . INPUT LPAREN RPAREN
-    (93) openF -> . OPEN LPAREN CADENA RPAREN
-    (94) openF -> . OPEN LPAREN CADENA COMA CADENA RPAREN
-    (95) openF -> . ID ASSIGN OPEN LPAREN CADENA COMA CADENA RPAREN
-    (96) funcion -> . DEF ID LPAREN valoresID RPAREN DOSPUNTOS
-    (60) comparacion -> . ID operadorLogico expression
-    (61) comparacion -> . BOOLEAN
-    (62) comparacion -> . NOTS BOOLEAN
-    (63) comparacion -> . expression operadorLogico expression
-    (64) comparacion -> . comparacion operadorLogico ID
-    (65) comparacion -> . ID operadorLogico BOOLEAN
-    (74) operacionConectoresLogicos -> . NOT ID
-    (75) operacionConectoresLogicos -> . ID conectoresLogicos ID
-    (76) operacionConectoresLogicos -> . operacionConectoresLogicos conectoresLogicos ID
-    (56) tupla -> . LPAREN valoresComa RPAREN
-    (57) tupla -> . ID ASSIGN tupla
+    (78) if -> . IF LPAREN comparacion RPAREN DOSPUNTOS
+    (79) if -> . IF comparacion DOSPUNTOS
+    (80) if -> . IF ID DOSPUNTOS
+    (81) else -> . ELSE DOSPUNTOS
+    (82) while -> . WHILE LPAREN comparacion RPAREN DOSPUNTOS
+    (83) while -> . WHILE comparacion DOSPUNTOS
+    (84) while -> . WHILE ID DOSPUNTOS
+    (85) for -> . FOR ID IN RANGE LPAREN NUMBER RPAREN DOSPUNTOS
+    (86) for -> . FOR ID IN ID DOSPUNTOS
+    (87) for -> . FOR ID IN lista
+    (88) for -> . FOR ID IN tupla
+    (89) for -> . FOR ID IN conjunto
+    (90) print -> . PRINT LPAREN factor RPAREN
+    (91) print -> . PRINT LPAREN ID RPAREN
+    (92) inputF -> . ID ASSIGN INPUT LPAREN RPAREN
+    (93) inputF -> . INPUT LPAREN RPAREN
+    (94) openF -> . OPEN LPAREN CADENA RPAREN
+    (95) openF -> . OPEN LPAREN CADENA COMA CADENA RPAREN
+    (96) openF -> . ID ASSIGN OPEN LPAREN CADENA COMA CADENA RPAREN
+    (97) openF -> . ID ASSIGN OPEN LPAREN ID COMA CADENA RPAREN
+    (98) funcion -> . DEF ID LPAREN valoresID RPAREN DOSPUNTOS
+    (61) comparacion -> . ID operadorLogico expression
+    (62) comparacion -> . BOOLEAN
+    (63) comparacion -> . NOTS BOOLEAN
+    (64) comparacion -> . expression operadorLogico expression
+    (65) comparacion -> . comparacion operadorLogico ID
+    (66) comparacion -> . ID operadorLogico BOOLEAN
+    (75) operacionConectoresLogicos -> . NOT ID
+    (76) operacionConectoresLogicos -> . ID conectoresLogicos ID
+    (77) operacionConectoresLogicos -> . operacionConectoresLogicos conectoresLogicos ID
+    (57) tupla -> . LPAREN valoresComa RPAREN
+    (58) tupla -> . ID ASSIGN tupla
     (54) lista -> . CORCHETEIZQ valoresComa CORCHETEDER
     (55) lista -> . ID ASSIGN lista
+    (56) lista -> . ID ASSIGN CORCHETEIZQ CORCHETEDER
     (52) diccionario -> . LLAVEIZQ valoresDic LLAVEDER
     (53) diccionario -> . ID ASSIGN diccionario
-    (58) conjunto -> . LLAVEIZQ valoresComa LLAVEDER
-    (59) conjunto -> . ID ASSIGN conjunto
-    (101) return -> . RETURN expression
-    (102) return -> . RETURN NONE
-    (103) append -> . ID PUNTO APPEND LPAREN ID RPAREN
-    (104) append -> . ID PUNTO APPEND LPAREN expression RPAREN
-    (105) append -> . ID PUNTO APPEND LPAREN datos RPAREN
-    (106) remove -> . ID PUNTO REMOVE LPAREN ID RPAREN
-    (107) remove -> . ID PUNTO REMOVE LPAREN RPAREN
-    (108) remove -> . ID PUNTO REMOVE LPAREN expression RPAREN
+    (59) conjunto -> . LLAVEIZQ valoresComa LLAVEDER
+    (60) conjunto -> . ID ASSIGN conjunto
+    (103) return -> . RETURN expression
+    (104) return -> . RETURN NONE
+    (105) append -> . ID PUNTO APPEND LPAREN ID RPAREN
+    (106) append -> . ID PUNTO APPEND LPAREN expression RPAREN
+    (107) append -> . ID PUNTO APPEND LPAREN datos RPAREN
+    (108) remove -> . ID PUNTO REMOVE LPAREN ID RPAREN
+    (109) remove -> . ID PUNTO REMOVE LPAREN RPAREN
+    (110) remove -> . ID PUNTO REMOVE LPAREN expression RPAREN
     (24) term -> . term TIMES factor
     (25) term -> . term DIVIDE factor
     (26) term -> . term EXPONENTE factor
@@ -367,13 +371,13 @@ state 2
     (1) cuerpo -> expression .
     (21) expression -> expression . PLUS term
     (22) expression -> expression . MINUS term
-    (63) comparacion -> expression . operadorLogico expression
-    (66) operadorLogico -> . EQUALS
-    (67) operadorLogico -> . MAYORIGUAL
-    (68) operadorLogico -> . MENORIGUAL
-    (69) operadorLogico -> . LESSTHAN
-    (70) operadorLogico -> . MORETHAN
-    (71) operadorLogico -> . DIFERENTE
+    (64) comparacion -> expression . operadorLogico expression
+    (67) operadorLogico -> . EQUALS
+    (68) operadorLogico -> . MAYORIGUAL
+    (69) operadorLogico -> . MENORIGUAL
+    (70) operadorLogico -> . LESSTHAN
+    (71) operadorLogico -> . MORETHAN
+    (72) operadorLogico -> . DIFERENTE
 
     $end            reduce using rule 1 (cuerpo -> expression .)
     PLUS            shift and go to state 48
@@ -460,13 +464,13 @@ state 12
 state 13
 
     (12) cuerpo -> comparacion .
-    (64) comparacion -> comparacion . operadorLogico ID
-    (66) operadorLogico -> . EQUALS
-    (67) operadorLogico -> . MAYORIGUAL
-    (68) operadorLogico -> . MENORIGUAL
-    (69) operadorLogico -> . LESSTHAN
-    (70) operadorLogico -> . MORETHAN
-    (71) operadorLogico -> . DIFERENTE
+    (65) comparacion -> comparacion . operadorLogico ID
+    (67) operadorLogico -> . EQUALS
+    (68) operadorLogico -> . MAYORIGUAL
+    (69) operadorLogico -> . MENORIGUAL
+    (70) operadorLogico -> . LESSTHAN
+    (71) operadorLogico -> . MORETHAN
+    (72) operadorLogico -> . DIFERENTE
 
     $end            reduce using rule 12 (cuerpo -> comparacion .)
     EQUALS          shift and go to state 51
@@ -481,9 +485,9 @@ state 13
 state 14
 
     (13) cuerpo -> operacionConectoresLogicos .
-    (76) operacionConectoresLogicos -> operacionConectoresLogicos . conectoresLogicos ID
-    (72) conectoresLogicos -> . AND
-    (73) conectoresLogicos -> . OR
+    (77) operacionConectoresLogicos -> operacionConectoresLogicos . conectoresLogicos ID
+    (73) conectoresLogicos -> . AND
+    (74) conectoresLogicos -> . OR
 
     $end            reduce using rule 13 (cuerpo -> operacionConectoresLogicos .)
     AND             shift and go to state 59
@@ -588,33 +592,35 @@ state 25
 
     (38) asignacion -> ID . ASSIGN expression
     (41) asignacion -> ID . ASSIGN BOOLEAN
-    (91) inputF -> ID . ASSIGN INPUT LPAREN RPAREN
-    (95) openF -> ID . ASSIGN OPEN LPAREN CADENA COMA CADENA RPAREN
-    (60) comparacion -> ID . operadorLogico expression
-    (65) comparacion -> ID . operadorLogico BOOLEAN
-    (75) operacionConectoresLogicos -> ID . conectoresLogicos ID
-    (57) tupla -> ID . ASSIGN tupla
+    (92) inputF -> ID . ASSIGN INPUT LPAREN RPAREN
+    (96) openF -> ID . ASSIGN OPEN LPAREN CADENA COMA CADENA RPAREN
+    (97) openF -> ID . ASSIGN OPEN LPAREN ID COMA CADENA RPAREN
+    (61) comparacion -> ID . operadorLogico expression
+    (66) comparacion -> ID . operadorLogico BOOLEAN
+    (76) operacionConectoresLogicos -> ID . conectoresLogicos ID
+    (58) tupla -> ID . ASSIGN tupla
     (55) lista -> ID . ASSIGN lista
+    (56) lista -> ID . ASSIGN CORCHETEIZQ CORCHETEDER
     (53) diccionario -> ID . ASSIGN diccionario
-    (59) conjunto -> ID . ASSIGN conjunto
-    (103) append -> ID . PUNTO APPEND LPAREN ID RPAREN
-    (104) append -> ID . PUNTO APPEND LPAREN expression RPAREN
-    (105) append -> ID . PUNTO APPEND LPAREN datos RPAREN
-    (106) remove -> ID . PUNTO REMOVE LPAREN ID RPAREN
-    (107) remove -> ID . PUNTO REMOVE LPAREN RPAREN
-    (108) remove -> ID . PUNTO REMOVE LPAREN expression RPAREN
+    (60) conjunto -> ID . ASSIGN conjunto
+    (105) append -> ID . PUNTO APPEND LPAREN ID RPAREN
+    (106) append -> ID . PUNTO APPEND LPAREN expression RPAREN
+    (107) append -> ID . PUNTO APPEND LPAREN datos RPAREN
+    (108) remove -> ID . PUNTO REMOVE LPAREN ID RPAREN
+    (109) remove -> ID . PUNTO REMOVE LPAREN RPAREN
+    (110) remove -> ID . PUNTO REMOVE LPAREN expression RPAREN
     (42) multipleAsignacion -> ID . ASSIGN
     (43) multipleAsignacion -> ID . ASSIGN multipleAsignacion
     (44) valoresID -> ID .
     (34) factor -> ID .
-    (66) operadorLogico -> . EQUALS
-    (67) operadorLogico -> . MAYORIGUAL
-    (68) operadorLogico -> . MENORIGUAL
-    (69) operadorLogico -> . LESSTHAN
-    (70) operadorLogico -> . MORETHAN
-    (71) operadorLogico -> . DIFERENTE
-    (72) conectoresLogicos -> . AND
-    (73) conectoresLogicos -> . OR
+    (67) operadorLogico -> . EQUALS
+    (68) operadorLogico -> . MAYORIGUAL
+    (69) operadorLogico -> . MENORIGUAL
+    (70) operadorLogico -> . LESSTHAN
+    (71) operadorLogico -> . MORETHAN
+    (72) operadorLogico -> . DIFERENTE
+    (73) conectoresLogicos -> . AND
+    (74) conectoresLogicos -> . OR
 
   ! shift/reduce conflict for ASSIGN resolved as shift
   ! shift/reduce conflict for EQUALS resolved as shift
@@ -695,30 +701,30 @@ state 27
 
 state 28
 
-    (61) comparacion -> BOOLEAN .
+    (62) comparacion -> BOOLEAN .
 
-    EQUALS          reduce using rule 61 (comparacion -> BOOLEAN .)
-    MAYORIGUAL      reduce using rule 61 (comparacion -> BOOLEAN .)
-    MENORIGUAL      reduce using rule 61 (comparacion -> BOOLEAN .)
-    LESSTHAN        reduce using rule 61 (comparacion -> BOOLEAN .)
-    MORETHAN        reduce using rule 61 (comparacion -> BOOLEAN .)
-    DIFERENTE       reduce using rule 61 (comparacion -> BOOLEAN .)
-    $end            reduce using rule 61 (comparacion -> BOOLEAN .)
-    DOSPUNTOS       reduce using rule 61 (comparacion -> BOOLEAN .)
-    RPAREN          reduce using rule 61 (comparacion -> BOOLEAN .)
+    EQUALS          reduce using rule 62 (comparacion -> BOOLEAN .)
+    MAYORIGUAL      reduce using rule 62 (comparacion -> BOOLEAN .)
+    MENORIGUAL      reduce using rule 62 (comparacion -> BOOLEAN .)
+    LESSTHAN        reduce using rule 62 (comparacion -> BOOLEAN .)
+    MORETHAN        reduce using rule 62 (comparacion -> BOOLEAN .)
+    DIFERENTE       reduce using rule 62 (comparacion -> BOOLEAN .)
+    $end            reduce using rule 62 (comparacion -> BOOLEAN .)
+    DOSPUNTOS       reduce using rule 62 (comparacion -> BOOLEAN .)
+    RPAREN          reduce using rule 62 (comparacion -> BOOLEAN .)
 
 
 state 29
 
-    (77) if -> IF . LPAREN comparacion RPAREN DOSPUNTOS
-    (78) if -> IF . comparacion DOSPUNTOS
-    (79) if -> IF . ID DOSPUNTOS
-    (60) comparacion -> . ID operadorLogico expression
-    (61) comparacion -> . BOOLEAN
-    (62) comparacion -> . NOTS BOOLEAN
-    (63) comparacion -> . expression operadorLogico expression
-    (64) comparacion -> . comparacion operadorLogico ID
-    (65) comparacion -> . ID operadorLogico BOOLEAN
+    (78) if -> IF . LPAREN comparacion RPAREN DOSPUNTOS
+    (79) if -> IF . comparacion DOSPUNTOS
+    (80) if -> IF . ID DOSPUNTOS
+    (61) comparacion -> . ID operadorLogico expression
+    (62) comparacion -> . BOOLEAN
+    (63) comparacion -> . NOTS BOOLEAN
+    (64) comparacion -> . expression operadorLogico expression
+    (65) comparacion -> . comparacion operadorLogico ID
+    (66) comparacion -> . ID operadorLogico BOOLEAN
     (21) expression -> . expression PLUS term
     (22) expression -> . expression MINUS term
     (23) expression -> . term
@@ -751,7 +757,7 @@ state 29
 
 state 30
 
-    (56) tupla -> LPAREN . valoresComa RPAREN
+    (57) tupla -> LPAREN . valoresComa RPAREN
     (35) factor -> LPAREN . expression RPAREN
     (46) valoresComa -> . expression
     (47) valoresComa -> . valoresComa COMA expression
@@ -786,22 +792,22 @@ state 30
 
 state 31
 
-    (80) else -> ELSE . DOSPUNTOS
+    (81) else -> ELSE . DOSPUNTOS
 
     DOSPUNTOS       shift and go to state 81
 
 
 state 32
 
-    (81) while -> WHILE . LPAREN comparacion RPAREN DOSPUNTOS
-    (82) while -> WHILE . comparacion DOSPUNTOS
-    (83) while -> WHILE . ID DOSPUNTOS
-    (60) comparacion -> . ID operadorLogico expression
-    (61) comparacion -> . BOOLEAN
-    (62) comparacion -> . NOTS BOOLEAN
-    (63) comparacion -> . expression operadorLogico expression
-    (64) comparacion -> . comparacion operadorLogico ID
-    (65) comparacion -> . ID operadorLogico BOOLEAN
+    (82) while -> WHILE . LPAREN comparacion RPAREN DOSPUNTOS
+    (83) while -> WHILE . comparacion DOSPUNTOS
+    (84) while -> WHILE . ID DOSPUNTOS
+    (61) comparacion -> . ID operadorLogico expression
+    (62) comparacion -> . BOOLEAN
+    (63) comparacion -> . NOTS BOOLEAN
+    (64) comparacion -> . expression operadorLogico expression
+    (65) comparacion -> . comparacion operadorLogico ID
+    (66) comparacion -> . ID operadorLogico BOOLEAN
     (21) expression -> . expression PLUS term
     (22) expression -> . expression MINUS term
     (23) expression -> . term
@@ -834,11 +840,11 @@ state 32
 
 state 33
 
-    (84) for -> FOR . ID IN RANGE LPAREN NUMBER RPAREN DOSPUNTOS
-    (85) for -> FOR . ID IN ID DOSPUNTOS
-    (86) for -> FOR . ID IN lista
-    (87) for -> FOR . ID IN tupla
-    (88) for -> FOR . ID IN conjunto
+    (85) for -> FOR . ID IN RANGE LPAREN NUMBER RPAREN DOSPUNTOS
+    (86) for -> FOR . ID IN ID DOSPUNTOS
+    (87) for -> FOR . ID IN lista
+    (88) for -> FOR . ID IN tupla
+    (89) for -> FOR . ID IN conjunto
 
     ID              shift and go to state 85
 
@@ -870,8 +876,8 @@ state 34
 
 state 35
 
-    (89) print -> PRINT . LPAREN factor RPAREN
-    (90) print -> PRINT . LPAREN ID RPAREN
+    (90) print -> PRINT . LPAREN factor RPAREN
+    (91) print -> PRINT . LPAREN ID RPAREN
 
     LPAREN          shift and go to state 86
 
@@ -903,15 +909,15 @@ state 36
 
 state 37
 
-    (92) inputF -> INPUT . LPAREN RPAREN
+    (93) inputF -> INPUT . LPAREN RPAREN
 
     LPAREN          shift and go to state 87
 
 
 state 38
 
-    (93) openF -> OPEN . LPAREN CADENA RPAREN
-    (94) openF -> OPEN . LPAREN CADENA COMA CADENA RPAREN
+    (94) openF -> OPEN . LPAREN CADENA RPAREN
+    (95) openF -> OPEN . LPAREN CADENA COMA CADENA RPAREN
 
     LPAREN          shift and go to state 88
 
@@ -943,21 +949,21 @@ state 39
 
 state 40
 
-    (96) funcion -> DEF . ID LPAREN valoresID RPAREN DOSPUNTOS
+    (98) funcion -> DEF . ID LPAREN valoresID RPAREN DOSPUNTOS
 
     ID              shift and go to state 89
 
 
 state 41
 
-    (62) comparacion -> NOTS . BOOLEAN
+    (63) comparacion -> NOTS . BOOLEAN
 
     BOOLEAN         shift and go to state 90
 
 
 state 42
 
-    (74) operacionConectoresLogicos -> NOT . ID
+    (75) operacionConectoresLogicos -> NOT . ID
 
     ID              shift and go to state 91
 
@@ -999,7 +1005,7 @@ state 43
 state 44
 
     (52) diccionario -> LLAVEIZQ . valoresDic LLAVEDER
-    (58) conjunto -> LLAVEIZQ . valoresComa LLAVEDER
+    (59) conjunto -> LLAVEIZQ . valoresComa LLAVEDER
     (49) valoresDic -> . factor DOSPUNTOS factor
     (50) valoresDic -> . valoresDic COMA factor DOSPUNTOS factor
     (51) valoresDic -> . valoresDic COMA
@@ -1037,8 +1043,8 @@ state 44
 
 state 45
 
-    (101) return -> RETURN . expression
-    (102) return -> RETURN . NONE
+    (103) return -> RETURN . expression
+    (104) return -> RETURN . NONE
     (21) expression -> . expression PLUS term
     (22) expression -> . expression MINUS term
     (23) expression -> . term
@@ -1171,7 +1177,7 @@ state 49
 
 state 50
 
-    (63) comparacion -> expression operadorLogico . expression
+    (64) comparacion -> expression operadorLogico . expression
     (21) expression -> . expression PLUS term
     (22) expression -> . expression MINUS term
     (23) expression -> . term
@@ -1201,108 +1207,108 @@ state 50
 
 state 51
 
-    (66) operadorLogico -> EQUALS .
+    (67) operadorLogico -> EQUALS .
 
-    NUMBER          reduce using rule 66 (operadorLogico -> EQUALS .)
-    STRING          reduce using rule 66 (operadorLogico -> EQUALS .)
-    FLOAT           reduce using rule 66 (operadorLogico -> EQUALS .)
-    CADENA          reduce using rule 66 (operadorLogico -> EQUALS .)
-    ID              reduce using rule 66 (operadorLogico -> EQUALS .)
-    LPAREN          reduce using rule 66 (operadorLogico -> EQUALS .)
-    BOOLEAN         reduce using rule 66 (operadorLogico -> EQUALS .)
+    NUMBER          reduce using rule 67 (operadorLogico -> EQUALS .)
+    STRING          reduce using rule 67 (operadorLogico -> EQUALS .)
+    FLOAT           reduce using rule 67 (operadorLogico -> EQUALS .)
+    CADENA          reduce using rule 67 (operadorLogico -> EQUALS .)
+    ID              reduce using rule 67 (operadorLogico -> EQUALS .)
+    LPAREN          reduce using rule 67 (operadorLogico -> EQUALS .)
+    BOOLEAN         reduce using rule 67 (operadorLogico -> EQUALS .)
 
 
 state 52
 
-    (67) operadorLogico -> MAYORIGUAL .
+    (68) operadorLogico -> MAYORIGUAL .
 
-    NUMBER          reduce using rule 67 (operadorLogico -> MAYORIGUAL .)
-    STRING          reduce using rule 67 (operadorLogico -> MAYORIGUAL .)
-    FLOAT           reduce using rule 67 (operadorLogico -> MAYORIGUAL .)
-    CADENA          reduce using rule 67 (operadorLogico -> MAYORIGUAL .)
-    ID              reduce using rule 67 (operadorLogico -> MAYORIGUAL .)
-    LPAREN          reduce using rule 67 (operadorLogico -> MAYORIGUAL .)
-    BOOLEAN         reduce using rule 67 (operadorLogico -> MAYORIGUAL .)
+    NUMBER          reduce using rule 68 (operadorLogico -> MAYORIGUAL .)
+    STRING          reduce using rule 68 (operadorLogico -> MAYORIGUAL .)
+    FLOAT           reduce using rule 68 (operadorLogico -> MAYORIGUAL .)
+    CADENA          reduce using rule 68 (operadorLogico -> MAYORIGUAL .)
+    ID              reduce using rule 68 (operadorLogico -> MAYORIGUAL .)
+    LPAREN          reduce using rule 68 (operadorLogico -> MAYORIGUAL .)
+    BOOLEAN         reduce using rule 68 (operadorLogico -> MAYORIGUAL .)
 
 
 state 53
 
-    (68) operadorLogico -> MENORIGUAL .
+    (69) operadorLogico -> MENORIGUAL .
 
-    NUMBER          reduce using rule 68 (operadorLogico -> MENORIGUAL .)
-    STRING          reduce using rule 68 (operadorLogico -> MENORIGUAL .)
-    FLOAT           reduce using rule 68 (operadorLogico -> MENORIGUAL .)
-    CADENA          reduce using rule 68 (operadorLogico -> MENORIGUAL .)
-    ID              reduce using rule 68 (operadorLogico -> MENORIGUAL .)
-    LPAREN          reduce using rule 68 (operadorLogico -> MENORIGUAL .)
-    BOOLEAN         reduce using rule 68 (operadorLogico -> MENORIGUAL .)
+    NUMBER          reduce using rule 69 (operadorLogico -> MENORIGUAL .)
+    STRING          reduce using rule 69 (operadorLogico -> MENORIGUAL .)
+    FLOAT           reduce using rule 69 (operadorLogico -> MENORIGUAL .)
+    CADENA          reduce using rule 69 (operadorLogico -> MENORIGUAL .)
+    ID              reduce using rule 69 (operadorLogico -> MENORIGUAL .)
+    LPAREN          reduce using rule 69 (operadorLogico -> MENORIGUAL .)
+    BOOLEAN         reduce using rule 69 (operadorLogico -> MENORIGUAL .)
 
 
 state 54
 
-    (69) operadorLogico -> LESSTHAN .
+    (70) operadorLogico -> LESSTHAN .
 
-    NUMBER          reduce using rule 69 (operadorLogico -> LESSTHAN .)
-    STRING          reduce using rule 69 (operadorLogico -> LESSTHAN .)
-    FLOAT           reduce using rule 69 (operadorLogico -> LESSTHAN .)
-    CADENA          reduce using rule 69 (operadorLogico -> LESSTHAN .)
-    ID              reduce using rule 69 (operadorLogico -> LESSTHAN .)
-    LPAREN          reduce using rule 69 (operadorLogico -> LESSTHAN .)
-    BOOLEAN         reduce using rule 69 (operadorLogico -> LESSTHAN .)
+    NUMBER          reduce using rule 70 (operadorLogico -> LESSTHAN .)
+    STRING          reduce using rule 70 (operadorLogico -> LESSTHAN .)
+    FLOAT           reduce using rule 70 (operadorLogico -> LESSTHAN .)
+    CADENA          reduce using rule 70 (operadorLogico -> LESSTHAN .)
+    ID              reduce using rule 70 (operadorLogico -> LESSTHAN .)
+    LPAREN          reduce using rule 70 (operadorLogico -> LESSTHAN .)
+    BOOLEAN         reduce using rule 70 (operadorLogico -> LESSTHAN .)
 
 
 state 55
 
-    (70) operadorLogico -> MORETHAN .
+    (71) operadorLogico -> MORETHAN .
 
-    NUMBER          reduce using rule 70 (operadorLogico -> MORETHAN .)
-    STRING          reduce using rule 70 (operadorLogico -> MORETHAN .)
-    FLOAT           reduce using rule 70 (operadorLogico -> MORETHAN .)
-    CADENA          reduce using rule 70 (operadorLogico -> MORETHAN .)
-    ID              reduce using rule 70 (operadorLogico -> MORETHAN .)
-    LPAREN          reduce using rule 70 (operadorLogico -> MORETHAN .)
-    BOOLEAN         reduce using rule 70 (operadorLogico -> MORETHAN .)
+    NUMBER          reduce using rule 71 (operadorLogico -> MORETHAN .)
+    STRING          reduce using rule 71 (operadorLogico -> MORETHAN .)
+    FLOAT           reduce using rule 71 (operadorLogico -> MORETHAN .)
+    CADENA          reduce using rule 71 (operadorLogico -> MORETHAN .)
+    ID              reduce using rule 71 (operadorLogico -> MORETHAN .)
+    LPAREN          reduce using rule 71 (operadorLogico -> MORETHAN .)
+    BOOLEAN         reduce using rule 71 (operadorLogico -> MORETHAN .)
 
 
 state 56
 
-    (71) operadorLogico -> DIFERENTE .
+    (72) operadorLogico -> DIFERENTE .
 
-    NUMBER          reduce using rule 71 (operadorLogico -> DIFERENTE .)
-    STRING          reduce using rule 71 (operadorLogico -> DIFERENTE .)
-    FLOAT           reduce using rule 71 (operadorLogico -> DIFERENTE .)
-    CADENA          reduce using rule 71 (operadorLogico -> DIFERENTE .)
-    ID              reduce using rule 71 (operadorLogico -> DIFERENTE .)
-    LPAREN          reduce using rule 71 (operadorLogico -> DIFERENTE .)
-    BOOLEAN         reduce using rule 71 (operadorLogico -> DIFERENTE .)
+    NUMBER          reduce using rule 72 (operadorLogico -> DIFERENTE .)
+    STRING          reduce using rule 72 (operadorLogico -> DIFERENTE .)
+    FLOAT           reduce using rule 72 (operadorLogico -> DIFERENTE .)
+    CADENA          reduce using rule 72 (operadorLogico -> DIFERENTE .)
+    ID              reduce using rule 72 (operadorLogico -> DIFERENTE .)
+    LPAREN          reduce using rule 72 (operadorLogico -> DIFERENTE .)
+    BOOLEAN         reduce using rule 72 (operadorLogico -> DIFERENTE .)
 
 
 state 57
 
-    (64) comparacion -> comparacion operadorLogico . ID
+    (65) comparacion -> comparacion operadorLogico . ID
 
     ID              shift and go to state 102
 
 
 state 58
 
-    (76) operacionConectoresLogicos -> operacionConectoresLogicos conectoresLogicos . ID
+    (77) operacionConectoresLogicos -> operacionConectoresLogicos conectoresLogicos . ID
 
     ID              shift and go to state 103
 
 
 state 59
 
-    (72) conectoresLogicos -> AND .
+    (73) conectoresLogicos -> AND .
 
-    ID              reduce using rule 72 (conectoresLogicos -> AND .)
+    ID              reduce using rule 73 (conectoresLogicos -> AND .)
 
 
 state 60
 
-    (73) conectoresLogicos -> OR .
+    (74) conectoresLogicos -> OR .
 
-    ID              reduce using rule 73 (conectoresLogicos -> OR .)
+    ID              reduce using rule 74 (conectoresLogicos -> OR .)
 
 
 state 61
@@ -1404,25 +1410,28 @@ state 66
 
     (38) asignacion -> ID ASSIGN . expression
     (41) asignacion -> ID ASSIGN . BOOLEAN
-    (91) inputF -> ID ASSIGN . INPUT LPAREN RPAREN
-    (95) openF -> ID ASSIGN . OPEN LPAREN CADENA COMA CADENA RPAREN
-    (57) tupla -> ID ASSIGN . tupla
+    (92) inputF -> ID ASSIGN . INPUT LPAREN RPAREN
+    (96) openF -> ID ASSIGN . OPEN LPAREN CADENA COMA CADENA RPAREN
+    (97) openF -> ID ASSIGN . OPEN LPAREN ID COMA CADENA RPAREN
+    (58) tupla -> ID ASSIGN . tupla
     (55) lista -> ID ASSIGN . lista
+    (56) lista -> ID ASSIGN . CORCHETEIZQ CORCHETEDER
     (53) diccionario -> ID ASSIGN . diccionario
-    (59) conjunto -> ID ASSIGN . conjunto
+    (60) conjunto -> ID ASSIGN . conjunto
     (42) multipleAsignacion -> ID ASSIGN .
     (43) multipleAsignacion -> ID ASSIGN . multipleAsignacion
     (21) expression -> . expression PLUS term
     (22) expression -> . expression MINUS term
     (23) expression -> . term
-    (56) tupla -> . LPAREN valoresComa RPAREN
-    (57) tupla -> . ID ASSIGN tupla
+    (57) tupla -> . LPAREN valoresComa RPAREN
+    (58) tupla -> . ID ASSIGN tupla
     (54) lista -> . CORCHETEIZQ valoresComa CORCHETEDER
     (55) lista -> . ID ASSIGN lista
+    (56) lista -> . ID ASSIGN CORCHETEIZQ CORCHETEDER
     (52) diccionario -> . LLAVEIZQ valoresDic LLAVEDER
     (53) diccionario -> . ID ASSIGN diccionario
-    (58) conjunto -> . LLAVEIZQ valoresComa LLAVEDER
-    (59) conjunto -> . ID ASSIGN conjunto
+    (59) conjunto -> . LLAVEIZQ valoresComa LLAVEDER
+    (60) conjunto -> . ID ASSIGN conjunto
     (42) multipleAsignacion -> . ID ASSIGN
     (43) multipleAsignacion -> . ID ASSIGN multipleAsignacion
     (24) term -> . term TIMES factor
@@ -1447,9 +1456,9 @@ state 66
     BOOLEAN         shift and go to state 111
     INPUT           shift and go to state 112
     OPEN            shift and go to state 113
+    CORCHETEIZQ     shift and go to state 116
     LPAREN          shift and go to state 30
     ID              shift and go to state 109
-    CORCHETEIZQ     shift and go to state 43
     LLAVEIZQ        shift and go to state 44
     NUMBER          shift and go to state 34
     STRING          shift and go to state 46
@@ -1466,16 +1475,16 @@ state 66
     expression                     shift and go to state 110
     tupla                          shift and go to state 114
     lista                          shift and go to state 115
-    diccionario                    shift and go to state 116
-    conjunto                       shift and go to state 117
-    multipleAsignacion             shift and go to state 118
+    diccionario                    shift and go to state 117
+    conjunto                       shift and go to state 118
+    multipleAsignacion             shift and go to state 119
     term                           shift and go to state 22
     factor                         shift and go to state 36
 
 state 67
 
-    (60) comparacion -> ID operadorLogico . expression
-    (65) comparacion -> ID operadorLogico . BOOLEAN
+    (61) comparacion -> ID operadorLogico . expression
+    (66) comparacion -> ID operadorLogico . BOOLEAN
     (21) expression -> . expression PLUS term
     (22) expression -> . expression MINUS term
     (23) expression -> . term
@@ -1492,7 +1501,7 @@ state 67
     (34) factor -> . ID
     (35) factor -> . LPAREN expression RPAREN
 
-    BOOLEAN         shift and go to state 120
+    BOOLEAN         shift and go to state 121
     NUMBER          shift and go to state 34
     STRING          shift and go to state 46
     FLOAT           shift and go to state 47
@@ -1500,28 +1509,28 @@ state 67
     ID              shift and go to state 71
     LPAREN          shift and go to state 72
 
-    expression                     shift and go to state 119
+    expression                     shift and go to state 120
     term                           shift and go to state 22
     factor                         shift and go to state 36
 
 state 68
 
-    (75) operacionConectoresLogicos -> ID conectoresLogicos . ID
+    (76) operacionConectoresLogicos -> ID conectoresLogicos . ID
 
-    ID              shift and go to state 121
+    ID              shift and go to state 122
 
 
 state 69
 
-    (103) append -> ID PUNTO . APPEND LPAREN ID RPAREN
-    (104) append -> ID PUNTO . APPEND LPAREN expression RPAREN
-    (105) append -> ID PUNTO . APPEND LPAREN datos RPAREN
-    (106) remove -> ID PUNTO . REMOVE LPAREN ID RPAREN
-    (107) remove -> ID PUNTO . REMOVE LPAREN RPAREN
-    (108) remove -> ID PUNTO . REMOVE LPAREN expression RPAREN
+    (105) append -> ID PUNTO . APPEND LPAREN ID RPAREN
+    (106) append -> ID PUNTO . APPEND LPAREN expression RPAREN
+    (107) append -> ID PUNTO . APPEND LPAREN datos RPAREN
+    (108) remove -> ID PUNTO . REMOVE LPAREN ID RPAREN
+    (109) remove -> ID PUNTO . REMOVE LPAREN RPAREN
+    (110) remove -> ID PUNTO . REMOVE LPAREN expression RPAREN
 
-    APPEND          shift and go to state 122
-    REMOVE          shift and go to state 123
+    APPEND          shift and go to state 123
+    REMOVE          shift and go to state 124
 
 
 state 70
@@ -1586,7 +1595,7 @@ state 72
     ID              shift and go to state 71
     LPAREN          shift and go to state 72
 
-    expression                     shift and go to state 124
+    expression                     shift and go to state 125
     term                           shift and go to state 22
     factor                         shift and go to state 36
 
@@ -1619,7 +1628,7 @@ state 73
     ID              shift and go to state 71
     LPAREN          shift and go to state 72
 
-    valoresComa                    shift and go to state 125
+    valoresComa                    shift and go to state 126
     expression                     shift and go to state 93
     term                           shift and go to state 22
     factor                         shift and go to state 36
@@ -1628,19 +1637,19 @@ state 74
 
     (45) valoresID -> valoresID COMA . ID
 
-    ID              shift and go to state 126
+    ID              shift and go to state 127
 
 
 state 75
 
-    (77) if -> IF LPAREN . comparacion RPAREN DOSPUNTOS
+    (78) if -> IF LPAREN . comparacion RPAREN DOSPUNTOS
     (35) factor -> LPAREN . expression RPAREN
-    (60) comparacion -> . ID operadorLogico expression
-    (61) comparacion -> . BOOLEAN
-    (62) comparacion -> . NOTS BOOLEAN
-    (63) comparacion -> . expression operadorLogico expression
-    (64) comparacion -> . comparacion operadorLogico ID
-    (65) comparacion -> . ID operadorLogico BOOLEAN
+    (61) comparacion -> . ID operadorLogico expression
+    (62) comparacion -> . BOOLEAN
+    (63) comparacion -> . NOTS BOOLEAN
+    (64) comparacion -> . expression operadorLogico expression
+    (65) comparacion -> . comparacion operadorLogico ID
+    (66) comparacion -> . ID operadorLogico BOOLEAN
     (21) expression -> . expression PLUS term
     (22) expression -> . expression MINUS term
     (23) expression -> . term
@@ -1657,7 +1666,7 @@ state 75
     (34) factor -> . ID
     (35) factor -> . LPAREN expression RPAREN
 
-    ID              shift and go to state 129
+    ID              shift and go to state 130
     BOOLEAN         shift and go to state 28
     NOTS            shift and go to state 41
     NUMBER          shift and go to state 34
@@ -1666,23 +1675,23 @@ state 75
     CADENA          shift and go to state 39
     LPAREN          shift and go to state 72
 
-    comparacion                    shift and go to state 127
-    expression                     shift and go to state 128
+    comparacion                    shift and go to state 128
+    expression                     shift and go to state 129
     term                           shift and go to state 22
     factor                         shift and go to state 36
 
 state 76
 
-    (78) if -> IF comparacion . DOSPUNTOS
-    (64) comparacion -> comparacion . operadorLogico ID
-    (66) operadorLogico -> . EQUALS
-    (67) operadorLogico -> . MAYORIGUAL
-    (68) operadorLogico -> . MENORIGUAL
-    (69) operadorLogico -> . LESSTHAN
-    (70) operadorLogico -> . MORETHAN
-    (71) operadorLogico -> . DIFERENTE
+    (79) if -> IF comparacion . DOSPUNTOS
+    (65) comparacion -> comparacion . operadorLogico ID
+    (67) operadorLogico -> . EQUALS
+    (68) operadorLogico -> . MAYORIGUAL
+    (69) operadorLogico -> . MENORIGUAL
+    (70) operadorLogico -> . LESSTHAN
+    (71) operadorLogico -> . MORETHAN
+    (72) operadorLogico -> . DIFERENTE
 
-    DOSPUNTOS       shift and go to state 130
+    DOSPUNTOS       shift and go to state 131
     EQUALS          shift and go to state 51
     MAYORIGUAL      shift and go to state 52
     MENORIGUAL      shift and go to state 53
@@ -1694,16 +1703,16 @@ state 76
 
 state 77
 
-    (79) if -> IF ID . DOSPUNTOS
-    (60) comparacion -> ID . operadorLogico expression
-    (65) comparacion -> ID . operadorLogico BOOLEAN
+    (80) if -> IF ID . DOSPUNTOS
+    (61) comparacion -> ID . operadorLogico expression
+    (66) comparacion -> ID . operadorLogico BOOLEAN
     (34) factor -> ID .
-    (66) operadorLogico -> . EQUALS
-    (67) operadorLogico -> . MAYORIGUAL
-    (68) operadorLogico -> . MENORIGUAL
-    (69) operadorLogico -> . LESSTHAN
-    (70) operadorLogico -> . MORETHAN
-    (71) operadorLogico -> . DIFERENTE
+    (67) operadorLogico -> . EQUALS
+    (68) operadorLogico -> . MAYORIGUAL
+    (69) operadorLogico -> . MENORIGUAL
+    (70) operadorLogico -> . LESSTHAN
+    (71) operadorLogico -> . MORETHAN
+    (72) operadorLogico -> . DIFERENTE
 
   ! shift/reduce conflict for EQUALS resolved as shift
   ! shift/reduce conflict for MAYORIGUAL resolved as shift
@@ -1711,7 +1720,7 @@ state 77
   ! shift/reduce conflict for LESSTHAN resolved as shift
   ! shift/reduce conflict for MORETHAN resolved as shift
   ! shift/reduce conflict for DIFERENTE resolved as shift
-    DOSPUNTOS       shift and go to state 131
+    DOSPUNTOS       shift and go to state 132
     TIMES           reduce using rule 34 (factor -> ID .)
     DIVIDE          reduce using rule 34 (factor -> ID .)
     EXPONENTE       reduce using rule 34 (factor -> ID .)
@@ -1737,15 +1746,15 @@ state 77
 
 state 78
 
-    (63) comparacion -> expression . operadorLogico expression
+    (64) comparacion -> expression . operadorLogico expression
     (21) expression -> expression . PLUS term
     (22) expression -> expression . MINUS term
-    (66) operadorLogico -> . EQUALS
-    (67) operadorLogico -> . MAYORIGUAL
-    (68) operadorLogico -> . MENORIGUAL
-    (69) operadorLogico -> . LESSTHAN
-    (70) operadorLogico -> . MORETHAN
-    (71) operadorLogico -> . DIFERENTE
+    (67) operadorLogico -> . EQUALS
+    (68) operadorLogico -> . MAYORIGUAL
+    (69) operadorLogico -> . MENORIGUAL
+    (70) operadorLogico -> . LESSTHAN
+    (71) operadorLogico -> . MORETHAN
+    (72) operadorLogico -> . DIFERENTE
 
     PLUS            shift and go to state 48
     MINUS           shift and go to state 49
@@ -1760,12 +1769,12 @@ state 78
 
 state 79
 
-    (56) tupla -> LPAREN valoresComa . RPAREN
+    (57) tupla -> LPAREN valoresComa . RPAREN
     (47) valoresComa -> valoresComa . COMA expression
     (48) valoresComa -> valoresComa . COMA
 
-    RPAREN          shift and go to state 132
-    COMA            shift and go to state 133
+    RPAREN          shift and go to state 133
+    COMA            shift and go to state 134
 
 
 state 80
@@ -1776,7 +1785,7 @@ state 80
     (22) expression -> expression . MINUS term
 
   ! shift/reduce conflict for RPAREN resolved as shift
-    RPAREN          shift and go to state 134
+    RPAREN          shift and go to state 135
     COMA            reduce using rule 46 (valoresComa -> expression .)
     PLUS            shift and go to state 48
     MINUS           shift and go to state 49
@@ -1786,21 +1795,21 @@ state 80
 
 state 81
 
-    (80) else -> ELSE DOSPUNTOS .
+    (81) else -> ELSE DOSPUNTOS .
 
-    $end            reduce using rule 80 (else -> ELSE DOSPUNTOS .)
+    $end            reduce using rule 81 (else -> ELSE DOSPUNTOS .)
 
 
 state 82
 
-    (81) while -> WHILE LPAREN . comparacion RPAREN DOSPUNTOS
+    (82) while -> WHILE LPAREN . comparacion RPAREN DOSPUNTOS
     (35) factor -> LPAREN . expression RPAREN
-    (60) comparacion -> . ID operadorLogico expression
-    (61) comparacion -> . BOOLEAN
-    (62) comparacion -> . NOTS BOOLEAN
-    (63) comparacion -> . expression operadorLogico expression
-    (64) comparacion -> . comparacion operadorLogico ID
-    (65) comparacion -> . ID operadorLogico BOOLEAN
+    (61) comparacion -> . ID operadorLogico expression
+    (62) comparacion -> . BOOLEAN
+    (63) comparacion -> . NOTS BOOLEAN
+    (64) comparacion -> . expression operadorLogico expression
+    (65) comparacion -> . comparacion operadorLogico ID
+    (66) comparacion -> . ID operadorLogico BOOLEAN
     (21) expression -> . expression PLUS term
     (22) expression -> . expression MINUS term
     (23) expression -> . term
@@ -1817,7 +1826,7 @@ state 82
     (34) factor -> . ID
     (35) factor -> . LPAREN expression RPAREN
 
-    ID              shift and go to state 129
+    ID              shift and go to state 130
     BOOLEAN         shift and go to state 28
     NOTS            shift and go to state 41
     NUMBER          shift and go to state 34
@@ -1826,23 +1835,23 @@ state 82
     CADENA          shift and go to state 39
     LPAREN          shift and go to state 72
 
-    comparacion                    shift and go to state 135
-    expression                     shift and go to state 128
+    comparacion                    shift and go to state 136
+    expression                     shift and go to state 129
     term                           shift and go to state 22
     factor                         shift and go to state 36
 
 state 83
 
-    (82) while -> WHILE comparacion . DOSPUNTOS
-    (64) comparacion -> comparacion . operadorLogico ID
-    (66) operadorLogico -> . EQUALS
-    (67) operadorLogico -> . MAYORIGUAL
-    (68) operadorLogico -> . MENORIGUAL
-    (69) operadorLogico -> . LESSTHAN
-    (70) operadorLogico -> . MORETHAN
-    (71) operadorLogico -> . DIFERENTE
+    (83) while -> WHILE comparacion . DOSPUNTOS
+    (65) comparacion -> comparacion . operadorLogico ID
+    (67) operadorLogico -> . EQUALS
+    (68) operadorLogico -> . MAYORIGUAL
+    (69) operadorLogico -> . MENORIGUAL
+    (70) operadorLogico -> . LESSTHAN
+    (71) operadorLogico -> . MORETHAN
+    (72) operadorLogico -> . DIFERENTE
 
-    DOSPUNTOS       shift and go to state 136
+    DOSPUNTOS       shift and go to state 137
     EQUALS          shift and go to state 51
     MAYORIGUAL      shift and go to state 52
     MENORIGUAL      shift and go to state 53
@@ -1854,16 +1863,16 @@ state 83
 
 state 84
 
-    (83) while -> WHILE ID . DOSPUNTOS
-    (60) comparacion -> ID . operadorLogico expression
-    (65) comparacion -> ID . operadorLogico BOOLEAN
+    (84) while -> WHILE ID . DOSPUNTOS
+    (61) comparacion -> ID . operadorLogico expression
+    (66) comparacion -> ID . operadorLogico BOOLEAN
     (34) factor -> ID .
-    (66) operadorLogico -> . EQUALS
-    (67) operadorLogico -> . MAYORIGUAL
-    (68) operadorLogico -> . MENORIGUAL
-    (69) operadorLogico -> . LESSTHAN
-    (70) operadorLogico -> . MORETHAN
-    (71) operadorLogico -> . DIFERENTE
+    (67) operadorLogico -> . EQUALS
+    (68) operadorLogico -> . MAYORIGUAL
+    (69) operadorLogico -> . MENORIGUAL
+    (70) operadorLogico -> . LESSTHAN
+    (71) operadorLogico -> . MORETHAN
+    (72) operadorLogico -> . DIFERENTE
 
   ! shift/reduce conflict for EQUALS resolved as shift
   ! shift/reduce conflict for MAYORIGUAL resolved as shift
@@ -1871,7 +1880,7 @@ state 84
   ! shift/reduce conflict for LESSTHAN resolved as shift
   ! shift/reduce conflict for MORETHAN resolved as shift
   ! shift/reduce conflict for DIFERENTE resolved as shift
-    DOSPUNTOS       shift and go to state 137
+    DOSPUNTOS       shift and go to state 138
     TIMES           reduce using rule 34 (factor -> ID .)
     DIVIDE          reduce using rule 34 (factor -> ID .)
     EXPONENTE       reduce using rule 34 (factor -> ID .)
@@ -1897,19 +1906,19 @@ state 84
 
 state 85
 
-    (84) for -> FOR ID . IN RANGE LPAREN NUMBER RPAREN DOSPUNTOS
-    (85) for -> FOR ID . IN ID DOSPUNTOS
-    (86) for -> FOR ID . IN lista
-    (87) for -> FOR ID . IN tupla
-    (88) for -> FOR ID . IN conjunto
+    (85) for -> FOR ID . IN RANGE LPAREN NUMBER RPAREN DOSPUNTOS
+    (86) for -> FOR ID . IN ID DOSPUNTOS
+    (87) for -> FOR ID . IN lista
+    (88) for -> FOR ID . IN tupla
+    (89) for -> FOR ID . IN conjunto
 
-    IN              shift and go to state 138
+    IN              shift and go to state 139
 
 
 state 86
 
-    (89) print -> PRINT LPAREN . factor RPAREN
-    (90) print -> PRINT LPAREN . ID RPAREN
+    (90) print -> PRINT LPAREN . factor RPAREN
+    (91) print -> PRINT LPAREN . ID RPAREN
     (30) factor -> . NUMBER
     (31) factor -> . STRING
     (32) factor -> . FLOAT
@@ -1917,59 +1926,59 @@ state 86
     (34) factor -> . ID
     (35) factor -> . LPAREN expression RPAREN
 
-    ID              shift and go to state 140
+    ID              shift and go to state 141
     NUMBER          shift and go to state 34
     STRING          shift and go to state 46
     FLOAT           shift and go to state 47
     CADENA          shift and go to state 39
     LPAREN          shift and go to state 72
 
-    factor                         shift and go to state 139
+    factor                         shift and go to state 140
 
 state 87
 
-    (92) inputF -> INPUT LPAREN . RPAREN
+    (93) inputF -> INPUT LPAREN . RPAREN
 
-    RPAREN          shift and go to state 141
+    RPAREN          shift and go to state 142
 
 
 state 88
 
-    (93) openF -> OPEN LPAREN . CADENA RPAREN
-    (94) openF -> OPEN LPAREN . CADENA COMA CADENA RPAREN
+    (94) openF -> OPEN LPAREN . CADENA RPAREN
+    (95) openF -> OPEN LPAREN . CADENA COMA CADENA RPAREN
 
-    CADENA          shift and go to state 142
+    CADENA          shift and go to state 143
 
 
 state 89
 
-    (96) funcion -> DEF ID . LPAREN valoresID RPAREN DOSPUNTOS
+    (98) funcion -> DEF ID . LPAREN valoresID RPAREN DOSPUNTOS
 
-    LPAREN          shift and go to state 143
+    LPAREN          shift and go to state 144
 
 
 state 90
 
-    (62) comparacion -> NOTS BOOLEAN .
+    (63) comparacion -> NOTS BOOLEAN .
 
-    EQUALS          reduce using rule 62 (comparacion -> NOTS BOOLEAN .)
-    MAYORIGUAL      reduce using rule 62 (comparacion -> NOTS BOOLEAN .)
-    MENORIGUAL      reduce using rule 62 (comparacion -> NOTS BOOLEAN .)
-    LESSTHAN        reduce using rule 62 (comparacion -> NOTS BOOLEAN .)
-    MORETHAN        reduce using rule 62 (comparacion -> NOTS BOOLEAN .)
-    DIFERENTE       reduce using rule 62 (comparacion -> NOTS BOOLEAN .)
-    $end            reduce using rule 62 (comparacion -> NOTS BOOLEAN .)
-    DOSPUNTOS       reduce using rule 62 (comparacion -> NOTS BOOLEAN .)
-    RPAREN          reduce using rule 62 (comparacion -> NOTS BOOLEAN .)
+    EQUALS          reduce using rule 63 (comparacion -> NOTS BOOLEAN .)
+    MAYORIGUAL      reduce using rule 63 (comparacion -> NOTS BOOLEAN .)
+    MENORIGUAL      reduce using rule 63 (comparacion -> NOTS BOOLEAN .)
+    LESSTHAN        reduce using rule 63 (comparacion -> NOTS BOOLEAN .)
+    MORETHAN        reduce using rule 63 (comparacion -> NOTS BOOLEAN .)
+    DIFERENTE       reduce using rule 63 (comparacion -> NOTS BOOLEAN .)
+    $end            reduce using rule 63 (comparacion -> NOTS BOOLEAN .)
+    DOSPUNTOS       reduce using rule 63 (comparacion -> NOTS BOOLEAN .)
+    RPAREN          reduce using rule 63 (comparacion -> NOTS BOOLEAN .)
 
 
 state 91
 
-    (74) operacionConectoresLogicos -> NOT ID .
+    (75) operacionConectoresLogicos -> NOT ID .
 
-    AND             reduce using rule 74 (operacionConectoresLogicos -> NOT ID .)
-    OR              reduce using rule 74 (operacionConectoresLogicos -> NOT ID .)
-    $end            reduce using rule 74 (operacionConectoresLogicos -> NOT ID .)
+    AND             reduce using rule 75 (operacionConectoresLogicos -> NOT ID .)
+    OR              reduce using rule 75 (operacionConectoresLogicos -> NOT ID .)
+    $end            reduce using rule 75 (operacionConectoresLogicos -> NOT ID .)
 
 
 state 92
@@ -1978,8 +1987,8 @@ state 92
     (47) valoresComa -> valoresComa . COMA expression
     (48) valoresComa -> valoresComa . COMA
 
-    CORCHETEDER     shift and go to state 144
-    COMA            shift and go to state 133
+    CORCHETEDER     shift and go to state 145
+    COMA            shift and go to state 134
 
 
 state 93
@@ -2003,18 +2012,18 @@ state 94
     (50) valoresDic -> valoresDic . COMA factor DOSPUNTOS factor
     (51) valoresDic -> valoresDic . COMA
 
-    LLAVEDER        shift and go to state 145
-    COMA            shift and go to state 146
+    LLAVEDER        shift and go to state 146
+    COMA            shift and go to state 147
 
 
 state 95
 
-    (58) conjunto -> LLAVEIZQ valoresComa . LLAVEDER
+    (59) conjunto -> LLAVEIZQ valoresComa . LLAVEDER
     (47) valoresComa -> valoresComa . COMA expression
     (48) valoresComa -> valoresComa . COMA
 
-    LLAVEDER        shift and go to state 147
-    COMA            shift and go to state 133
+    LLAVEDER        shift and go to state 148
+    COMA            shift and go to state 134
 
 
 state 96
@@ -2022,7 +2031,7 @@ state 96
     (49) valoresDic -> factor . DOSPUNTOS factor
     (29) term -> factor .
 
-    DOSPUNTOS       shift and go to state 148
+    DOSPUNTOS       shift and go to state 149
     TIMES           reduce using rule 29 (term -> factor .)
     DIVIDE          reduce using rule 29 (term -> factor .)
     EXPONENTE       reduce using rule 29 (term -> factor .)
@@ -2036,20 +2045,20 @@ state 96
 
 state 97
 
-    (101) return -> RETURN expression .
+    (103) return -> RETURN expression .
     (21) expression -> expression . PLUS term
     (22) expression -> expression . MINUS term
 
-    $end            reduce using rule 101 (return -> RETURN expression .)
+    $end            reduce using rule 103 (return -> RETURN expression .)
     PLUS            shift and go to state 48
     MINUS           shift and go to state 49
 
 
 state 98
 
-    (102) return -> RETURN NONE .
+    (104) return -> RETURN NONE .
 
-    $end            reduce using rule 102 (return -> RETURN NONE .)
+    $end            reduce using rule 104 (return -> RETURN NONE .)
 
 
 state 99
@@ -2114,45 +2123,45 @@ state 100
 
 state 101
 
-    (63) comparacion -> expression operadorLogico expression .
+    (64) comparacion -> expression operadorLogico expression .
     (21) expression -> expression . PLUS term
     (22) expression -> expression . MINUS term
 
-    EQUALS          reduce using rule 63 (comparacion -> expression operadorLogico expression .)
-    MAYORIGUAL      reduce using rule 63 (comparacion -> expression operadorLogico expression .)
-    MENORIGUAL      reduce using rule 63 (comparacion -> expression operadorLogico expression .)
-    LESSTHAN        reduce using rule 63 (comparacion -> expression operadorLogico expression .)
-    MORETHAN        reduce using rule 63 (comparacion -> expression operadorLogico expression .)
-    DIFERENTE       reduce using rule 63 (comparacion -> expression operadorLogico expression .)
-    $end            reduce using rule 63 (comparacion -> expression operadorLogico expression .)
-    DOSPUNTOS       reduce using rule 63 (comparacion -> expression operadorLogico expression .)
-    RPAREN          reduce using rule 63 (comparacion -> expression operadorLogico expression .)
+    EQUALS          reduce using rule 64 (comparacion -> expression operadorLogico expression .)
+    MAYORIGUAL      reduce using rule 64 (comparacion -> expression operadorLogico expression .)
+    MENORIGUAL      reduce using rule 64 (comparacion -> expression operadorLogico expression .)
+    LESSTHAN        reduce using rule 64 (comparacion -> expression operadorLogico expression .)
+    MORETHAN        reduce using rule 64 (comparacion -> expression operadorLogico expression .)
+    DIFERENTE       reduce using rule 64 (comparacion -> expression operadorLogico expression .)
+    $end            reduce using rule 64 (comparacion -> expression operadorLogico expression .)
+    DOSPUNTOS       reduce using rule 64 (comparacion -> expression operadorLogico expression .)
+    RPAREN          reduce using rule 64 (comparacion -> expression operadorLogico expression .)
     PLUS            shift and go to state 48
     MINUS           shift and go to state 49
 
 
 state 102
 
-    (64) comparacion -> comparacion operadorLogico ID .
+    (65) comparacion -> comparacion operadorLogico ID .
 
-    EQUALS          reduce using rule 64 (comparacion -> comparacion operadorLogico ID .)
-    MAYORIGUAL      reduce using rule 64 (comparacion -> comparacion operadorLogico ID .)
-    MENORIGUAL      reduce using rule 64 (comparacion -> comparacion operadorLogico ID .)
-    LESSTHAN        reduce using rule 64 (comparacion -> comparacion operadorLogico ID .)
-    MORETHAN        reduce using rule 64 (comparacion -> comparacion operadorLogico ID .)
-    DIFERENTE       reduce using rule 64 (comparacion -> comparacion operadorLogico ID .)
-    $end            reduce using rule 64 (comparacion -> comparacion operadorLogico ID .)
-    DOSPUNTOS       reduce using rule 64 (comparacion -> comparacion operadorLogico ID .)
-    RPAREN          reduce using rule 64 (comparacion -> comparacion operadorLogico ID .)
+    EQUALS          reduce using rule 65 (comparacion -> comparacion operadorLogico ID .)
+    MAYORIGUAL      reduce using rule 65 (comparacion -> comparacion operadorLogico ID .)
+    MENORIGUAL      reduce using rule 65 (comparacion -> comparacion operadorLogico ID .)
+    LESSTHAN        reduce using rule 65 (comparacion -> comparacion operadorLogico ID .)
+    MORETHAN        reduce using rule 65 (comparacion -> comparacion operadorLogico ID .)
+    DIFERENTE       reduce using rule 65 (comparacion -> comparacion operadorLogico ID .)
+    $end            reduce using rule 65 (comparacion -> comparacion operadorLogico ID .)
+    DOSPUNTOS       reduce using rule 65 (comparacion -> comparacion operadorLogico ID .)
+    RPAREN          reduce using rule 65 (comparacion -> comparacion operadorLogico ID .)
 
 
 state 103
 
-    (76) operacionConectoresLogicos -> operacionConectoresLogicos conectoresLogicos ID .
+    (77) operacionConectoresLogicos -> operacionConectoresLogicos conectoresLogicos ID .
 
-    AND             reduce using rule 76 (operacionConectoresLogicos -> operacionConectoresLogicos conectoresLogicos ID .)
-    OR              reduce using rule 76 (operacionConectoresLogicos -> operacionConectoresLogicos conectoresLogicos ID .)
-    $end            reduce using rule 76 (operacionConectoresLogicos -> operacionConectoresLogicos conectoresLogicos ID .)
+    AND             reduce using rule 77 (operacionConectoresLogicos -> operacionConectoresLogicos conectoresLogicos ID .)
+    OR              reduce using rule 77 (operacionConectoresLogicos -> operacionConectoresLogicos conectoresLogicos ID .)
+    $end            reduce using rule 77 (operacionConectoresLogicos -> operacionConectoresLogicos conectoresLogicos ID .)
 
 
 state 104
@@ -2282,15 +2291,16 @@ state 108
 
 state 109
 
-    (57) tupla -> ID . ASSIGN tupla
+    (58) tupla -> ID . ASSIGN tupla
     (55) lista -> ID . ASSIGN lista
+    (56) lista -> ID . ASSIGN CORCHETEIZQ CORCHETEDER
     (53) diccionario -> ID . ASSIGN diccionario
-    (59) conjunto -> ID . ASSIGN conjunto
+    (60) conjunto -> ID . ASSIGN conjunto
     (42) multipleAsignacion -> ID . ASSIGN
     (43) multipleAsignacion -> ID . ASSIGN multipleAsignacion
     (34) factor -> ID .
 
-    ASSIGN          shift and go to state 149
+    ASSIGN          shift and go to state 150
     TIMES           reduce using rule 34 (factor -> ID .)
     DIVIDE          reduce using rule 34 (factor -> ID .)
     EXPONENTE       reduce using rule 34 (factor -> ID .)
@@ -2321,24 +2331,25 @@ state 111
 
 state 112
 
-    (91) inputF -> ID ASSIGN INPUT . LPAREN RPAREN
-
-    LPAREN          shift and go to state 150
-
-
-state 113
-
-    (95) openF -> ID ASSIGN OPEN . LPAREN CADENA COMA CADENA RPAREN
+    (92) inputF -> ID ASSIGN INPUT . LPAREN RPAREN
 
     LPAREN          shift and go to state 151
 
 
+state 113
+
+    (96) openF -> ID ASSIGN OPEN . LPAREN CADENA COMA CADENA RPAREN
+    (97) openF -> ID ASSIGN OPEN . LPAREN ID COMA CADENA RPAREN
+
+    LPAREN          shift and go to state 152
+
+
 state 114
 
-    (57) tupla -> ID ASSIGN tupla .
+    (58) tupla -> ID ASSIGN tupla .
 
-    $end            reduce using rule 57 (tupla -> ID ASSIGN tupla .)
-    RPAREN          reduce using rule 57 (tupla -> ID ASSIGN tupla .)
+    $end            reduce using rule 58 (tupla -> ID ASSIGN tupla .)
+    RPAREN          reduce using rule 58 (tupla -> ID ASSIGN tupla .)
 
 
 state 115
@@ -2351,21 +2362,57 @@ state 115
 
 state 116
 
+    (56) lista -> ID ASSIGN CORCHETEIZQ . CORCHETEDER
+    (54) lista -> CORCHETEIZQ . valoresComa CORCHETEDER
+    (46) valoresComa -> . expression
+    (47) valoresComa -> . valoresComa COMA expression
+    (48) valoresComa -> . valoresComa COMA
+    (21) expression -> . expression PLUS term
+    (22) expression -> . expression MINUS term
+    (23) expression -> . term
+    (24) term -> . term TIMES factor
+    (25) term -> . term DIVIDE factor
+    (26) term -> . term EXPONENTE factor
+    (27) term -> . term DIVISIONENTERA factor
+    (28) term -> . term MOD factor
+    (29) term -> . factor
+    (30) factor -> . NUMBER
+    (31) factor -> . STRING
+    (32) factor -> . FLOAT
+    (33) factor -> . CADENA
+    (34) factor -> . ID
+    (35) factor -> . LPAREN expression RPAREN
+
+    CORCHETEDER     shift and go to state 153
+    NUMBER          shift and go to state 34
+    STRING          shift and go to state 46
+    FLOAT           shift and go to state 47
+    CADENA          shift and go to state 39
+    ID              shift and go to state 71
+    LPAREN          shift and go to state 72
+
+    valoresComa                    shift and go to state 92
+    expression                     shift and go to state 93
+    term                           shift and go to state 22
+    factor                         shift and go to state 36
+
+state 117
+
     (53) diccionario -> ID ASSIGN diccionario .
 
     $end            reduce using rule 53 (diccionario -> ID ASSIGN diccionario .)
     RPAREN          reduce using rule 53 (diccionario -> ID ASSIGN diccionario .)
 
 
-state 117
-
-    (59) conjunto -> ID ASSIGN conjunto .
-
-    $end            reduce using rule 59 (conjunto -> ID ASSIGN conjunto .)
-    RPAREN          reduce using rule 59 (conjunto -> ID ASSIGN conjunto .)
-
-
 state 118
+
+    (60) conjunto -> ID ASSIGN conjunto .
+
+    $end            reduce using rule 60 (conjunto -> ID ASSIGN conjunto .)
+    RPAREN          reduce using rule 60 (conjunto -> ID ASSIGN conjunto .)
+
+
+state 119
 
     (43) multipleAsignacion -> ID ASSIGN multipleAsignacion .
 
@@ -2377,89 +2424,89 @@ state 118
     LPAREN          reduce using rule 43 (multipleAsignacion -> ID ASSIGN multipleAsignacion .)
 
 
-state 119
+state 120
 
-    (60) comparacion -> ID operadorLogico expression .
+    (61) comparacion -> ID operadorLogico expression .
     (21) expression -> expression . PLUS term
     (22) expression -> expression . MINUS term
 
-    EQUALS          reduce using rule 60 (comparacion -> ID operadorLogico expression .)
-    MAYORIGUAL      reduce using rule 60 (comparacion -> ID operadorLogico expression .)
-    MENORIGUAL      reduce using rule 60 (comparacion -> ID operadorLogico expression .)
-    LESSTHAN        reduce using rule 60 (comparacion -> ID operadorLogico expression .)
-    MORETHAN        reduce using rule 60 (comparacion -> ID operadorLogico expression .)
-    DIFERENTE       reduce using rule 60 (comparacion -> ID operadorLogico expression .)
-    $end            reduce using rule 60 (comparacion -> ID operadorLogico expression .)
-    DOSPUNTOS       reduce using rule 60 (comparacion -> ID operadorLogico expression .)
-    RPAREN          reduce using rule 60 (comparacion -> ID operadorLogico expression .)
+    EQUALS          reduce using rule 61 (comparacion -> ID operadorLogico expression .)
+    MAYORIGUAL      reduce using rule 61 (comparacion -> ID operadorLogico expression .)
+    MENORIGUAL      reduce using rule 61 (comparacion -> ID operadorLogico expression .)
+    LESSTHAN        reduce using rule 61 (comparacion -> ID operadorLogico expression .)
+    MORETHAN        reduce using rule 61 (comparacion -> ID operadorLogico expression .)
+    DIFERENTE       reduce using rule 61 (comparacion -> ID operadorLogico expression .)
+    $end            reduce using rule 61 (comparacion -> ID operadorLogico expression .)
+    DOSPUNTOS       reduce using rule 61 (comparacion -> ID operadorLogico expression .)
+    RPAREN          reduce using rule 61 (comparacion -> ID operadorLogico expression .)
     PLUS            shift and go to state 48
     MINUS           shift and go to state 49
 
 
-state 120
-
-    (65) comparacion -> ID operadorLogico BOOLEAN .
-
-    EQUALS          reduce using rule 65 (comparacion -> ID operadorLogico BOOLEAN .)
-    MAYORIGUAL      reduce using rule 65 (comparacion -> ID operadorLogico BOOLEAN .)
-    MENORIGUAL      reduce using rule 65 (comparacion -> ID operadorLogico BOOLEAN .)
-    LESSTHAN        reduce using rule 65 (comparacion -> ID operadorLogico BOOLEAN .)
-    MORETHAN        reduce using rule 65 (comparacion -> ID operadorLogico BOOLEAN .)
-    DIFERENTE       reduce using rule 65 (comparacion -> ID operadorLogico BOOLEAN .)
-    $end            reduce using rule 65 (comparacion -> ID operadorLogico BOOLEAN .)
-    DOSPUNTOS       reduce using rule 65 (comparacion -> ID operadorLogico BOOLEAN .)
-    RPAREN          reduce using rule 65 (comparacion -> ID operadorLogico BOOLEAN .)
-
-
 state 121
 
-    (75) operacionConectoresLogicos -> ID conectoresLogicos ID .
+    (66) comparacion -> ID operadorLogico BOOLEAN .
 
-    AND             reduce using rule 75 (operacionConectoresLogicos -> ID conectoresLogicos ID .)
-    OR              reduce using rule 75 (operacionConectoresLogicos -> ID conectoresLogicos ID .)
-    $end            reduce using rule 75 (operacionConectoresLogicos -> ID conectoresLogicos ID .)
+    EQUALS          reduce using rule 66 (comparacion -> ID operadorLogico BOOLEAN .)
+    MAYORIGUAL      reduce using rule 66 (comparacion -> ID operadorLogico BOOLEAN .)
+    MENORIGUAL      reduce using rule 66 (comparacion -> ID operadorLogico BOOLEAN .)
+    LESSTHAN        reduce using rule 66 (comparacion -> ID operadorLogico BOOLEAN .)
+    MORETHAN        reduce using rule 66 (comparacion -> ID operadorLogico BOOLEAN .)
+    DIFERENTE       reduce using rule 66 (comparacion -> ID operadorLogico BOOLEAN .)
+    $end            reduce using rule 66 (comparacion -> ID operadorLogico BOOLEAN .)
+    DOSPUNTOS       reduce using rule 66 (comparacion -> ID operadorLogico BOOLEAN .)
+    RPAREN          reduce using rule 66 (comparacion -> ID operadorLogico BOOLEAN .)
 
 
 state 122
 
-    (103) append -> ID PUNTO APPEND . LPAREN ID RPAREN
-    (104) append -> ID PUNTO APPEND . LPAREN expression RPAREN
-    (105) append -> ID PUNTO APPEND . LPAREN datos RPAREN
+    (76) operacionConectoresLogicos -> ID conectoresLogicos ID .
 
-    LPAREN          shift and go to state 152
+    AND             reduce using rule 76 (operacionConectoresLogicos -> ID conectoresLogicos ID .)
+    OR              reduce using rule 76 (operacionConectoresLogicos -> ID conectoresLogicos ID .)
+    $end            reduce using rule 76 (operacionConectoresLogicos -> ID conectoresLogicos ID .)
 
 
 state 123
 
-    (106) remove -> ID PUNTO REMOVE . LPAREN ID RPAREN
-    (107) remove -> ID PUNTO REMOVE . LPAREN RPAREN
-    (108) remove -> ID PUNTO REMOVE . LPAREN expression RPAREN
+    (105) append -> ID PUNTO APPEND . LPAREN ID RPAREN
+    (106) append -> ID PUNTO APPEND . LPAREN expression RPAREN
+    (107) append -> ID PUNTO APPEND . LPAREN datos RPAREN
 
-    LPAREN          shift and go to state 153
+    LPAREN          shift and go to state 154
 
 
 state 124
+
+    (108) remove -> ID PUNTO REMOVE . LPAREN ID RPAREN
+    (109) remove -> ID PUNTO REMOVE . LPAREN RPAREN
+    (110) remove -> ID PUNTO REMOVE . LPAREN expression RPAREN
+
+    LPAREN          shift and go to state 155
+
+
+state 125
 
     (35) factor -> LPAREN expression . RPAREN
     (21) expression -> expression . PLUS term
     (22) expression -> expression . MINUS term
 
-    RPAREN          shift and go to state 134
+    RPAREN          shift and go to state 135
     PLUS            shift and go to state 48
     MINUS           shift and go to state 49
 
 
-state 125
+state 126
 
     (40) asignacion -> valoresID ASSIGN valoresComa .
     (47) valoresComa -> valoresComa . COMA expression
     (48) valoresComa -> valoresComa . COMA
 
     $end            reduce using rule 40 (asignacion -> valoresID ASSIGN valoresComa .)
-    COMA            shift and go to state 133
+    COMA            shift and go to state 134
 
 
-state 126
+state 127
 
     (45) valoresID -> valoresID COMA ID .
 
@@ -2468,18 +2515,18 @@ state 126
     RPAREN          reduce using rule 45 (valoresID -> valoresID COMA ID .)
 
 
-state 127
+state 128
 
-    (77) if -> IF LPAREN comparacion . RPAREN DOSPUNTOS
-    (64) comparacion -> comparacion . operadorLogico ID
-    (66) operadorLogico -> . EQUALS
-    (67) operadorLogico -> . MAYORIGUAL
-    (68) operadorLogico -> . MENORIGUAL
-    (69) operadorLogico -> . LESSTHAN
-    (70) operadorLogico -> . MORETHAN
-    (71) operadorLogico -> . DIFERENTE
+    (78) if -> IF LPAREN comparacion . RPAREN DOSPUNTOS
+    (65) comparacion -> comparacion . operadorLogico ID
+    (67) operadorLogico -> . EQUALS
+    (68) operadorLogico -> . MAYORIGUAL
+    (69) operadorLogico -> . MENORIGUAL
+    (70) operadorLogico -> . LESSTHAN
+    (71) operadorLogico -> . MORETHAN
+    (72) operadorLogico -> . DIFERENTE
 
-    RPAREN          shift and go to state 154
+    RPAREN          shift and go to state 156
     EQUALS          shift and go to state 51
     MAYORIGUAL      shift and go to state 52
     MENORIGUAL      shift and go to state 53
@@ -2489,20 +2536,20 @@ state 127
 
     operadorLogico                 shift and go to state 57
 
-state 128
+state 129
 
     (35) factor -> LPAREN expression . RPAREN
-    (63) comparacion -> expression . operadorLogico expression
+    (64) comparacion -> expression . operadorLogico expression
     (21) expression -> expression . PLUS term
     (22) expression -> expression . MINUS term
-    (66) operadorLogico -> . EQUALS
-    (67) operadorLogico -> . MAYORIGUAL
-    (68) operadorLogico -> . MENORIGUAL
-    (69) operadorLogico -> . LESSTHAN
-    (70) operadorLogico -> . MORETHAN
-    (71) operadorLogico -> . DIFERENTE
+    (67) operadorLogico -> . EQUALS
+    (68) operadorLogico -> . MAYORIGUAL
+    (69) operadorLogico -> . MENORIGUAL
+    (70) operadorLogico -> . LESSTHAN
+    (71) operadorLogico -> . MORETHAN
+    (72) operadorLogico -> . DIFERENTE
 
-    RPAREN          shift and go to state 134
+    RPAREN          shift and go to state 135
     PLUS            shift and go to state 48
     MINUS           shift and go to state 49
     EQUALS          shift and go to state 51
@@ -2514,17 +2561,17 @@ state 128
 
     operadorLogico                 shift and go to state 50
 
-state 129
+state 130
 
-    (60) comparacion -> ID . operadorLogico expression
-    (65) comparacion -> ID . operadorLogico BOOLEAN
+    (61) comparacion -> ID . operadorLogico expression
+    (66) comparacion -> ID . operadorLogico BOOLEAN
     (34) factor -> ID .
-    (66) operadorLogico -> . EQUALS
-    (67) operadorLogico -> . MAYORIGUAL
-    (68) operadorLogico -> . MENORIGUAL
-    (69) operadorLogico -> . LESSTHAN
-    (70) operadorLogico -> . MORETHAN
-    (71) operadorLogico -> . DIFERENTE
+    (67) operadorLogico -> . EQUALS
+    (68) operadorLogico -> . MAYORIGUAL
+    (69) operadorLogico -> . MENORIGUAL
+    (70) operadorLogico -> . LESSTHAN
+    (71) operadorLogico -> . MORETHAN
+    (72) operadorLogico -> . DIFERENTE
 
   ! shift/reduce conflict for EQUALS resolved as shift
   ! shift/reduce conflict for MAYORIGUAL resolved as shift
@@ -2556,29 +2603,29 @@ state 129
 
     operadorLogico                 shift and go to state 67
 
-state 130
-
-    (78) if -> IF comparacion DOSPUNTOS .
-
-    $end            reduce using rule 78 (if -> IF comparacion DOSPUNTOS .)
-
-
 state 131
 
-    (79) if -> IF ID DOSPUNTOS .
+    (79) if -> IF comparacion DOSPUNTOS .
 
-    $end            reduce using rule 79 (if -> IF ID DOSPUNTOS .)
+    $end            reduce using rule 79 (if -> IF comparacion DOSPUNTOS .)
 
 
 state 132
 
-    (56) tupla -> LPAREN valoresComa RPAREN .
+    (80) if -> IF ID DOSPUNTOS .
 
-    $end            reduce using rule 56 (tupla -> LPAREN valoresComa RPAREN .)
-    RPAREN          reduce using rule 56 (tupla -> LPAREN valoresComa RPAREN .)
+    $end            reduce using rule 80 (if -> IF ID DOSPUNTOS .)
 
 
 state 133
+
+    (57) tupla -> LPAREN valoresComa RPAREN .
+
+    $end            reduce using rule 57 (tupla -> LPAREN valoresComa RPAREN .)
+    RPAREN          reduce using rule 57 (tupla -> LPAREN valoresComa RPAREN .)
+
+
+state 134
 
     (47) valoresComa -> valoresComa COMA . expression
     (48) valoresComa -> valoresComa COMA .
@@ -2610,11 +2657,11 @@ state 133
     ID              shift and go to state 71
     LPAREN          shift and go to state 72
 
-    expression                     shift and go to state 155
+    expression                     shift and go to state 157
     term                           shift and go to state 22
     factor                         shift and go to state 36
 
-state 134
+state 135
 
     (35) factor -> LPAREN expression RPAREN .
 
@@ -2639,18 +2686,18 @@ state 134
     LLAVEDER        reduce using rule 35 (factor -> LPAREN expression RPAREN .)
 
 
-state 135
+state 136
 
-    (81) while -> WHILE LPAREN comparacion . RPAREN DOSPUNTOS
-    (64) comparacion -> comparacion . operadorLogico ID
-    (66) operadorLogico -> . EQUALS
-    (67) operadorLogico -> . MAYORIGUAL
-    (68) operadorLogico -> . MENORIGUAL
-    (69) operadorLogico -> . LESSTHAN
-    (70) operadorLogico -> . MORETHAN
-    (71) operadorLogico -> . DIFERENTE
+    (82) while -> WHILE LPAREN comparacion . RPAREN DOSPUNTOS
+    (65) comparacion -> comparacion . operadorLogico ID
+    (67) operadorLogico -> . EQUALS
+    (68) operadorLogico -> . MAYORIGUAL
+    (69) operadorLogico -> . MENORIGUAL
+    (70) operadorLogico -> . LESSTHAN
+    (71) operadorLogico -> . MORETHAN
+    (72) operadorLogico -> . DIFERENTE
 
-    RPAREN          shift and go to state 156
+    RPAREN          shift and go to state 158
     EQUALS          shift and go to state 51
     MAYORIGUAL      shift and go to state 52
     MENORIGUAL      shift and go to state 53
@@ -2660,89 +2707,90 @@ state 135
 
     operadorLogico                 shift and go to state 57
 
-state 136
-
-    (82) while -> WHILE comparacion DOSPUNTOS .
-
-    $end            reduce using rule 82 (while -> WHILE comparacion DOSPUNTOS .)
-
-
 state 137
 
-    (83) while -> WHILE ID DOSPUNTOS .
+    (83) while -> WHILE comparacion DOSPUNTOS .
 
-    $end            reduce using rule 83 (while -> WHILE ID DOSPUNTOS .)
+    $end            reduce using rule 83 (while -> WHILE comparacion DOSPUNTOS .)
 
 
 state 138
 
-    (84) for -> FOR ID IN . RANGE LPAREN NUMBER RPAREN DOSPUNTOS
-    (85) for -> FOR ID IN . ID DOSPUNTOS
-    (86) for -> FOR ID IN . lista
-    (87) for -> FOR ID IN . tupla
-    (88) for -> FOR ID IN . conjunto
-    (54) lista -> . CORCHETEIZQ valoresComa CORCHETEDER
-    (55) lista -> . ID ASSIGN lista
-    (56) tupla -> . LPAREN valoresComa RPAREN
-    (57) tupla -> . ID ASSIGN tupla
-    (58) conjunto -> . LLAVEIZQ valoresComa LLAVEDER
-    (59) conjunto -> . ID ASSIGN conjunto
+    (84) while -> WHILE ID DOSPUNTOS .
 
-    RANGE           shift and go to state 158
-    ID              shift and go to state 157
-    CORCHETEIZQ     shift and go to state 43
-    LPAREN          shift and go to state 159
-    LLAVEIZQ        shift and go to state 163
+    $end            reduce using rule 84 (while -> WHILE ID DOSPUNTOS .)
 
-    lista                          shift and go to state 160
-    tupla                          shift and go to state 161
-    conjunto                       shift and go to state 162
 
 state 139
 
-    (89) print -> PRINT LPAREN factor . RPAREN
+    (85) for -> FOR ID IN . RANGE LPAREN NUMBER RPAREN DOSPUNTOS
+    (86) for -> FOR ID IN . ID DOSPUNTOS
+    (87) for -> FOR ID IN . lista
+    (88) for -> FOR ID IN . tupla
+    (89) for -> FOR ID IN . conjunto
+    (54) lista -> . CORCHETEIZQ valoresComa CORCHETEDER
+    (55) lista -> . ID ASSIGN lista
+    (56) lista -> . ID ASSIGN CORCHETEIZQ CORCHETEDER
+    (57) tupla -> . LPAREN valoresComa RPAREN
+    (58) tupla -> . ID ASSIGN tupla
+    (59) conjunto -> . LLAVEIZQ valoresComa LLAVEDER
+    (60) conjunto -> . ID ASSIGN conjunto
 
-    RPAREN          shift and go to state 164
+    RANGE           shift and go to state 160
+    ID              shift and go to state 159
+    CORCHETEIZQ     shift and go to state 43
+    LPAREN          shift and go to state 161
+    LLAVEIZQ        shift and go to state 165
 
+    lista                          shift and go to state 162
+    tupla                          shift and go to state 163
+    conjunto                       shift and go to state 164
 
 state 140
 
-    (90) print -> PRINT LPAREN ID . RPAREN
-    (34) factor -> ID .
+    (90) print -> PRINT LPAREN factor . RPAREN
 
-  ! shift/reduce conflict for RPAREN resolved as shift
-    RPAREN          shift and go to state 165
-
-  ! RPAREN          [ reduce using rule 34 (factor -> ID .) ]
+    RPAREN          shift and go to state 166
 
 
 state 141
 
-    (92) inputF -> INPUT LPAREN RPAREN .
+    (91) print -> PRINT LPAREN ID . RPAREN
+    (34) factor -> ID .
 
-    $end            reduce using rule 92 (inputF -> INPUT LPAREN RPAREN .)
+  ! shift/reduce conflict for RPAREN resolved as shift
+    RPAREN          shift and go to state 167
+
+  ! RPAREN          [ reduce using rule 34 (factor -> ID .) ]
 
 
 state 142
 
-    (93) openF -> OPEN LPAREN CADENA . RPAREN
-    (94) openF -> OPEN LPAREN CADENA . COMA CADENA RPAREN
+    (93) inputF -> INPUT LPAREN RPAREN .
 
-    RPAREN          shift and go to state 166
-    COMA            shift and go to state 167
+    $end            reduce using rule 93 (inputF -> INPUT LPAREN RPAREN .)
 
 
 state 143
 
-    (96) funcion -> DEF ID LPAREN . valoresID RPAREN DOSPUNTOS
+    (94) openF -> OPEN LPAREN CADENA . RPAREN
+    (95) openF -> OPEN LPAREN CADENA . COMA CADENA RPAREN
+
+    RPAREN          shift and go to state 168
+    COMA            shift and go to state 169
+
+
+state 144
+
+    (98) funcion -> DEF ID LPAREN . valoresID RPAREN DOSPUNTOS
     (44) valoresID -> . ID
     (45) valoresID -> . valoresID COMA ID
 
-    ID              shift and go to state 168
+    ID              shift and go to state 170
 
-    valoresID                      shift and go to state 169
+    valoresID                      shift and go to state 171
 
-state 144
+state 145
 
     (54) lista -> CORCHETEIZQ valoresComa CORCHETEDER .
 
@@ -2750,7 +2798,7 @@ state 144
     RPAREN          reduce using rule 54 (lista -> CORCHETEIZQ valoresComa CORCHETEDER .)
 
 
-state 145
+state 146
 
     (52) diccionario -> LLAVEIZQ valoresDic LLAVEDER .
 
@@ -2758,7 +2806,7 @@ state 145
     RPAREN          reduce using rule 52 (diccionario -> LLAVEIZQ valoresDic LLAVEDER .)
 
 
-state 146
+state 147
 
     (50) valoresDic -> valoresDic COMA . factor DOSPUNTOS factor
     (51) valoresDic -> valoresDic COMA .
@@ -2778,17 +2826,17 @@ state 146
     ID              shift and go to state 71
     LPAREN          shift and go to state 72
 
-    factor                         shift and go to state 170
-
-state 147
-
-    (58) conjunto -> LLAVEIZQ valoresComa LLAVEDER .
-
-    $end            reduce using rule 58 (conjunto -> LLAVEIZQ valoresComa LLAVEDER .)
-    RPAREN          reduce using rule 58 (conjunto -> LLAVEIZQ valoresComa LLAVEDER .)
-
+    factor                         shift and go to state 172
 
 state 148
+
+    (59) conjunto -> LLAVEIZQ valoresComa LLAVEDER .
+
+    $end            reduce using rule 59 (conjunto -> LLAVEIZQ valoresComa LLAVEDER .)
+    RPAREN          reduce using rule 59 (conjunto -> LLAVEIZQ valoresComa LLAVEDER .)
+
+
+state 149
 
     (49) valoresDic -> factor DOSPUNTOS . factor
     (30) factor -> . NUMBER
@@ -2805,36 +2853,38 @@ state 148
     ID              shift and go to state 71
     LPAREN          shift and go to state 72
 
-    factor                         shift and go to state 171
+    factor                         shift and go to state 173
 
-state 149
+state 150
 
-    (57) tupla -> ID ASSIGN . tupla
+    (58) tupla -> ID ASSIGN . tupla
     (55) lista -> ID ASSIGN . lista
+    (56) lista -> ID ASSIGN . CORCHETEIZQ CORCHETEDER
     (53) diccionario -> ID ASSIGN . diccionario
-    (59) conjunto -> ID ASSIGN . conjunto
+    (60) conjunto -> ID ASSIGN . conjunto
     (42) multipleAsignacion -> ID ASSIGN .
     (43) multipleAsignacion -> ID ASSIGN . multipleAsignacion
-    (56) tupla -> . LPAREN valoresComa RPAREN
-    (57) tupla -> . ID ASSIGN tupla
+    (57) tupla -> . LPAREN valoresComa RPAREN
+    (58) tupla -> . ID ASSIGN tupla
     (54) lista -> . CORCHETEIZQ valoresComa CORCHETEDER
     (55) lista -> . ID ASSIGN lista
+    (56) lista -> . ID ASSIGN CORCHETEIZQ CORCHETEDER
     (52) diccionario -> . LLAVEIZQ valoresDic LLAVEDER
     (53) diccionario -> . ID ASSIGN diccionario
-    (58) conjunto -> . LLAVEIZQ valoresComa LLAVEDER
-    (59) conjunto -> . ID ASSIGN conjunto
+    (59) conjunto -> . LLAVEIZQ valoresComa LLAVEDER
+    (60) conjunto -> . ID ASSIGN conjunto
     (42) multipleAsignacion -> . ID ASSIGN
     (43) multipleAsignacion -> . ID ASSIGN multipleAsignacion
 
   ! shift/reduce conflict for LPAREN resolved as shift
   ! shift/reduce conflict for ID resolved as shift
+    CORCHETEIZQ     shift and go to state 116
     NUMBER          reduce using rule 42 (multipleAsignacion -> ID ASSIGN .)
     STRING          reduce using rule 42 (multipleAsignacion -> ID ASSIGN .)
     FLOAT           reduce using rule 42 (multipleAsignacion -> ID ASSIGN .)
     CADENA          reduce using rule 42 (multipleAsignacion -> ID ASSIGN .)
-    LPAREN          shift and go to state 159
-    ID              shift and go to state 172
-    CORCHETEIZQ     shift and go to state 43
+    LPAREN          shift and go to state 161
+    ID              shift and go to state 174
     LLAVEIZQ        shift and go to state 44
 
   ! ID              [ reduce using rule 42 (multipleAsignacion -> ID ASSIGN .) ]
@@ -2842,36 +2892,46 @@ state 149
 
     tupla                          shift and go to state 114
     lista                          shift and go to state 115
-    diccionario                    shift and go to state 116
-    conjunto                       shift and go to state 117
-    multipleAsignacion             shift and go to state 118
-
-state 150
-
-    (91) inputF -> ID ASSIGN INPUT LPAREN . RPAREN
-
-    RPAREN          shift and go to state 173
-
+    diccionario                    shift and go to state 117
+    conjunto                       shift and go to state 118
+    multipleAsignacion             shift and go to state 119
 
 state 151
 
-    (95) openF -> ID ASSIGN OPEN LPAREN . CADENA COMA CADENA RPAREN
+    (92) inputF -> ID ASSIGN INPUT LPAREN . RPAREN
 
-    CADENA          shift and go to state 174
+    RPAREN          shift and go to state 175
 
 
 state 152
 
-    (103) append -> ID PUNTO APPEND LPAREN . ID RPAREN
-    (104) append -> ID PUNTO APPEND LPAREN . expression RPAREN
-    (105) append -> ID PUNTO APPEND LPAREN . datos RPAREN
+    (96) openF -> ID ASSIGN OPEN LPAREN . CADENA COMA CADENA RPAREN
+    (97) openF -> ID ASSIGN OPEN LPAREN . ID COMA CADENA RPAREN
+
+    CADENA          shift and go to state 177
+    ID              shift and go to state 176
+
+
+state 153
+
+    (56) lista -> ID ASSIGN CORCHETEIZQ CORCHETEDER .
+
+    $end            reduce using rule 56 (lista -> ID ASSIGN CORCHETEIZQ CORCHETEDER .)
+    RPAREN          reduce using rule 56 (lista -> ID ASSIGN CORCHETEIZQ CORCHETEDER .)
+
+
+state 154
+
+    (105) append -> ID PUNTO APPEND LPAREN . ID RPAREN
+    (106) append -> ID PUNTO APPEND LPAREN . expression RPAREN
+    (107) append -> ID PUNTO APPEND LPAREN . datos RPAREN
     (21) expression -> . expression PLUS term
     (22) expression -> . expression MINUS term
     (23) expression -> . term
-    (97) datos -> . lista
-    (98) datos -> . tupla
-    (99) datos -> . conjunto
-    (100) datos -> . diccionario
+    (99) datos -> . lista
+    (100) datos -> . tupla
+    (101) datos -> . conjunto
+    (102) datos -> . diccionario
     (24) term -> . term TIMES factor
     (25) term -> . term DIVIDE factor
     (26) term -> . term EXPONENTE factor
@@ -2880,10 +2940,11 @@ state 152
     (29) term -> . factor
     (54) lista -> . CORCHETEIZQ valoresComa CORCHETEDER
     (55) lista -> . ID ASSIGN lista
-    (56) tupla -> . LPAREN valoresComa RPAREN
-    (57) tupla -> . ID ASSIGN tupla
-    (58) conjunto -> . LLAVEIZQ valoresComa LLAVEDER
-    (59) conjunto -> . ID ASSIGN conjunto
+    (56) lista -> . ID ASSIGN CORCHETEIZQ CORCHETEDER
+    (57) tupla -> . LPAREN valoresComa RPAREN
+    (58) tupla -> . ID ASSIGN tupla
+    (59) conjunto -> . LLAVEIZQ valoresComa LLAVEDER
+    (60) conjunto -> . ID ASSIGN conjunto
     (52) diccionario -> . LLAVEIZQ valoresDic LLAVEDER
     (53) diccionario -> . ID ASSIGN diccionario
     (30) factor -> . NUMBER
@@ -2893,29 +2954,29 @@ state 152
     (34) factor -> . ID
     (35) factor -> . LPAREN expression RPAREN
 
-    ID              shift and go to state 175
+    ID              shift and go to state 178
     CORCHETEIZQ     shift and go to state 43
     LPAREN          shift and go to state 30
-    LLAVEIZQ        shift and go to state 182
+    LLAVEIZQ        shift and go to state 185
     NUMBER          shift and go to state 34
     STRING          shift and go to state 46
     FLOAT           shift and go to state 47
     CADENA          shift and go to state 39
 
-    expression                     shift and go to state 176
-    datos                          shift and go to state 177
+    expression                     shift and go to state 179
+    datos                          shift and go to state 180
     term                           shift and go to state 22
-    lista                          shift and go to state 178
-    tupla                          shift and go to state 179
-    conjunto                       shift and go to state 180
-    diccionario                    shift and go to state 181
+    lista                          shift and go to state 181
+    tupla                          shift and go to state 182
+    conjunto                       shift and go to state 183
+    diccionario                    shift and go to state 184
     factor                         shift and go to state 36
 
-state 153
+state 155
 
-    (106) remove -> ID PUNTO REMOVE LPAREN . ID RPAREN
-    (107) remove -> ID PUNTO REMOVE LPAREN . RPAREN
-    (108) remove -> ID PUNTO REMOVE LPAREN . expression RPAREN
+    (108) remove -> ID PUNTO REMOVE LPAREN . ID RPAREN
+    (109) remove -> ID PUNTO REMOVE LPAREN . RPAREN
+    (110) remove -> ID PUNTO REMOVE LPAREN . expression RPAREN
     (21) expression -> . expression PLUS term
     (22) expression -> . expression MINUS term
     (23) expression -> . term
@@ -2932,26 +2993,26 @@ state 153
     (34) factor -> . ID
     (35) factor -> . LPAREN expression RPAREN
 
-    ID              shift and go to state 183
-    RPAREN          shift and go to state 184
+    ID              shift and go to state 186
+    RPAREN          shift and go to state 187
     NUMBER          shift and go to state 34
     STRING          shift and go to state 46
     FLOAT           shift and go to state 47
     CADENA          shift and go to state 39
     LPAREN          shift and go to state 72
 
-    expression                     shift and go to state 185
+    expression                     shift and go to state 188
     term                           shift and go to state 22
     factor                         shift and go to state 36
 
-state 154
+state 156
 
-    (77) if -> IF LPAREN comparacion RPAREN . DOSPUNTOS
+    (78) if -> IF LPAREN comparacion RPAREN . DOSPUNTOS
 
-    DOSPUNTOS       shift and go to state 186
+    DOSPUNTOS       shift and go to state 189
 
 
-state 155
+state 157
 
     (47) valoresComa -> valoresComa COMA expression .
     (21) expression -> expression . PLUS term
@@ -2966,34 +3027,35 @@ state 155
     MINUS           shift and go to state 49
 
 
-state 156
-
-    (81) while -> WHILE LPAREN comparacion RPAREN . DOSPUNTOS
-
-    DOSPUNTOS       shift and go to state 187
-
-
-state 157
-
-    (85) for -> FOR ID IN ID . DOSPUNTOS
-    (55) lista -> ID . ASSIGN lista
-    (57) tupla -> ID . ASSIGN tupla
-    (59) conjunto -> ID . ASSIGN conjunto
-
-    DOSPUNTOS       shift and go to state 188
-    ASSIGN          shift and go to state 189
-
-
 state 158
 
-    (84) for -> FOR ID IN RANGE . LPAREN NUMBER RPAREN DOSPUNTOS
+    (82) while -> WHILE LPAREN comparacion RPAREN . DOSPUNTOS
 
-    LPAREN          shift and go to state 190
+    DOSPUNTOS       shift and go to state 190
 
 
 state 159
 
-    (56) tupla -> LPAREN . valoresComa RPAREN
+    (86) for -> FOR ID IN ID . DOSPUNTOS
+    (55) lista -> ID . ASSIGN lista
+    (56) lista -> ID . ASSIGN CORCHETEIZQ CORCHETEDER
+    (58) tupla -> ID . ASSIGN tupla
+    (60) conjunto -> ID . ASSIGN conjunto
+
+    DOSPUNTOS       shift and go to state 191
+    ASSIGN          shift and go to state 192
+
+
+state 160
+
+    (85) for -> FOR ID IN RANGE . LPAREN NUMBER RPAREN DOSPUNTOS
+
+    LPAREN          shift and go to state 193
+
+
+state 161
+
+    (57) tupla -> LPAREN . valoresComa RPAREN
     (46) valoresComa -> . expression
     (47) valoresComa -> . valoresComa COMA expression
     (48) valoresComa -> . valoresComa COMA
@@ -3025,30 +3087,30 @@ state 159
     term                           shift and go to state 22
     factor                         shift and go to state 36
 
-state 160
-
-    (86) for -> FOR ID IN lista .
-
-    $end            reduce using rule 86 (for -> FOR ID IN lista .)
-
-
-state 161
-
-    (87) for -> FOR ID IN tupla .
-
-    $end            reduce using rule 87 (for -> FOR ID IN tupla .)
-
-
 state 162
 
-    (88) for -> FOR ID IN conjunto .
+    (87) for -> FOR ID IN lista .
 
-    $end            reduce using rule 88 (for -> FOR ID IN conjunto .)
+    $end            reduce using rule 87 (for -> FOR ID IN lista .)
 
 
 state 163
 
-    (58) conjunto -> LLAVEIZQ . valoresComa LLAVEDER
+    (88) for -> FOR ID IN tupla .
+
+    $end            reduce using rule 88 (for -> FOR ID IN tupla .)
+
+
+state 164
+
+    (89) for -> FOR ID IN conjunto .
+
+    $end            reduce using rule 89 (for -> FOR ID IN conjunto .)
+
+
+state 165
+
+    (59) conjunto -> LLAVEIZQ . valoresComa LLAVEDER
     (46) valoresComa -> . expression
     (47) valoresComa -> . valoresComa COMA expression
     (48) valoresComa -> . valoresComa COMA
@@ -3080,35 +3142,35 @@ state 163
     term                           shift and go to state 22
     factor                         shift and go to state 36
 
-state 164
-
-    (89) print -> PRINT LPAREN factor RPAREN .
-
-    $end            reduce using rule 89 (print -> PRINT LPAREN factor RPAREN .)
-
-
-state 165
-
-    (90) print -> PRINT LPAREN ID RPAREN .
-
-    $end            reduce using rule 90 (print -> PRINT LPAREN ID RPAREN .)
-
-
 state 166
 
-    (93) openF -> OPEN LPAREN CADENA RPAREN .
+    (90) print -> PRINT LPAREN factor RPAREN .
 
-    $end            reduce using rule 93 (openF -> OPEN LPAREN CADENA RPAREN .)
+    $end            reduce using rule 90 (print -> PRINT LPAREN factor RPAREN .)
 
 
 state 167
 
-    (94) openF -> OPEN LPAREN CADENA COMA . CADENA RPAREN
+    (91) print -> PRINT LPAREN ID RPAREN .
 
-    CADENA          shift and go to state 191
+    $end            reduce using rule 91 (print -> PRINT LPAREN ID RPAREN .)
 
 
 state 168
+
+    (94) openF -> OPEN LPAREN CADENA RPAREN .
+
+    $end            reduce using rule 94 (openF -> OPEN LPAREN CADENA RPAREN .)
+
+
+state 169
+
+    (95) openF -> OPEN LPAREN CADENA COMA . CADENA RPAREN
+
+    CADENA          shift and go to state 194
+
+
+state 170
 
     (44) valoresID -> ID .
 
@@ -3116,23 +3178,23 @@ state 168
     COMA            reduce using rule 44 (valoresID -> ID .)
 
 
-state 169
+state 171
 
-    (96) funcion -> DEF ID LPAREN valoresID . RPAREN DOSPUNTOS
+    (98) funcion -> DEF ID LPAREN valoresID . RPAREN DOSPUNTOS
     (45) valoresID -> valoresID . COMA ID
 
-    RPAREN          shift and go to state 192
+    RPAREN          shift and go to state 195
     COMA            shift and go to state 74
 
 
-state 170
+state 172
 
     (50) valoresDic -> valoresDic COMA factor . DOSPUNTOS factor
 
-    DOSPUNTOS       shift and go to state 193
+    DOSPUNTOS       shift and go to state 196
 
 
-state 171
+state 173
 
     (49) valoresDic -> factor DOSPUNTOS factor .
 
@@ -3140,44 +3202,53 @@ state 171
     COMA            reduce using rule 49 (valoresDic -> factor DOSPUNTOS factor .)
 
 
-state 172
+state 174
 
-    (57) tupla -> ID . ASSIGN tupla
+    (58) tupla -> ID . ASSIGN tupla
     (55) lista -> ID . ASSIGN lista
+    (56) lista -> ID . ASSIGN CORCHETEIZQ CORCHETEDER
     (53) diccionario -> ID . ASSIGN diccionario
-    (59) conjunto -> ID . ASSIGN conjunto
+    (60) conjunto -> ID . ASSIGN conjunto
     (42) multipleAsignacion -> ID . ASSIGN
     (43) multipleAsignacion -> ID . ASSIGN multipleAsignacion
 
-    ASSIGN          shift and go to state 149
-
-
-state 173
-
-    (91) inputF -> ID ASSIGN INPUT LPAREN RPAREN .
-
-    $end            reduce using rule 91 (inputF -> ID ASSIGN INPUT LPAREN RPAREN .)
-
-
-state 174
-
-    (95) openF -> ID ASSIGN OPEN LPAREN CADENA . COMA CADENA RPAREN
-
-    COMA            shift and go to state 194
+    ASSIGN          shift and go to state 150
 
 
 state 175
 
-    (103) append -> ID PUNTO APPEND LPAREN ID . RPAREN
+    (92) inputF -> ID ASSIGN INPUT LPAREN RPAREN .
+
+    $end            reduce using rule 92 (inputF -> ID ASSIGN INPUT LPAREN RPAREN .)
+
+
+state 176
+
+    (97) openF -> ID ASSIGN OPEN LPAREN ID . COMA CADENA RPAREN
+
+    COMA            shift and go to state 197
+
+
+state 177
+
+    (96) openF -> ID ASSIGN OPEN LPAREN CADENA . COMA CADENA RPAREN
+
+    COMA            shift and go to state 198
+
+
+state 178
+
+    (105) append -> ID PUNTO APPEND LPAREN ID . RPAREN
     (55) lista -> ID . ASSIGN lista
-    (57) tupla -> ID . ASSIGN tupla
-    (59) conjunto -> ID . ASSIGN conjunto
+    (56) lista -> ID . ASSIGN CORCHETEIZQ CORCHETEDER
+    (58) tupla -> ID . ASSIGN tupla
+    (60) conjunto -> ID . ASSIGN conjunto
     (53) diccionario -> ID . ASSIGN diccionario
     (34) factor -> ID .
 
   ! shift/reduce conflict for RPAREN resolved as shift
-    RPAREN          shift and go to state 195
-    ASSIGN          shift and go to state 196
+    RPAREN          shift and go to state 199
+    ASSIGN          shift and go to state 200
     TIMES           reduce using rule 34 (factor -> ID .)
     DIVIDE          reduce using rule 34 (factor -> ID .)
     EXPONENTE       reduce using rule 34 (factor -> ID .)
@@ -3189,55 +3260,55 @@ state 175
   ! RPAREN          [ reduce using rule 34 (factor -> ID .) ]
 
 
-state 176
+state 179
 
-    (104) append -> ID PUNTO APPEND LPAREN expression . RPAREN
+    (106) append -> ID PUNTO APPEND LPAREN expression . RPAREN
     (21) expression -> expression . PLUS term
     (22) expression -> expression . MINUS term
 
-    RPAREN          shift and go to state 197
+    RPAREN          shift and go to state 201
     PLUS            shift and go to state 48
     MINUS           shift and go to state 49
 
 
-state 177
-
-    (105) append -> ID PUNTO APPEND LPAREN datos . RPAREN
-
-    RPAREN          shift and go to state 198
-
-
-state 178
-
-    (97) datos -> lista .
-
-    RPAREN          reduce using rule 97 (datos -> lista .)
-
-
-state 179
-
-    (98) datos -> tupla .
-
-    RPAREN          reduce using rule 98 (datos -> tupla .)
-
-
 state 180
 
-    (99) datos -> conjunto .
+    (107) append -> ID PUNTO APPEND LPAREN datos . RPAREN
 
-    RPAREN          reduce using rule 99 (datos -> conjunto .)
+    RPAREN          shift and go to state 202
 
 
 state 181
 
-    (100) datos -> diccionario .
+    (99) datos -> lista .
 
-    RPAREN          reduce using rule 100 (datos -> diccionario .)
+    RPAREN          reduce using rule 99 (datos -> lista .)
 
 
 state 182
 
-    (58) conjunto -> LLAVEIZQ . valoresComa LLAVEDER
+    (100) datos -> tupla .
+
+    RPAREN          reduce using rule 100 (datos -> tupla .)
+
+
+state 183
+
+    (101) datos -> conjunto .
+
+    RPAREN          reduce using rule 101 (datos -> conjunto .)
+
+
+state 184
+
+    (102) datos -> diccionario .
+
+    RPAREN          reduce using rule 102 (datos -> diccionario .)
+
+
+state 185
+
+    (59) conjunto -> LLAVEIZQ . valoresComa LLAVEDER
     (52) diccionario -> LLAVEIZQ . valoresDic LLAVEDER
     (46) valoresComa -> . expression
     (47) valoresComa -> . valoresComa COMA expression
@@ -3274,13 +3345,13 @@ state 182
     factor                         shift and go to state 96
     term                           shift and go to state 22
 
-state 183
+state 186
 
-    (106) remove -> ID PUNTO REMOVE LPAREN ID . RPAREN
+    (108) remove -> ID PUNTO REMOVE LPAREN ID . RPAREN
     (34) factor -> ID .
 
   ! shift/reduce conflict for RPAREN resolved as shift
-    RPAREN          shift and go to state 199
+    RPAREN          shift and go to state 203
     TIMES           reduce using rule 34 (factor -> ID .)
     DIVIDE          reduce using rule 34 (factor -> ID .)
     EXPONENTE       reduce using rule 34 (factor -> ID .)
@@ -3292,88 +3363,90 @@ state 183
   ! RPAREN          [ reduce using rule 34 (factor -> ID .) ]
 
 
-state 184
-
-    (107) remove -> ID PUNTO REMOVE LPAREN RPAREN .
-
-    $end            reduce using rule 107 (remove -> ID PUNTO REMOVE LPAREN RPAREN .)
-
-
-state 185
-
-    (108) remove -> ID PUNTO REMOVE LPAREN expression . RPAREN
-    (21) expression -> expression . PLUS term
-    (22) expression -> expression . MINUS term
-
-    RPAREN          shift and go to state 200
-    PLUS            shift and go to state 48
-    MINUS           shift and go to state 49
-
-
-state 186
-
-    (77) if -> IF LPAREN comparacion RPAREN DOSPUNTOS .
-
-    $end            reduce using rule 77 (if -> IF LPAREN comparacion RPAREN DOSPUNTOS .)
-
-
 state 187
 
-    (81) while -> WHILE LPAREN comparacion RPAREN DOSPUNTOS .
+    (109) remove -> ID PUNTO REMOVE LPAREN RPAREN .
 
-    $end            reduce using rule 81 (while -> WHILE LPAREN comparacion RPAREN DOSPUNTOS .)
+    $end            reduce using rule 109 (remove -> ID PUNTO REMOVE LPAREN RPAREN .)
 
 
 state 188
 
-    (85) for -> FOR ID IN ID DOSPUNTOS .
+    (110) remove -> ID PUNTO REMOVE LPAREN expression . RPAREN
+    (21) expression -> expression . PLUS term
+    (22) expression -> expression . MINUS term
 
-    $end            reduce using rule 85 (for -> FOR ID IN ID DOSPUNTOS .)
+    RPAREN          shift and go to state 204
+    PLUS            shift and go to state 48
+    MINUS           shift and go to state 49
 
 
 state 189
 
-    (55) lista -> ID ASSIGN . lista
-    (57) tupla -> ID ASSIGN . tupla
-    (59) conjunto -> ID ASSIGN . conjunto
-    (54) lista -> . CORCHETEIZQ valoresComa CORCHETEDER
-    (55) lista -> . ID ASSIGN lista
-    (56) tupla -> . LPAREN valoresComa RPAREN
-    (57) tupla -> . ID ASSIGN tupla
-    (58) conjunto -> . LLAVEIZQ valoresComa LLAVEDER
-    (59) conjunto -> . ID ASSIGN conjunto
+    (78) if -> IF LPAREN comparacion RPAREN DOSPUNTOS .
 
-    CORCHETEIZQ     shift and go to state 43
-    ID              shift and go to state 201
-    LPAREN          shift and go to state 159
-    LLAVEIZQ        shift and go to state 163
+    $end            reduce using rule 78 (if -> IF LPAREN comparacion RPAREN DOSPUNTOS .)
 
-    lista                          shift and go to state 115
-    tupla                          shift and go to state 114
-    conjunto                       shift and go to state 117
 
 state 190
 
-    (84) for -> FOR ID IN RANGE LPAREN . NUMBER RPAREN DOSPUNTOS
+    (82) while -> WHILE LPAREN comparacion RPAREN DOSPUNTOS .
 
-    NUMBER          shift and go to state 202
+    $end            reduce using rule 82 (while -> WHILE LPAREN comparacion RPAREN DOSPUNTOS .)
 
 
 state 191
 
-    (94) openF -> OPEN LPAREN CADENA COMA CADENA . RPAREN
+    (86) for -> FOR ID IN ID DOSPUNTOS .
 
-    RPAREN          shift and go to state 203
+    $end            reduce using rule 86 (for -> FOR ID IN ID DOSPUNTOS .)
 
 
 state 192
 
-    (96) funcion -> DEF ID LPAREN valoresID RPAREN . DOSPUNTOS
+    (55) lista -> ID ASSIGN . lista
+    (56) lista -> ID ASSIGN . CORCHETEIZQ CORCHETEDER
+    (58) tupla -> ID ASSIGN . tupla
+    (60) conjunto -> ID ASSIGN . conjunto
+    (54) lista -> . CORCHETEIZQ valoresComa CORCHETEDER
+    (55) lista -> . ID ASSIGN lista
+    (56) lista -> . ID ASSIGN CORCHETEIZQ CORCHETEDER
+    (57) tupla -> . LPAREN valoresComa RPAREN
+    (58) tupla -> . ID ASSIGN tupla
+    (59) conjunto -> . LLAVEIZQ valoresComa LLAVEDER
+    (60) conjunto -> . ID ASSIGN conjunto
 
-    DOSPUNTOS       shift and go to state 204
+    CORCHETEIZQ     shift and go to state 116
+    ID              shift and go to state 205
+    LPAREN          shift and go to state 161
+    LLAVEIZQ        shift and go to state 165
 
+    lista                          shift and go to state 115
+    tupla                          shift and go to state 114
+    conjunto                       shift and go to state 118
 
 state 193
+
+    (85) for -> FOR ID IN RANGE LPAREN . NUMBER RPAREN DOSPUNTOS
+
+    NUMBER          shift and go to state 206
+
+
+state 194
+
+    (95) openF -> OPEN LPAREN CADENA COMA CADENA . RPAREN
+
+    RPAREN          shift and go to state 207
+
+
+state 195
+
+    (98) funcion -> DEF ID LPAREN valoresID RPAREN . DOSPUNTOS
+
+    DOSPUNTOS       shift and go to state 208
+
+
+state 196
 
     (50) valoresDic -> valoresDic COMA factor DOSPUNTOS . factor
     (30) factor -> . NUMBER
@@ -3390,106 +3463,116 @@ state 193
     ID              shift and go to state 71
     LPAREN          shift and go to state 72
 
-    factor                         shift and go to state 205
-
-state 194
-
-    (95) openF -> ID ASSIGN OPEN LPAREN CADENA COMA . CADENA RPAREN
-
-    CADENA          shift and go to state 206
-
-
-state 195
-
-    (103) append -> ID PUNTO APPEND LPAREN ID RPAREN .
-
-    $end            reduce using rule 103 (append -> ID PUNTO APPEND LPAREN ID RPAREN .)
-
-
-state 196
-
-    (55) lista -> ID ASSIGN . lista
-    (57) tupla -> ID ASSIGN . tupla
-    (59) conjunto -> ID ASSIGN . conjunto
-    (53) diccionario -> ID ASSIGN . diccionario
-    (54) lista -> . CORCHETEIZQ valoresComa CORCHETEDER
-    (55) lista -> . ID ASSIGN lista
-    (56) tupla -> . LPAREN valoresComa RPAREN
-    (57) tupla -> . ID ASSIGN tupla
-    (58) conjunto -> . LLAVEIZQ valoresComa LLAVEDER
-    (59) conjunto -> . ID ASSIGN conjunto
-    (52) diccionario -> . LLAVEIZQ valoresDic LLAVEDER
-    (53) diccionario -> . ID ASSIGN diccionario
-
-    CORCHETEIZQ     shift and go to state 43
-    ID              shift and go to state 207
-    LPAREN          shift and go to state 159
-    LLAVEIZQ        shift and go to state 182
-
-    lista                          shift and go to state 115
-    tupla                          shift and go to state 114
-    conjunto                       shift and go to state 117
-    diccionario                    shift and go to state 116
+    factor                         shift and go to state 209
 
 state 197
 
-    (104) append -> ID PUNTO APPEND LPAREN expression RPAREN .
+    (97) openF -> ID ASSIGN OPEN LPAREN ID COMA . CADENA RPAREN
 
-    $end            reduce using rule 104 (append -> ID PUNTO APPEND LPAREN expression RPAREN .)
+    CADENA          shift and go to state 210
 
 
 state 198
 
-    (105) append -> ID PUNTO APPEND LPAREN datos RPAREN .
+    (96) openF -> ID ASSIGN OPEN LPAREN CADENA COMA . CADENA RPAREN
 
-    $end            reduce using rule 105 (append -> ID PUNTO APPEND LPAREN datos RPAREN .)
+    CADENA          shift and go to state 211
 
 
 state 199
 
-    (106) remove -> ID PUNTO REMOVE LPAREN ID RPAREN .
+    (105) append -> ID PUNTO APPEND LPAREN ID RPAREN .
 
-    $end            reduce using rule 106 (remove -> ID PUNTO REMOVE LPAREN ID RPAREN .)
+    $end            reduce using rule 105 (append -> ID PUNTO APPEND LPAREN ID RPAREN .)
 
 
 state 200
 
-    (108) remove -> ID PUNTO REMOVE LPAREN expression RPAREN .
+    (55) lista -> ID ASSIGN . lista
+    (56) lista -> ID ASSIGN . CORCHETEIZQ CORCHETEDER
+    (58) tupla -> ID ASSIGN . tupla
+    (60) conjunto -> ID ASSIGN . conjunto
+    (53) diccionario -> ID ASSIGN . diccionario
+    (54) lista -> . CORCHETEIZQ valoresComa CORCHETEDER
+    (55) lista -> . ID ASSIGN lista
+    (56) lista -> . ID ASSIGN CORCHETEIZQ CORCHETEDER
+    (57) tupla -> . LPAREN valoresComa RPAREN
+    (58) tupla -> . ID ASSIGN tupla
+    (59) conjunto -> . LLAVEIZQ valoresComa LLAVEDER
+    (60) conjunto -> . ID ASSIGN conjunto
+    (52) diccionario -> . LLAVEIZQ valoresDic LLAVEDER
+    (53) diccionario -> . ID ASSIGN diccionario
 
-    $end            reduce using rule 108 (remove -> ID PUNTO REMOVE LPAREN expression RPAREN .)
+    CORCHETEIZQ     shift and go to state 116
+    ID              shift and go to state 212
+    LPAREN          shift and go to state 161
+    LLAVEIZQ        shift and go to state 185
 
+    lista                          shift and go to state 115
+    tupla                          shift and go to state 114
+    conjunto                       shift and go to state 118
+    diccionario                    shift and go to state 117
 
 state 201
 
-    (55) lista -> ID . ASSIGN lista
-    (57) tupla -> ID . ASSIGN tupla
-    (59) conjunto -> ID . ASSIGN conjunto
+    (106) append -> ID PUNTO APPEND LPAREN expression RPAREN .
 
-    ASSIGN          shift and go to state 189
+    $end            reduce using rule 106 (append -> ID PUNTO APPEND LPAREN expression RPAREN .)
 
 
 state 202
 
-    (84) for -> FOR ID IN RANGE LPAREN NUMBER . RPAREN DOSPUNTOS
+    (107) append -> ID PUNTO APPEND LPAREN datos RPAREN .
 
-    RPAREN          shift and go to state 208
+    $end            reduce using rule 107 (append -> ID PUNTO APPEND LPAREN datos RPAREN .)
 
 
 state 203
 
-    (94) openF -> OPEN LPAREN CADENA COMA CADENA RPAREN .
+    (108) remove -> ID PUNTO REMOVE LPAREN ID RPAREN .
 
-    $end            reduce using rule 94 (openF -> OPEN LPAREN CADENA COMA CADENA RPAREN .)
+    $end            reduce using rule 108 (remove -> ID PUNTO REMOVE LPAREN ID RPAREN .)
 
 
 state 204
 
-    (96) funcion -> DEF ID LPAREN valoresID RPAREN DOSPUNTOS .
+    (110) remove -> ID PUNTO REMOVE LPAREN expression RPAREN .
 
-    $end            reduce using rule 96 (funcion -> DEF ID LPAREN valoresID RPAREN DOSPUNTOS .)
+    $end            reduce using rule 110 (remove -> ID PUNTO REMOVE LPAREN expression RPAREN .)
 
 
 state 205
+
+    (55) lista -> ID . ASSIGN lista
+    (56) lista -> ID . ASSIGN CORCHETEIZQ CORCHETEDER
+    (58) tupla -> ID . ASSIGN tupla
+    (60) conjunto -> ID . ASSIGN conjunto
+
+    ASSIGN          shift and go to state 192
+
+
+state 206
+
+    (85) for -> FOR ID IN RANGE LPAREN NUMBER . RPAREN DOSPUNTOS
+
+    RPAREN          shift and go to state 213
+
+
+state 207
+
+    (95) openF -> OPEN LPAREN CADENA COMA CADENA RPAREN .
+
+    $end            reduce using rule 95 (openF -> OPEN LPAREN CADENA COMA CADENA RPAREN .)
+
+
+state 208
+
+    (98) funcion -> DEF ID LPAREN valoresID RPAREN DOSPUNTOS .
+
+    $end            reduce using rule 98 (funcion -> DEF ID LPAREN valoresID RPAREN DOSPUNTOS .)
+
+
+state 209
 
     (50) valoresDic -> valoresDic COMA factor DOSPUNTOS factor .
 
@@ -3497,42 +3580,57 @@ state 205
     COMA            reduce using rule 50 (valoresDic -> valoresDic COMA factor DOSPUNTOS factor .)
 
 
-state 206
-
-    (95) openF -> ID ASSIGN OPEN LPAREN CADENA COMA CADENA . RPAREN
-
-    RPAREN          shift and go to state 209
-
-
-state 207
-
-    (55) lista -> ID . ASSIGN lista
-    (57) tupla -> ID . ASSIGN tupla
-    (59) conjunto -> ID . ASSIGN conjunto
-    (53) diccionario -> ID . ASSIGN diccionario
-
-    ASSIGN          shift and go to state 196
-
-
-state 208
-
-    (84) for -> FOR ID IN RANGE LPAREN NUMBER RPAREN . DOSPUNTOS
-
-    DOSPUNTOS       shift and go to state 210
-
-
-state 209
-
-    (95) openF -> ID ASSIGN OPEN LPAREN CADENA COMA CADENA RPAREN .
-
-    $end            reduce using rule 95 (openF -> ID ASSIGN OPEN LPAREN CADENA COMA CADENA RPAREN .)
-
-
 state 210
 
-    (84) for -> FOR ID IN RANGE LPAREN NUMBER RPAREN DOSPUNTOS .
+    (97) openF -> ID ASSIGN OPEN LPAREN ID COMA CADENA . RPAREN
 
-    $end            reduce using rule 84 (for -> FOR ID IN RANGE LPAREN NUMBER RPAREN DOSPUNTOS .)
+    RPAREN          shift and go to state 214
+
+
+state 211
+
+    (96) openF -> ID ASSIGN OPEN LPAREN CADENA COMA CADENA . RPAREN
+
+    RPAREN          shift and go to state 215
+
+
+state 212
+
+    (55) lista -> ID . ASSIGN lista
+    (56) lista -> ID . ASSIGN CORCHETEIZQ CORCHETEDER
+    (58) tupla -> ID . ASSIGN tupla
+    (60) conjunto -> ID . ASSIGN conjunto
+    (53) diccionario -> ID . ASSIGN diccionario
+
+    ASSIGN          shift and go to state 200
+
+
+state 213
+
+    (85) for -> FOR ID IN RANGE LPAREN NUMBER RPAREN . DOSPUNTOS
+
+    DOSPUNTOS       shift and go to state 216
+
+
+state 214
+
+    (97) openF -> ID ASSIGN OPEN LPAREN ID COMA CADENA RPAREN .
+
+    $end            reduce using rule 97 (openF -> ID ASSIGN OPEN LPAREN ID COMA CADENA RPAREN .)
+
+
+state 215
+
+    (96) openF -> ID ASSIGN OPEN LPAREN CADENA COMA CADENA RPAREN .
+
+    $end            reduce using rule 96 (openF -> ID ASSIGN OPEN LPAREN CADENA COMA CADENA RPAREN .)
+
+
+state 216
+
+    (85) for -> FOR ID IN RANGE LPAREN NUMBER RPAREN DOSPUNTOS .
+
+    $end            reduce using rule 85 (for -> FOR ID IN RANGE LPAREN NUMBER RPAREN DOSPUNTOS .)
 
 WARNING: 
 WARNING: Conflicts:
@@ -3563,14 +3661,14 @@ WARNING: shift/reduce conflict for MENORIGUAL in state 84 resolved as shift
 WARNING: shift/reduce conflict for LESSTHAN in state 84 resolved as shift
 WARNING: shift/reduce conflict for MORETHAN in state 84 resolved as shift
 WARNING: shift/reduce conflict for DIFERENTE in state 84 resolved as shift
-WARNING: shift/reduce conflict for EQUALS in state 129 resolved as shift
-WARNING: shift/reduce conflict for MAYORIGUAL in state 129 resolved as shift
-WARNING: shift/reduce conflict for MENORIGUAL in state 129 resolved as shift
-WARNING: shift/reduce conflict for LESSTHAN in state 129 resolved as shift
-WARNING: shift/reduce conflict for MORETHAN in state 129 resolved as shift
-WARNING: shift/reduce conflict for DIFERENTE in state 129 resolved as shift
-WARNING: shift/reduce conflict for RPAREN in state 140 resolved as shift
-WARNING: shift/reduce conflict for LPAREN in state 149 resolved as shift
-WARNING: shift/reduce conflict for ID in state 149 resolved as shift
-WARNING: shift/reduce conflict for RPAREN in state 175 resolved as shift
-WARNING: shift/reduce conflict for RPAREN in state 183 resolved as shift
+WARNING: shift/reduce conflict for EQUALS in state 130 resolved as shift
+WARNING: shift/reduce conflict for MAYORIGUAL in state 130 resolved as shift
+WARNING: shift/reduce conflict for MENORIGUAL in state 130 resolved as shift
+WARNING: shift/reduce conflict for LESSTHAN in state 130 resolved as shift
+WARNING: shift/reduce conflict for MORETHAN in state 130 resolved as shift
+WARNING: shift/reduce conflict for DIFERENTE in state 130 resolved as shift
+WARNING: shift/reduce conflict for RPAREN in state 141 resolved as shift
+WARNING: shift/reduce conflict for LPAREN in state 150 resolved as shift
+WARNING: shift/reduce conflict for ID in state 150 resolved as shift
+WARNING: shift/reduce conflict for RPAREN in state 178 resolved as shift
+WARNING: shift/reduce conflict for RPAREN in state 186 resolved as shift
