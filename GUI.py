@@ -15,6 +15,17 @@ def analizador_sintactico():
     if(text_input != " "):
         print(text_input)
 
+def on_text_click(event):
+    #function that gets called whenever text is clicked
+    if texto.get("1.0","end-1c") == 'Ingrese su codigo aqui...':
+       texto.delete("1.0", END) # delete all the text in the entry
+       texto.insert(INSERT, '') #Insert blank for user input
+       texto.config(fg = 'black')
+def on_focusout(event):
+    if texto.get("1.0","end-1c") == '':
+        texto.insert(INSERT, 'Ingrese su codigo aqui...')
+        texto.config(fg = 'grey')
+
 
 app = tk.Tk()
 app.title("Analizador")
@@ -30,6 +41,11 @@ textos = tk.Frame(app)
 texto = tk.Text(textos)
 scrollbar = Scrollbar(texto)
 texto.config(height = 25, width = 70,background = "#C6C2C6", yscrollcommand=scrollbar.set)
+texto.insert(INSERT, 'Ingrese su codigo aqui...')
+texto.bind('<FocusIn>', on_text_click)
+texto.bind('<FocusOut>', on_focusout)
+texto.config(fg = 'grey')
+
 scrollbar.config(command=texto.yview)
 #scrollbar.pack(side=RIGHT, fill=Y)
 respuesta = tk.Text(textos)
@@ -56,6 +72,9 @@ sintactico.grid(row=0,column=3)
 botones.config(width=100,height=100)
 sep = ttk.Separator(botones,orient="vertical").grid(row=0,column=2, sticky="sn",ipadx=10)
 botones.pack(side=LEFT)
+
+
+
 
 
 
