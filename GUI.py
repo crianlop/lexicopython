@@ -36,6 +36,14 @@ app.config(bd=24,relief="sunken")
 label = tk.Label(app,text="Bienvenidos al Analizador",font=fuente)
 label.pack(side=TOP)
 #textArea
+labels=tk.Frame()
+labelt = tk.Label(labels,text="Ingrese Codigo",font=fuente, relief="groove", borderwidth=5,fg="red")
+labelt3 = tk.Label(labels,text="Respuesta",font=fuente, relief="groove", borderwidth=5,fg="red")
+sep = ttk.Separator(labels,orient="vertical").grid(row=0,column=1, sticky="sn",ipadx=200)
+labelt.grid(row=0,column=0)
+labelt3.grid(row=0,column=3)
+labels.pack()
+
 textos = tk.Frame(app)
 
 texto = tk.Text(textos)
@@ -67,7 +75,7 @@ sintactico.grid(row=0,column=3)
 botones.config(width=100,height=100)
 sep = ttk.Separator(botones,orient="vertical").grid(row=0,column=2, sticky="sn",ipadx=10)
 botones.pack(side=LEFT)
-labellexico = tk.Label(text="")
+labellexico = tk.Label(text="",font=fuente, borderwidth=5,fg="yellow")
 labellexico.pack()
 
 
