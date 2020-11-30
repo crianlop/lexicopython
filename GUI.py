@@ -2,9 +2,7 @@ from lexicoPython import analizar
 import tkinter as tk
 from tkinter import *
 from tkinter import ttk, font
-from tkinter.ttk import Style
-from PIL import Image, ImageChops, ImageEnhance, ImageOps
-from disenio import CreateToolTip
+from disenio import * 
 
 def analizador_lexico():
     respuesta.delete("1.0","end-1c")
@@ -13,7 +11,15 @@ def analizador_lexico():
     for linea in lista:
         for i in analizar(linea):
             responder = str(i) + "\n"
-            respuesta.insert(END,responder)
+            if(type(i)==tuple):
+                li = linea.replace(" ","")
+                print(linea)
+                rep = "-Error en esta linea Caracter no definido" + "\n"+ " "+li + 2*"\n" 
+                respuesta.insert(END,rep)
+    respuesta.tag_configure("red", foreground="red")
+    find(respuesta,"-Error en esta linea Caracter no definido")
+    labellexico["text"] = "Se analizo el lexico"
+    
 
 def analizador_sintactico():
     text_input = texto.get("1.0","end-1c")
@@ -40,8 +46,6 @@ scrollbar.config(command=texto.yview)
 respuesta = tk.Text(textos)
 scrolRes = Scrollbar()
 respuesta.config(height = 25, width = 70,background = "#C6C2C6", yscrollcommand=scrolRes.set)
-""" respuesta.tag_add("import", "1.0", "1.4")
-respuesta.tag_config("import", background="yellow", foreground="blue") """
 scrolRes.config(command=respuesta.yview)
 scrolRes.pack(side=RIGHT, fill=Y)
 texto.grid(row=0,column=0)
@@ -52,8 +56,8 @@ textos.pack()
 
 #botones
 botones = tk.Frame()
-imgSintactico = PhotoImage(file='sintactico.png')
-imgLexico = PhotoImage(file='lexico.png')
+imgSintactico = PhotoImage(file='lexicopython\sintactico.png')
+imgLexico = PhotoImage(file='lexicopython\lexico.png')
 lexico = tk.Button(botones,text="Anlizador Lexico",image=imgLexico,command=analizador_lexico, borderwidth=15, relief="raised")
 toolLexico = CreateToolTip(lexico,"Analizar Lexico")
 sintactico = tk.Button(botones,text="Anlizador Sintactico",image=imgSintactico,command=analizador_sintactico, borderwidth=15, relief="raised")
@@ -63,9 +67,9 @@ sintactico.grid(row=0,column=3)
 botones.config(width=100,height=100)
 sep = ttk.Separator(botones,orient="vertical").grid(row=0,column=2, sticky="sn",ipadx=10)
 botones.pack(side=LEFT)
-
+labellexico = tk.Label(text="")
+labellexico.pack()
 
 
 app.mainloop()
 print("programa termino")
-#text_input = TextArea.get("1.0","end-1c")

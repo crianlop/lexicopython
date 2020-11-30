@@ -1,4 +1,6 @@
 import tkinter as tk
+from tkinter import *
+
 class CreateToolTip(object):
     def __init__(self, widget, text='widget info'):
         self.widget = widget
@@ -20,3 +22,16 @@ class CreateToolTip(object):
     def close(self, event=None):
         if self.tw:
             self.tw.destroy()
+
+def find(respuesta,Cadena): 
+    respuesta.tag_remove('found', '1.0', END)  
+    busca = Cadena 
+    if busca: 
+        indice = '1.0'
+        while 1: 
+            indice = respuesta.search(busca, indice, nocase=1,stopindex=END)  
+            if not indice: break
+            lastindice = '%s+%dc' % (indice, len(busca))  
+            respuesta.tag_add('found', indice, lastindice)  
+            indice = lastindice 
+        respuesta.tag_config('found', foreground='red',background="yellow")  
