@@ -45,8 +45,8 @@ textos.pack()
 
 #botones
 botones = tk.Frame()
-imgSintactico = PhotoImage(file='lexicopython\sintactico.png')
-imgLexico = PhotoImage(file='lexicopython\lexico.png')
+imgSintactico = PhotoImage(file='sintactico.png')
+imgLexico = PhotoImage(file='lexico.png')
 lexico = tk.Button(botones,text="Anlizador Lexico",image=imgLexico,command=analizador_lexico, borderwidth=15, relief="raised")
 toolLexico = CreateToolTip(lexico,"Analizar Lexico")
 sintactico = tk.Button(botones,text="Anlizador Sintactico",image=imgSintactico,command=analizador_sintactico, borderwidth=15, relief="raised")
