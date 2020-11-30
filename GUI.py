@@ -1,40 +1,61 @@
 import tkinter as tk
 from tkinter import *
 from tkinter import ttk, font
+from tkinter.ttk import Style
 from PIL import Image, ImageChops, ImageEnhance, ImageOps
+from disenio import CreateToolTip
 
 def analizador_lexico():
     text_input = texto.get("1.0","end-1c")
-    print(text_input)
+    if(text_input != " "):
+        print(text_input)
 
 def analizador_sintactico():
     text_input = texto.get("1.0","end-1c")
-    print(text_input)
+    if(text_input != " "):
+        print(text_input)
+
 
 app = tk.Tk()
 app.title("Analizador")
-app.geometry('1000x800')
-fuente = font.Font(weight='bold')
+app.geometry('1220x800')
+app.resizable(width=FALSE,height=FALSE)
+fuente = font.Font(weight='bold',family="times", size=24,slant="italic")
 app.config(bd=24,relief="sunken")
 label = tk.Label(app,text="Bienvenidos al Analizador",font=fuente)
 label.pack(side=TOP)
 #textArea
-texto = tk.Text(app)
-scrollbar = Scrollbar()
+textos = tk.Frame(app)
+
+texto = tk.Text(textos)
+scrollbar = Scrollbar(texto)
 texto.config(height = 25, width = 70,background = "#C6C2C6", yscrollcommand=scrollbar.set)
 scrollbar.config(command=texto.yview)
-scrollbar.pack(side=RIGHT, fill=Y)
-texto.pack(padx = 10, pady = 10)
+#scrollbar.pack(side=RIGHT, fill=Y)
+respuesta = tk.Text(textos)
+scrolRes = Scrollbar()
+respuesta.config(height = 25, width = 70,background = "#C6C2C6", yscrollcommand=scrolRes.set)
+scrolRes.config(command=respuesta.yview)
+scrolRes.pack(side=RIGHT, fill=Y)
+respuesta.grid(row=0,column=0)
+texto.grid(row=0,column=3)
+sep = ttk.Separator(textos,orient="vertical").grid(row=0,column=2, sticky="sn",ipadx=10)
+
+textos.pack()
+
+#botones
 botones = tk.Frame()
-imgSintactico = PhotoImage(file='sintactico.png')
-imgLexico = PhotoImage(file='lexico.png')
-#imgLexico.subsample(2)
-lexico = tk.Button(botones,text="Anlizador Lexico",image=imgLexico,command=analizador_lexico)
-sintactico = tk.Button(botones,text="Anlizador Sintactico",image=imgSintactico,command=analizador_sintactico)
+imgSintactico = PhotoImage(file='lexicopython\sintactico.png')
+imgLexico = PhotoImage(file='lexicopython\lexico.png')
+lexico = tk.Button(botones,text="Anlizador Lexico",image=imgLexico,command=analizador_lexico, borderwidth=15, relief="raised")
+toolLexico = CreateToolTip(lexico,"Analizar Lexico")
+sintactico = tk.Button(botones,text="Anlizador Sintactico",image=imgSintactico,command=analizador_sintactico, borderwidth=15, relief="raised")
+toolSintctico = CreateToolTip(sintactico,"Analizar Sintaxis")
 lexico.grid(row=0,column=0)
-sintactico.grid(row=0,column=1)
-botones.config(width=1,height=1)
-botones.pack()
+sintactico.grid(row=0,column=3)
+botones.config(width=100,height=100)
+sep = ttk.Separator(botones,orient="vertical").grid(row=0,column=2, sticky="sn",ipadx=10)
+botones.pack(side=LEFT)
 
 
 
