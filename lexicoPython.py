@@ -97,8 +97,8 @@ def t_newline(t):
     t.lexer.lineno += len(t.value)
 
 def t_error(t):
-    print("Illegal character '%s'" % t.value[0])
     t.lexer.skip(1)
+    return ("Illegal character '%s'" % t.value[0],0)
 
 def t_COMMENT(t):
      r'\#. *'
@@ -114,17 +114,19 @@ lexer = lex.lex()
 def analizar(linea):
     lexer = lex.lex()
     lexer.input(linea)
+    lista = []
     while True:
         tok = lexer.token()
         if not tok: 
             break      
-        print(tok)
-""" 
-THIS_FOLDER = os.path.dirname(os.path.abspath(__file__))
+        lista.append(tok)
+    return lista
+ 
+""" THIS_FOLDER = os.path.dirname(os.path.abspath(__file__))
 my_file = os.path.join(THIS_FOLDER, 'algoritmoPrueba\henryAlgoritmo.py')
 
 archivo = open(my_file,'r',encoding="utf-8")
 for linea in archivo:
     print(">> "+linea)
-    analizar(linea)
-archivo.close()      """
+    print(analizar(linea))
+archivo.close()    """   

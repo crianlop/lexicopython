@@ -1,3 +1,4 @@
+from lexicoPython import analizar
 import tkinter as tk
 from tkinter import *
 from tkinter import ttk, font
@@ -6,9 +7,13 @@ from PIL import Image, ImageChops, ImageEnhance, ImageOps
 from disenio import CreateToolTip
 
 def analizador_lexico():
+    respuesta.delete("1.0","end-1c")
     text_input = texto.get("1.0","end-1c")
-    if(text_input != " "):
-        print(text_input)
+    lista = text_input.split("\n")
+    for linea in lista:
+        for i in analizar(linea):
+            responder = str(i) + "\n"
+            respuesta.insert(END,responder)
 
 def analizador_sintactico():
     text_input = texto.get("1.0","end-1c")
@@ -35,10 +40,12 @@ scrollbar.config(command=texto.yview)
 respuesta = tk.Text(textos)
 scrolRes = Scrollbar()
 respuesta.config(height = 25, width = 70,background = "#C6C2C6", yscrollcommand=scrolRes.set)
+""" respuesta.tag_add("import", "1.0", "1.4")
+respuesta.tag_config("import", background="yellow", foreground="blue") """
 scrolRes.config(command=respuesta.yview)
 scrolRes.pack(side=RIGHT, fill=Y)
-respuesta.grid(row=0,column=0)
-texto.grid(row=0,column=3)
+texto.grid(row=0,column=0)
+respuesta.grid(row=0,column=3)
 sep = ttk.Separator(textos,orient="vertical").grid(row=0,column=2, sticky="sn",ipadx=10)
 
 textos.pack()
