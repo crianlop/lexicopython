@@ -207,7 +207,8 @@ def p_open(p):
     p[0] = "OPEN"
 
 def p_funcion(p):
-    '''funcion : DEF ID LPAREN valoresID RPAREN DOSPUNTOS'''
+    '''funcion : DEF ID LPAREN valoresID RPAREN DOSPUNTOS
+    | DEF ID LPAREN RPAREN DOSPUNTOS'''
     p[0] = "FUNCION"
 
 def p_estructuraDatos(p):
@@ -241,7 +242,7 @@ def p_import(p):
 
 # Error rule for syntax errors
 def p_error(p):
-    print("Syntax error in input!")
+    return "Syntax error in input!"
 
 # Build the parser
 
@@ -250,6 +251,7 @@ def analizarS(linea):
     print(">> "+linea)
     s = linea
     result = parser.parse(s)
+    print("dddddddddddddddd"+str(type(result)))
     return result
 
 THIS_FOLDER = os.path.dirname(os.path.abspath(__file__))

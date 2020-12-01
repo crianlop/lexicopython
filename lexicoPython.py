@@ -98,7 +98,7 @@ def t_newline(t):
 
 def t_error(t):
     t.lexer.skip(1)
-    return ("Illegal character '%s'" % t.value[0],0)
+    return "Ilegal"
 
 def t_COMMENT(t):
      r'\#. *'
