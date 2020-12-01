@@ -10,22 +10,18 @@ def analizador_lexico():
     respuesta.delete("1.0","end-1c")
     text_input = texto.get("1.0","end-1c")
     lista = text_input.split("\n")
-    print(lista)
     z =0
     for linea in lista:
-        print(linea)
         z = z+1
+        igual = True
         for i in analizar(linea):
-            print(analizar(linea))
-            responder = str(i) + "\n"
-            if(type(i)==tuple):
-                li = linea.replace(" ","")
-                print(linea)
-                rep = "-Error en esta linea Caracter no definido" + "\n"+ " "+str(z)+" : "+li + 2*"\n" 
+            if(i=="Ilegal" and igual):
+                rep = "-Error en esta línea Carácter no definido" + "\n"+ " "+str(z)+" : "+linea + 2*"\n" 
                 respuesta.insert(END,rep)
+                igual = False
     respuesta.tag_configure("red", foreground="red")
-    find(respuesta,"-Error en esta linea Caracter no definido")
-    labellexico["text"] = "Se analizo el lexico"
+    find(respuesta,"-Error en esta línea Carácter no definido")
+    labellexico["text"] = "Se analizó el léxico"
     
 
 def analizador_sintactico():
@@ -121,7 +117,7 @@ sintactico.grid(row=0,column=3)
 botones.config(width=100,height=100)
 sep = ttk.Separator(botones,orient="vertical").grid(row=0,column=2, sticky="sn",ipadx=10)
 botones.pack(side=LEFT)
-labellexico = tk.Label(text="",font=fuente, borderwidth=5,fg="yellow")
+labellexico = tk.Label(text="",font=fuente, borderwidth=5,fg="blue")
 labellexico.pack()
 
 
