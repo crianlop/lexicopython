@@ -6,6 +6,7 @@ def p_cuerpo(p):
     '''cuerpo : expression
               | comentario
               | asignacion
+              | import
               | if
               | else
               | while   
@@ -231,6 +232,11 @@ def p_remove(p):
               | ID PUNTO REMOVE LPAREN RPAREN
               | ID PUNTO REMOVE LPAREN expression RPAREN'''
     p[0] = "REMOVE"
+def p_import(p):
+    '''import : IMPORT ID
+              | IMPORT ID AS ID'''
+    p[0] = "IMPORT"
+
 
 
 # Error rule for syntax errors
