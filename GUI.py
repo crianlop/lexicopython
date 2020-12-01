@@ -44,11 +44,12 @@ def analizador_sintactico():
             print(result == None)
             if(result == None):
                 rep = "-Error de sintaxis en esta linea " + "\n"+ " "+str(z)+" : "+linea + 2*"\n" 
-            else:
-                if(type(result) != str):
-                    result = str(result)
-                rep = str(z)+" : "+ result + 2*"\n"
-            respuesta.insert(END,rep)
+                respuesta.insert(END,rep)
+            #else:
+            #    if(type(result) != str):
+            #        result = str(result)
+            #    rep = str(z)+" : "+ result + 2*"\n"
+            
             
     respuesta.tag_configure("red", foreground="red")
     find(respuesta,"-Error de sintaxis en esta linea ")
