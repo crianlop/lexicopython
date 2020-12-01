@@ -16,7 +16,7 @@ metodos = {"append":"APPEND","remove":"REMOVE",}
 
 tipo_datos = {"number":"NUMBER","float":"FLOAT", "boolean" : "BOOLEAN"}
     
-otros = {"id":"ID","comments":"COMMENTS","comment":"COMMENT", "cadena":"CADENA","string":"STRING"}   
+otros = {"id":"ID","comments":"COMMENTS","comment":"COMMENT", "cadena":"CADENA","string":"STRING","import":"IMPORT","as":"AS"}   
     
 reserved = { **conectoresLogicos, **tipo_datos,**estructuras_control, **IO_reserved, **funcion, **metodos, **otros}
 
