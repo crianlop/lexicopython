@@ -10,39 +10,50 @@ def analizador_lexico():
     respuesta.delete("1.0","end-1c")
     text_input = texto.get("1.0","end-1c")
     lista = text_input.split("\n")
+    print(lista)
     z =0
     for linea in lista:
+        print(linea)
         z = z+1
-        igual = True
         for i in analizar(linea):
-            if(i=="Ilegal" and igual):
-                rep = "-Error en esta línea Carácter no definido" + "\n"+ " "+str(z)+" : "+ linea + 2*"\n" 
+            print(analizar(linea))
+            responder = str(i) + "\n"
+            if(type(i)==tuple):
+                li = linea.replace(" ","")
+                print(linea)
+                rep = "-Error en esta linea Caracter no definido" + "\n"+ " "+str(z)+" : "+li + 2*"\n" 
                 respuesta.insert(END,rep)
-                igual = False
     respuesta.tag_configure("red", foreground="red")
-    find(respuesta,"-Error en esta línea Carácter no definido")
-    labellexico["text"] = "Se analizó el léxico"
+    find(respuesta,"-Error en esta linea Caracter no definido")
+    labellexico["text"] = "Se analizo el lexico"
     
 
 def analizador_sintactico():
     respuesta.delete("1.0","end-1c")
     text_input = texto.get("1.0","end-1c")
     lista = text_input.split("\n")
+    print(lista)
     z =0
     for linea in lista:
         z = z+1
+        print(linea)
+        print(linea != "\n" and linea != "")
         if(linea != ""):
-            result = str(analizarS(linea))
+            result = analizarS(linea)
+            print(result)
+            print(result == None)
             if(result == None):
-                rep = "-Error en esta línea Carácter no definido" + "\n"+ " "+str(z)+" : "+linea + 2*"\n" 
-            else:
-                if(type(result) != str):
-                    result = str(result)
-                rep = str(z)+" : "+ result + 2*"\n"
-            respuesta.insert(END,rep) 
+                rep = "-Error de sintaxis en esta linea " + "\n"+ " "+str(z)+" : "+linea + 2*"\n" 
+                respuesta.insert(END,rep)
+            #else:
+            #    if(type(result) != str):
+            #        result = str(result)
+            #    rep = str(z)+" : "+ result + 2*"\n"
+            
+            
     respuesta.tag_configure("red", foreground="red")
-    find(respuesta,"-Error en esta línea Carácter no definido")
-    labellexico["text"] = "Se analizó la sintaxis"
+    find(respuesta,"-Error de sintaxis en esta linea ")
+    labellexico["text"] = "Se analizo la sintaxis"
     
 
 def on_text_click(event):
@@ -67,7 +78,7 @@ label = tk.Label(app,text="Bienvenidos al Analizador",font=fuente)
 label.pack(side=TOP)
 #textArea
 labels=tk.Frame()
-labelt = tk.Label(labels,text="Ingrese Código",font=fuente, relief="groove", borderwidth=5,fg="red")
+labelt = tk.Label(labels,text="Ingrese Codigo",font=fuente, relief="groove", borderwidth=5,fg="red")
 labelt3 = tk.Label(labels,text="Respuesta",font=fuente, relief="groove", borderwidth=5,fg="red")
 sep = ttk.Separator(labels,orient="vertical").grid(row=0,column=1, sticky="sn",ipadx=200)
 labelt.grid(row=0,column=0)
@@ -110,7 +121,7 @@ sintactico.grid(row=0,column=3)
 botones.config(width=100,height=100)
 sep = ttk.Separator(botones,orient="vertical").grid(row=0,column=2, sticky="sn",ipadx=10)
 botones.pack(side=LEFT)
-labellexico = tk.Label(text="",font=fuente, borderwidth=5,fg="blue")
+labellexico = tk.Label(text="",font=fuente, borderwidth=5,fg="yellow")
 labellexico.pack()
 
 
