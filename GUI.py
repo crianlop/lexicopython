@@ -1,20 +1,27 @@
 from lexicoPython import analizar
+from sintatico import analizarS
 import tkinter as tk
 from tkinter import *
 from tkinter import ttk, font
 from disenio import * 
+import ply
 
 def analizador_lexico():
     respuesta.delete("1.0","end-1c")
     text_input = texto.get("1.0","end-1c")
     lista = text_input.split("\n")
+    print(lista)
+    z =0
     for linea in lista:
+        print(linea)
+        z = z+1
         for i in analizar(linea):
+            print(analizar(linea))
             responder = str(i) + "\n"
             if(type(i)==tuple):
                 li = linea.replace(" ","")
                 print(linea)
-                rep = "-Error en esta linea Caracter no definido" + "\n"+ " "+li + 2*"\n" 
+                rep = "-Error en esta linea Caracter no definido" + "\n"+ " "+str(z)+" : "+li + 2*"\n" 
                 respuesta.insert(END,rep)
     respuesta.tag_configure("red", foreground="red")
     find(respuesta,"-Error en esta linea Caracter no definido")
@@ -22,9 +29,31 @@ def analizador_lexico():
     
 
 def analizador_sintactico():
+    respuesta.delete("1.0","end-1c")
     text_input = texto.get("1.0","end-1c")
-    if(text_input != " "):
-        print(text_input)
+    lista = text_input.split("\n")
+    print(lista)
+    z =0
+    for linea in lista:
+        z = z+1
+        print(linea)
+        print(linea != "\n" and linea != "")
+        if(linea != ""):
+            result = analizarS(linea)
+            print(result)
+            print(result == None)
+            if(result == None):
+                rep = "-Error de sintaxis en esta linea " + "\n"+ " "+str(z)+" : "+linea + 2*"\n" 
+            else:
+                if(type(result) != str):
+                    result = str(result)
+                rep = str(z)+" : "+ result + 2*"\n"
+            respuesta.insert(END,rep)
+            
+    respuesta.tag_configure("red", foreground="red")
+    find(respuesta,"-Error de sintaxis en esta linea ")
+    labellexico["text"] = "Se analizo la sintaxis"
+    
 
 def on_text_click(event):
     #function that gets called whenever text is clicked
@@ -80,8 +109,8 @@ textos.pack()
 
 #botones
 botones = tk.Frame()
-imgSintactico = PhotoImage(file='lexicopython\sintactico.png')
-imgLexico = PhotoImage(file='lexicopython\lexico.png')
+imgSintactico = PhotoImage(file='sintactico.png')
+imgLexico = PhotoImage(file='lexico.png')
 lexico = tk.Button(botones,text="Anlizador Lexico",image=imgLexico,command=analizador_lexico, borderwidth=15, relief="raised")
 toolLexico = CreateToolTip(lexico,"Analizar Lexico")
 sintactico = tk.Button(botones,text="Anlizador Sintactico",image=imgSintactico,command=analizador_sintactico, borderwidth=15, relief="raised")

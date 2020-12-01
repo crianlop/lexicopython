@@ -244,25 +244,24 @@ def p_error(p):
     print("Syntax error in input!")
 
 # Build the parser
-parser = yacc.yacc()
 
+def analizarS(linea):
+    parser = yacc.yacc()
+    print(">> "+linea)
+    s = linea
+    result = parser.parse(s)
+    return result
 
 THIS_FOLDER = os.path.dirname(os.path.abspath(__file__))
 my_file = os.path.join(THIS_FOLDER, 'algoritmoPrueba\codigoLopez.py')
 archivo = open(my_file,'r',encoding="utf-8")
-for linea in archivo:
-    if(linea == "\n"): continue
-    print(">> "+linea)
-    s = linea
-    result = parser.parse(s)
-    print(result)
-archivo.close()
-'''while True:
+parser = yacc.yacc()
+"""while True:
     try:
         s = input('calc > ')
     except EOFError:
         break
     if not s: continue
     result = parser.parse(s)
-    print(result) '''
+    print(result) """
      
