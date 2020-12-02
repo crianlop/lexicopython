@@ -107,10 +107,14 @@ textos.pack()
 #botones
 botones = tk.Frame()
 imgSintactico = PhotoImage(file='sintactico.png')
+imgSintactico = imgSintactico.subsample(2,2)
+
+
 imgLexico = PhotoImage(file='lexico.png')
-lexico = tk.Button(botones,text="Anlizador Lexico",image=imgLexico,command=analizador_lexico, borderwidth=15, relief="raised")
+imgLexico = imgLexico.subsample(2,2)
+lexico = tk.Button(botones,text="Anlizador Lexico",image=imgLexico,command=analizador_lexico, borderwidth=15, relief="raised", height = 120, width = 120)
 toolLexico = CreateToolTip(lexico,"Analizar Lexico")
-sintactico = tk.Button(botones,text="Anlizador Sintactico",image=imgSintactico,command=analizador_sintactico, borderwidth=15, relief="raised")
+sintactico = tk.Button(botones,text="Anlizador Sintactico",image=imgSintactico,command=analizador_sintactico, borderwidth=15, relief="raised", height = 120, width = 120)
 toolSintctico = CreateToolTip(sintactico,"Analizar Sintaxis")
 lexico.grid(row=0,column=0)
 sintactico.grid(row=0,column=3)
