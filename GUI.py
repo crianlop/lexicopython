@@ -15,7 +15,6 @@ def analizador_lexico():
         z = z+1
         igual = True
         for i in analizar(linea):
-            print(i)
             if(i=="Ilegal" and igual):
                 rep = "-Error en esta línea Carácter no definido" + "\n"+ " "+str(z)+" : "+linea + 2*"\n" 
                 respuesta.insert(END,rep)
@@ -32,22 +31,14 @@ def analizador_sintactico():
     z =0
     for linea in lista:
         z = z+1
-        print(linea)
-        print(linea != "\n" and linea != "")
         if(linea != ""):
             result = analizarS(linea)
-            print(result)
-            print(result == None)
             if(result == None):
-                rep = "-Error de sintaxis en esta linea " + "\n"+ " "+str(z)+" : "+linea + 2*"\n" 
-                respuesta.insert(END,rep)
-            #else:
-            #    if(type(result) != str):
-            #        result = str(result)
-            #    rep = str(z)+" : "+ result + 2*"\n"      
+                rep = "-Error de sintaxis en esta línea " + "\n"+ " "+str(z)+" : "+linea + 2*"\n" 
+                respuesta.insert(END,rep)   
     respuesta.tag_configure("red", foreground="red")
-    find(respuesta,"-Error de sintaxis en esta linea ")
-    labellexico["text"] = "Se analizo la sintaxis"
+    find(respuesta,"-Error de sintaxis en esta línea ")
+    labellexico["text"] = "Se analizó la sintaxis"
     
 
 def on_text_click(event):
