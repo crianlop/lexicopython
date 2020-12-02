@@ -16,6 +16,7 @@ def analizador_lexico():
         z = z+1
         igual = True
         for i in analizar(linea):
+            print(analizar(linea))
             if(i=="Ilegal" and igual):
                 rep = "-Error en esta línea Carácter no definido" + "\n"+ " "+str(z)+" : "+linea + 2*"\n" 
                 respuesta.insert(END,rep)
@@ -75,10 +76,10 @@ labelt3.grid(row=0,column=3)
 labels.pack()
 
 textos = tk.Frame(app)
-
+fuente2 = ("Consolas",11,"italic")
 texto = tk.Text(textos)
 scrollbar = Scrollbar(texto)
-texto.config(height = 25, width = 70,background = "#C6C2C6", yscrollcommand=scrollbar.set)
+texto.config(font=fuente2,height = 25, width = 70,background = "#C6C2C6", yscrollcommand=scrollbar.set)
 texto.insert(INSERT, 'Ingrese su código aqui...')
 texto.bind('<FocusIn>', on_text_click)
 texto.bind('<FocusOut>', on_focusout)
@@ -88,7 +89,7 @@ scrollbar.config(command=texto.yview)
 #scrollbar.pack(side=RIGHT, fill=Y)
 respuesta = tk.Text(textos)
 scrolRes = Scrollbar()
-respuesta.config(height = 25, width = 70,background = "#C6C2C6", yscrollcommand=scrolRes.set)
+respuesta.config(font=fuente2,height = 25, width = 70,background = "#C6C2C6", yscrollcommand=scrolRes.set)
 scrolRes.config(command=respuesta.yview)
 scrolRes.pack(side=RIGHT, fill=Y)
 texto.grid(row=0,column=0)

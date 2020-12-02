@@ -92,7 +92,8 @@ def p_asignacion(p):
     '''asignacion : ID ASSIGN expression
                   | multipleAsignacion expression
                   | valoresID ASSIGN valoresComa
-                  | ID ASSIGN BOOLEAN'''
+                  | ID ASSIGN BOOLEAN
+                  | ID ASSIGN funcion'''
     p[0] = "ASIGNACION"
 
 def p_multipleAsignacion(p):
@@ -140,10 +141,14 @@ def p_conjunto(p):
 def p_comparacion(p):
     '''comparacion : ID operadorLogico expression
                    | BOOLEAN
+                   | comparacion conectoresLogicos ID
                    | NOTS BOOLEAN
                    | expression operadorLogico expression
                    | comparacion operadorLogico ID
-                   | ID operadorLogico BOOLEAN'''
+                   | ID operadorLogico BOOLEAN
+                   | comparacion conectoresLogicos comparacion
+                   
+                   '''
     p[0] = "COMPARACION"
 
 def p_operadorLogico(p):
@@ -208,7 +213,9 @@ def p_open(p):
 
 def p_funcion(p):
     '''funcion : DEF ID LPAREN valoresID RPAREN DOSPUNTOS
-                | DEF ID LPAREN RPAREN DOSPUNTOS'''
+                | DEF ID LPAREN RPAREN DOSPUNTOS
+                | ID LPAREN RPAREN
+                | ID LPAREN valoresID RPAREN'''
     p[0] = "FUNCION"
 
 def p_estructuraDatos(p):
@@ -242,13 +249,13 @@ def p_import(p):
 
 # Error rule for syntax errors
 def p_error(p):
-    print("Ilegal"+str(p))
+    return "Ilegal"
 
 # Build the parser
 
 def analizarS(linea):
     parser = yacc.yacc()
-    print(">> "+linea)
+    #print(">> "+linea)
     s = linea
     result = parser.parse(s)
     return result

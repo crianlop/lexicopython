@@ -1,4 +1,4 @@
-lista = []e
+lista = []
 nombreArchivo = "miarchivo.txt" 
 archivo = open(nombreArchivo,'r')
 for linea in archivo:
