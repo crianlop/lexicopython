@@ -7,6 +7,7 @@ from disenio import *
 import ply
 
 def analizador_lexico():
+    respuesta.configure(state = NORMAL)
     respuesta.delete("1.0","end-1c")
     text_input = texto.get("1.0","end-1c")
     lista = text_input.split("\n")
@@ -22,9 +23,11 @@ def analizador_lexico():
     respuesta.tag_configure("red", foreground="red")
     find(respuesta,"-Error en esta línea Carácter no definido")
     labellexico["text"] = "Se analizó el léxico"
+    respuesta.configure(state = DISABLED)
     
 
 def analizador_sintactico():
+    respuesta.configure(state = NORMAL)
     respuesta.delete("1.0","end-1c")
     text_input = texto.get("1.0","end-1c")
     lista = text_input.split("\n")
@@ -49,18 +52,19 @@ def analizador_sintactico():
             
     respuesta.tag_configure("red", foreground="red")
     find(respuesta,"-Error de sintaxis en esta linea ")
-    labellexico["text"] = "Se analizo la sintaxis"
+    labellexico["text"] = "Se analizó la sintaxis"
+    respuesta.configure(state = DISABLED)
     
 
 def on_text_click(event):
     #function that gets called whenever text is clicked
-    if texto.get("1.0","end-1c") == 'Ingrese su codigo aqui...':
+    if texto.get("1.0","end-1c") == 'Ingrese su código aqui...':
        texto.delete("1.0", END) # delete all the text in the entry
        texto.insert(INSERT, '') #Insert blank for user input
        texto.config(fg = 'black')
 def on_focusout(event):
     if texto.get("1.0","end-1c") == '':
-        texto.insert(INSERT, 'Ingrese su codigo aqui...')
+        texto.insert(INSERT, 'Ingrese su código aqui...')
         texto.config(fg = 'grey')
 
 
@@ -74,7 +78,7 @@ label = tk.Label(app,text="Bienvenidos al Analizador",font=fuente)
 label.pack(side=TOP)
 #textArea
 labels=tk.Frame()
-labelt = tk.Label(labels,text="Ingrese Codigo",font=fuente, relief="groove", borderwidth=5,fg="red")
+labelt = tk.Label(labels,text="Ingrese Código",font=fuente, relief="groove", borderwidth=5,fg="red")
 labelt3 = tk.Label(labels,text="Respuesta",font=fuente, relief="groove", borderwidth=5,fg="red")
 sep = ttk.Separator(labels,orient="vertical").grid(row=0,column=1, sticky="sn",ipadx=200)
 labelt.grid(row=0,column=0)
@@ -86,7 +90,7 @@ textos = tk.Frame(app)
 texto = tk.Text(textos)
 scrollbar = Scrollbar(texto)
 texto.config(height = 25, width = 70,background = "#C6C2C6", yscrollcommand=scrollbar.set)
-texto.insert(INSERT, 'Ingrese su codigo aqui...')
+texto.insert(INSERT, 'Ingrese su código aqui...')
 texto.bind('<FocusIn>', on_text_click)
 texto.bind('<FocusOut>', on_focusout)
 texto.config(fg = 'grey')
@@ -100,6 +104,7 @@ scrolRes.config(command=respuesta.yview)
 scrolRes.pack(side=RIGHT, fill=Y)
 texto.grid(row=0,column=0)
 respuesta.grid(row=0,column=3)
+respuesta.configure(state = DISABLED)
 sep = ttk.Separator(textos,orient="vertical").grid(row=0,column=2, sticky="sn",ipadx=10)
 
 textos.pack()
