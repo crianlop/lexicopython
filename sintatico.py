@@ -242,7 +242,7 @@ def p_import(p):
 
 # Error rule for syntax errors
 def p_error(p):
-    print("Syntax error in input!")
+    print("Ilegal"+str(p))
 
 # Build the parser
 
@@ -256,13 +256,8 @@ def analizarS(linea):
 THIS_FOLDER = os.path.dirname(os.path.abspath(__file__))
 my_file = os.path.join(THIS_FOLDER, 'algoritmoPrueba\codigoLopez.py')
 archivo = open(my_file,'r',encoding="utf-8")
-parser = yacc.yacc()
-"""while True:
-    try:
-        s = input('calc > ')
-    except EOFError:
-        break
-    if not s: continue
-    result = parser.parse(s)
-    print(result) """
+""" parser = yacc.yacc()
+for linea in archivo:
+    analizarS(linea)
+archivo.close() """
      

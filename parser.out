@@ -6,6 +6,7 @@ Unused terminals:
     COMILLASSIMPLES
     IS
     PUNTOCOMA
+    SALTOLINEA
     SUBGUION
 
 Grammar
@@ -181,6 +182,7 @@ RANGE                : 87
 REMOVE               : 111 112 113
 RETURN               : 106 107
 RPAREN               : 36 59 80 84 87 92 93 94 95 96 97 98 99 100 101 108 109 110 111 112 113
+SALTOLINEA           : 
 STRING               : 32
 SUBGUION             : 
 TIMES                : 25

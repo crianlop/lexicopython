@@ -16,12 +16,12 @@ metodos = {"append":"APPEND","remove":"REMOVE",}
 
 tipo_datos = {"number":"NUMBER","float":"FLOAT", "boolean" : "BOOLEAN"}
     
-otros = {"id":"ID","comments":"COMMENTS","comment":"COMMENT", "cadena":"CADENA","string":"STRING","import":"IMPORT","as":"AS"}   
+otros = {"id":"ID","comments":"COMMENTS","comment":"COMMENT", "cadena":"CADENA","string":"STRING","import":"IMPORT","as":"AS","saltolinea":"SALTOLINEA"}   
     
-reserved = { **conectoresLogicos, **tipo_datos,**estructuras_control, **IO_reserved, **funcion, **metodos, **otros}
+reserved = { **otros,**conectoresLogicos, **tipo_datos,**estructuras_control, **IO_reserved, **funcion, **metodos}
 
-t_CADENA = r'(\"[a-zA-Z0-9.*]*\")|(\'[a-zA-Z0-9.*]*\')'
-
+t_CADENA = r'(\"[a-zA-Z0-9.*\w\W]*\")|(\'[a-zA-Z0-9.*\w\W]*\')'
+t_SALTOLINEA = r'\"\\n\"'
 
 tokens_puntuacion = ('DOSPUNTOS','COMILLAS','COMILLASSIMPLES','COMA','PUNTOCOMA','PUNTO','SUBGUION')
 #puntuacion
@@ -71,7 +71,7 @@ def t_BOOLEAN(t):
     return t
 
 def t_STRING(t):
-    r'^"[a-zA-Z_0-9\s\ ]*"$'
+    r'^\"[a-zA-Z0-9.*]*\"$'
     t.value = str(t.value)
     return t
 
