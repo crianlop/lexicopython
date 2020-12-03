@@ -1,7 +1,5 @@
 # GRUPO PYTHON
-import ply
 import ply.lex as lex
-import ply.yacc as yacc
 import os
 
 conectoresLogicos = {"and" : "AND","not" : "NOT","is" : "IS","or":"OR","in":"IN",}
@@ -121,7 +119,10 @@ def analizar(linea):
             break      
         lista.append(tok)
     return lista
- 
+
+""" cadena = "if ( b > a and bandera):"
+print(analizar(cadena))
+  """
 """ THIS_FOLDER = os.path.dirname(os.path.abspath(__file__))
 my_file = os.path.join(THIS_FOLDER, 'algoritmoPrueba\henryAlgoritmo.py')
 

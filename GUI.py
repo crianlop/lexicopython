@@ -15,12 +15,13 @@ def analizador_lexico():
     for linea in lista:
         z = z+1
         igual = True
-        for i in analizar(linea):
-            print(analizar(linea))
-            if(i=="Ilegal" and igual):
-                rep = "-Error en esta línea Carácter no definido" + "\n"+ " "+str(z)+" : "+linea + 2*"\n" 
-                respuesta.insert(END,rep)
-                igual = False
+        if(linea != ""):
+            for i in analizar(linea):
+                print(analizar(linea))
+                if(i=="Ilegal" and igual):
+                    rep = "-Error en esta línea Carácter no definido" + "\n"+ " "+str(z)+" : "+linea + 2*"\n" 
+                    respuesta.insert(END,rep)
+                    igual = False
     respuesta.tag_configure("red", foreground="red")
     find(respuesta,"-Error en esta línea Carácter no definido")
     labellexico["text"] = "Se analizó el léxico"
@@ -101,9 +102,9 @@ textos.pack()
 
 #botones
 botones = tk.Frame()
-imgSintactico = PhotoImage(file='sintactico.png')
+imgSintactico = PhotoImage(file='lexicopython\sintactico.png')
 imgSintactico = imgSintactico.subsample(2,2)
-imgLexico = PhotoImage(file='lexico.png')
+imgLexico = PhotoImage(file='lexicopython\lexico.png')
 imgLexico = imgLexico.subsample(2,2)
 lexico = tk.Button(botones,text="Anlizador Lexico",image=imgLexico,command=analizador_lexico, borderwidth=15, relief="raised", height = 120, width = 120)
 toolLexico = CreateToolTip(lexico,"Analizar Léxico")

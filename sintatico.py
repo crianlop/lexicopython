@@ -1,31 +1,37 @@
+from ply.lex import lex
 import ply.yacc as yacc
 import os
 from lexicoPython import tokens
+from lexicoPython import *
+
 
 def p_cuerpo(p):
-    '''cuerpo : expression
-              | comentario
-              | asignacion
-              | import
-              | if
-              | else
-              | while   
-              | for 
-              | print  
-              | inputF
-              | openF 
-              | funcion 
-              | comparacion 
-              | operacionConectoresLogicos  
-              | tupla
-              | lista
-              | diccionario
-              | conjunto
+    '''cuerpo : import
               | return
-              | append
-              | remove
-              '''
+              | cuerpoEstructura'''
     p[0] = p[1]
+
+def p_cuerpoEstructuras(p):
+    '''cuerpoEstructura :  expression
+                        | comentario
+                        | asignacion
+                        | if
+                        | while   
+                        | for 
+                        | print  
+                        | inputF
+                        | openF 
+                        | funcion 
+                        | comparacion 
+                        | operacionConectoresLogicos  
+                        | tupla
+                        | lista
+                        | diccionario
+                        | conjunto
+                        | append
+                        | remove'''
+    p[0] = p[1]
+
 
 def p_expression_plus(p):
     'expression : expression PLUS term'
@@ -147,6 +153,8 @@ def p_comparacion(p):
                    | comparacion operadorLogico ID
                    | ID operadorLogico BOOLEAN
                    | comparacion conectoresLogicos comparacion
+                   | BOOLEAN EQUALS BOOLEAN
+                   | BOOLEAN DIFERENTE BOOLEAN
                    
                    '''
     p[0] = "COMPARACION"
@@ -171,9 +179,10 @@ def p_operacionConectoresLogicos(p):
     p[0] = "OPERACION CON CONECTORES LOGICOS"
 
 def p_if(p):
-    '''if : IF LPAREN comparacion RPAREN DOSPUNTOS
-          | IF comparacion DOSPUNTOS
-          | IF ID DOSPUNTOS'''
+    '''if : IF LPAREN comparacion RPAREN DOSPUNTOS cuerpoEstructura
+          | IF comparacion DOSPUNTOS SALTOLINEA cuerpoEstructura else cuerpoEstructura
+          | IF ID DOSPUNTOS cuerpoEstructura else cuerpoEstructura
+          | IF LPAREN ID RPAREN DOSPUNTOS cuerpoEstructura'''
     p[0] = "IF"
 
 def p_else(p):
@@ -249,9 +258,15 @@ def p_import(p):
 
 # Error rule for syntax errors
 def p_error(p):
-    return "Ilegal"
+    if(p != None):
+        p.type = p.lineno
+        print(p.value)
+    else:
+        print("ilegal")
+    #return "Ilegal"
 
 # Build the parser
+sintaxis = yacc.yacc()
 
 def analizarS(linea):
     parser = yacc.yacc()
@@ -260,11 +275,34 @@ def analizarS(linea):
     result = parser.parse(s)
     return result
 
+
+
 THIS_FOLDER = os.path.dirname(os.path.abspath(__file__))
-my_file = os.path.join(THIS_FOLDER, 'algoritmoPrueba\codigoLopez.py')
+my_file = os.path.join(THIS_FOLDER, 'codigoPrueba.py')
 archivo = open(my_file,'r',encoding="utf-8")
-""" parser = yacc.yacc()
-for linea in archivo:
-    analizarS(linea)
-archivo.close() """
-     
+
+
+lexer.lineno = 1
+lexer.lexpos = 0
+cadena = "if():"
+result = sintaxis.parse(cadena)
+print(result)
+
+""" cadena = "if ( b > a and bandera):"
+analizador = lex.lex()
+analizador.input(cadena)
+tok = analizador.token()
+print(tok)
+
+analizador.lineno = 1
+analizador.lexpos = 0
+parser = yacc.yacc()
+s = archivo.read()
+#print(s)  
+cadena = s.replace("\n"," ") 
+print(cadena)
+
+result = parser.parse(cadena)
+
+print(result) """
+

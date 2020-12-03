@@ -3,7 +3,7 @@ import numpy
 lista = []
 entrada = input()
 nombreArchivo = "archivo.py"
-
+True == True
 if(entrada != ""): 
     archivo = open(entrada,'r')
 else:
@@ -14,7 +14,7 @@ bandera = True
 
 def funcion(a,b):
     z = a + b
-    return z
+    
 
 for linea in archivo:
     a = a + 1
