@@ -22,6 +22,7 @@ def analizador_lexico():
                     rep = "-Error en esta línea Carácter no definido" + "\n"+ " "+str(z)+" : "+linea + 2*"\n" 
                     respuesta.insert(END,rep)
                     igual = False
+
     respuesta.tag_configure("red", foreground="red")
     find(respuesta,"-Error en esta línea Carácter no definido")
     labellexico["text"] = "Se analizó el léxico"
@@ -33,14 +34,54 @@ def analizador_sintactico():
     respuesta.delete("1.0","end-1c")
     text_input = texto.get("1.0","end-1c")
     lista = text_input.split("\n")
+    print(lista)
     z =0
+    lineaif = 0
+
+    check = ""
     for linea in lista:
         z = z+1
         if(linea != ""):
-            result = analizarS(linea)
-            if(result == None):
+
+            if(linea[0] != "\t" and linea[0:4] != "else" and len(check) != 0):
+                result = analizarS(check)
+                if(result == None):
+                    rep = "-Error de sintaxis en esta línea " + "\n"+ " "+str(lineaif)+" : "+check + 2*"\n" 
+                    respuesta.insert(END,rep)   
+                else:
+                    textoBueno = str(lineaif)+". : " +result + "\n"
+                    respuesta.insert(END,textoBueno)
+                check = ""
+            if((linea[0] == "\t" or linea[0:4] == "else") and len(check) == 0):
                 rep = "-Error de sintaxis en esta línea " + "\n"+ " "+str(z)+" : "+linea + 2*"\n" 
-                respuesta.insert(END,rep)   
+                respuesta.insert(END,rep)  
+            
+            if(linea[0:1] != "\t" and linea[0:2] != "if" and linea[0:5] != "while" and linea[0:4] != "else"):
+                result = analizarS(linea)
+                if(type(result) != str):
+                    result = str(result)
+                if(result == None):
+                    rep = "-Error de sintaxis en esta línea " + "\n"+ " "+str(z)+" : "+linea + 2*"\n" 
+                    respuesta.insert(END,rep)   
+                else:
+                    textoBueno = str(z)+". : " +result + "\n"
+                    respuesta.insert(END,textoBueno)
+            if(linea[0:2] == "if"):
+                check = check + linea
+                lineaif = z
+            if((linea[0] == "\t" or linea[0:4] == "else" ) and len(check)!= 0):
+                check = check + linea
+    if(len(check) != 0):
+        result = analizarS(check)
+        print("CHECK FINAL: "+check)
+        if(result == None):
+            rep = "-Error de sintaxis en esta línea " + "\n"+ " "+str(lineaif)+" : "+check + 2*"\n" 
+            respuesta.insert(END,rep)   
+        else:
+            textoBueno = str(lineaif)+". : " +result + "\n"
+            respuesta.insert(END,textoBueno)
+
+        
     respuesta.tag_configure("red", foreground="red")
     find(respuesta,"-Error de sintaxis en esta línea ")
     labellexico["text"] = "Se analizó la sintaxis"
@@ -102,9 +143,9 @@ textos.pack()
 
 #botones
 botones = tk.Frame()
-imgSintactico = PhotoImage(file='lexicopython\sintactico.png')
+imgSintactico = PhotoImage(file='sintactico.png')
 imgSintactico = imgSintactico.subsample(2,2)
-imgLexico = PhotoImage(file='lexicopython\lexico.png')
+imgLexico = PhotoImage(file='lexico.png')
 imgLexico = imgLexico.subsample(2,2)
 lexico = tk.Button(botones,text="Anlizador Lexico",image=imgLexico,command=analizador_lexico, borderwidth=15, relief="raised", height = 120, width = 120)
 toolLexico = CreateToolTip(lexico,"Analizar Léxico")

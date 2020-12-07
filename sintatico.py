@@ -179,15 +179,18 @@ def p_operacionConectoresLogicos(p):
     p[0] = "OPERACION CON CONECTORES LOGICOS"
 
 def p_if(p):
-    '''if : IF LPAREN comparacion RPAREN DOSPUNTOS cuerpoEstructura
-          | IF comparacion DOSPUNTOS SALTOLINEA cuerpoEstructura else cuerpoEstructura
-          | IF ID DOSPUNTOS cuerpoEstructura else cuerpoEstructura
-          | IF LPAREN ID RPAREN DOSPUNTOS cuerpoEstructura'''
+    '''if : IF LPAREN comparacion RPAREN DOSPUNTOS SALTOLINEA cuerpoEstructura
+          | IF LPAREN comparacion RPAREN DOSPUNTOS cuerpoEstructura
+          | IF LPAREN comparacion RPAREN DOSPUNTOS SALTOLINEA cuerpoEstructura ELSE DOSPUNTOS cuerpoEstructura
+          | IF ID DOSPUNTOS cuerpoEstructura ELSE DOSPUNTOS cuerpoEstructura
+          | IF ID DOSPUNTOS cuerpoEstructura
+          | IF LPAREN ID RPAREN DOSPUNTOS cuerpoEstructura
+          | IF LPAREN ID RPAREN DOSPUNTOS cuerpoEstructura ELSE DOSPUNTOS cuerpoEstructura'''
     p[0] = "IF"
 
-def p_else(p):
-    '''else : ELSE DOSPUNTOS'''
-    p[0] = "ELSE"
+#def p_else(p):
+ #   '''else : ELSE DOSPUNTOS'''
+  #  p[0] = "ELSE"
 
 def p_while(p):
     '''while : WHILE LPAREN comparacion RPAREN DOSPUNTOS
@@ -258,10 +261,10 @@ def p_import(p):
 
 # Error rule for syntax errors
 def p_error(p):
-    if(p != None):
-        p.type = p.lineno
-        print(p.value)
-    else:
+    #if(p != None):
+    #    p.type = p.lineno
+    #    print("NON ERROR: " + p.value)
+    #else:
         print("ilegal")
     #return "Ilegal"
 
@@ -284,11 +287,11 @@ archivo = open(my_file,'r',encoding="utf-8")
 
 lexer.lineno = 1
 lexer.lexpos = 0
-cadena = "if():"
-result = sintaxis.parse(cadena)
+cadena = "if(pepechonga):\n\t2 else:\n3"
+result = analizarS(cadena)
 print(result)
 
-""" cadena = "if ( b > a and bandera):"
+""" cadena =     "if ( b > a and bandera):"
 analizador = lex.lex()
 analizador.input(cadena)
 tok = analizador.token()
