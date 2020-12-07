@@ -7,7 +7,7 @@ from lexicoPython import *
 
 def p_cuerpo(p):
     '''cuerpo : import
-              | return
+              | funcionDeclaracion
               | cuerpoEstructura'''
     p[0] = p[1]
 
@@ -19,9 +19,9 @@ def p_cuerpoEstructuras(p):
                         | while   
                         | for 
                         | print  
+                        | funcion
                         | inputF
                         | openF 
-                        | funcion 
                         | comparacion 
                         | operacionConectoresLogicos  
                         | tupla
@@ -155,6 +155,7 @@ def p_comparacion(p):
                    | comparacion conectoresLogicos comparacion
                    | BOOLEAN EQUALS BOOLEAN
                    | BOOLEAN DIFERENTE BOOLEAN
+                   | factor operadorLogico factor
                    
                    '''
     p[0] = "COMPARACION"
@@ -179,31 +180,35 @@ def p_operacionConectoresLogicos(p):
     p[0] = "OPERACION CON CONECTORES LOGICOS"
 
 def p_if(p):
-    '''if : IF LPAREN comparacion RPAREN DOSPUNTOS SALTOLINEA cuerpoEstructura
+    '''if : IF LPAREN comparacion RPAREN DOSPUNTOS cuerpoEstructura ELSE DOSPUNTOS cuerpoEstructura
           | IF LPAREN comparacion RPAREN DOSPUNTOS cuerpoEstructura
-          | IF LPAREN comparacion RPAREN DOSPUNTOS SALTOLINEA cuerpoEstructura ELSE DOSPUNTOS cuerpoEstructura
-          | IF ID DOSPUNTOS cuerpoEstructura ELSE DOSPUNTOS cuerpoEstructura
-          | IF ID DOSPUNTOS cuerpoEstructura
+          | IF LPAREN ID RPAREN DOSPUNTOS cuerpoEstructura ELSE DOSPUNTOS cuerpoEstructura
           | IF LPAREN ID RPAREN DOSPUNTOS cuerpoEstructura
-          | IF LPAREN ID RPAREN DOSPUNTOS cuerpoEstructura ELSE DOSPUNTOS cuerpoEstructura'''
+          | IF ID DOSPUNTOS cuerpoEstructura ELSE DOSPUNTOS cuerpoEstructura
+          | IF ID DOSPUNTOS cuerpoEstructura'''
     p[0] = "IF"
+
 
 #def p_else(p):
  #   '''else : ELSE DOSPUNTOS'''
   #  p[0] = "ELSE"
 
 def p_while(p):
-    '''while : WHILE LPAREN comparacion RPAREN DOSPUNTOS
-             | WHILE comparacion DOSPUNTOS
-             | WHILE ID DOSPUNTOS'''
+    '''while : WHILE LPAREN comparacion RPAREN DOSPUNTOS cuerpoEstructura
+             | WHILE LPAREN ID RPAREN DOSPUNTOS cuerpoEstructura
+             | WHILE ID DOSPUNTOS cuerpoEstructura'''
     p[0] = "while"
-
+def p_dentroFor(p):
+    '''dentroFor : NUMBER
+                 | NUMBER COMA NUMBER
+                 | NUMBER COMA NUMBER COMA NUMBER'''
+    p[0] = "dentroFor"
 def p_for(p):
-    '''for : FOR ID IN RANGE LPAREN NUMBER RPAREN DOSPUNTOS
-           | FOR ID IN ID DOSPUNTOS
-           | FOR ID IN lista
-           | FOR ID IN tupla
-           | FOR ID IN conjunto'''
+    '''for : FOR ID IN RANGE LPAREN dentroFor RPAREN DOSPUNTOS cuerpoEstructura
+           | FOR ID IN ID DOSPUNTOS cuerpoEstructura
+           | FOR ID IN lista DOSPUNTOS cuerpoEstructura
+           | FOR ID IN tupla DOSPUNTOS cuerpoEstructura
+           | FOR ID IN conjunto DOSPUNTOS cuerpoEstructura'''
     p[0] = "FOR"
 
 def p_print(p):
@@ -222,13 +227,23 @@ def p_open(p):
              | ID ASSIGN OPEN LPAREN CADENA COMA CADENA RPAREN
              | ID ASSIGN OPEN LPAREN ID COMA CADENA RPAREN'''
     p[0] = "OPEN"
-
+def p_parametros(p):
+    '''parametros : ID
+                  | expression
+                  | parametros COMA ID
+                  | parametros COMA expression'''
+    p[0] = "parametros"
+def p_funcionDeclaracion(p):
+    '''funcionDeclaracion :  DEF ID LPAREN parametros RPAREN DOSPUNTOS cuerpoEstructura RETURN parametros
+                           | DEF ID LPAREN RPAREN DOSPUNTOS cuerpoEstructura RETURN parametros
+                           | DEF ID LPAREN RPAREN DOSPUNTOS cuerpoEstructura
+                           | DEF ID LPAREN parametros RPAREN DOSPUNTOS cuerpoEstructura'''
+    p[0] = "DECLARACION FUNCION"
 def p_funcion(p):
-    '''funcion : DEF ID LPAREN valoresID RPAREN DOSPUNTOS
-                | DEF ID LPAREN RPAREN DOSPUNTOS
-                | ID LPAREN RPAREN
-                | ID LPAREN valoresID RPAREN'''
+    '''funcion :  ID LPAREN RPAREN
+               | ID LPAREN parametros RPAREN'''
     p[0] = "FUNCION"
+
 
 def p_estructuraDatos(p):
     '''datos : lista
@@ -265,7 +280,7 @@ def p_error(p):
     #    p.type = p.lineno
     #    print("NON ERROR: " + p.value)
     #else:
-        print("ilegal")
+    print("ilegal")
     #return "Ilegal"
 
 # Build the parser

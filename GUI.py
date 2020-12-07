@@ -37,6 +37,9 @@ def analizador_sintactico():
     print(lista)
     z =0
     lineaif = 0
+    enteredDef = False
+    enteredIf = False
+    lineadef = 0 
 
     check = ""
     for linea in lista:
@@ -45,6 +48,8 @@ def analizador_sintactico():
 
             if(linea[0] != "\t" and linea[0:4] != "else" and len(check) != 0):
                 result = analizarS(check)
+                if(check[0:3] == "def"):
+                    lineaif = lineadef
                 if(result == None):
                     rep = "-Error de sintaxis en esta línea " + "\n"+ " "+str(lineaif)+" : "+check + 2*"\n" 
                     respuesta.insert(END,rep)   
@@ -52,11 +57,16 @@ def analizador_sintactico():
                     textoBueno = str(lineaif)+". : " +result + "\n"
                     respuesta.insert(END,textoBueno)
                 check = ""
-            if((linea[0] == "\t" or linea[0:4] == "else") and len(check) == 0):
+                enteredDef = False
+                enteredIf = False
+                lineaif = 0 
+                lineadef = 0 
+            if(linea[0] == "\t" and len(check) == 0):
                 rep = "-Error de sintaxis en esta línea " + "\n"+ " "+str(z)+" : "+linea + 2*"\n" 
                 respuesta.insert(END,rep)  
             
-            if(linea[0:1] != "\t" and linea[0:2] != "if" and linea[0:5] != "while" and linea[0:4] != "else"):
+            
+            if(linea[0:1] != "\t" and linea[0:2] != "if" and linea[0:3] != "for" and linea[0:5] != "while" and linea[0:4] != "else" and linea[0:3] != "def" and linea[0:6] != "return" ):
                 result = analizarS(linea)
                 if(type(result) != str):
                     result = str(result)
@@ -66,14 +76,42 @@ def analizador_sintactico():
                 else:
                     textoBueno = str(z)+". : " +result + "\n"
                     respuesta.insert(END,textoBueno)
-            if(linea[0:2] == "if"):
-                check = check + linea
-                lineaif = z
-            if((linea[0] == "\t" or linea[0:4] == "else" ) and len(check)!= 0):
-                check = check + linea
+            if(linea[0:5] == "while" or linea[0:2] == "if" or linea[0:3] == "for"):
+                if(len(check)!= 0):
+                    linea = "\n" + linea
+                else:
+                    lineaif = z
+                if(linea[0:2] == "if"):
+                    enteredIf = True
+                check = check + linea 
+            if(linea[0] == "\t" and len(check)!= 0):
+                check = check +"\n"+ linea
+            if((linea[0:4] == "else")):
+                if(enteredIf):
+                    check = check +"\n"+ linea
+                else:
+                    rep = "-Error de sintaxis en esta línea " + "\n"+ " "+str(z)+" : "+linea + 2*"\n" 
+                    respuesta.insert(END,rep)   
+            if(linea[0:3] == "def"):
+                if(enteredDef or len(check) != 0):
+                    rep = "-Error de sintaxis en esta línea " + "\n"+ " "+str(z)+" : "+linea + 2*"\n" 
+                    respuesta.insert(END,rep)  
+                    lineadef = z 
+                else:
+                    enteredDef = True
+                    check = check + linea
+            if(linea[0:6] == "return"):
+                if(enteredDef):
+                        check = check +"\n"+ linea
+                else:
+                    rep = "-Error de sintaxis en esta línea " + "\n"+ " "+str(z)+" : "+linea + 2*"\n" 
+                    respuesta.insert(END,rep)  
+
+
+
+
     if(len(check) != 0):
         result = analizarS(check)
-        print("CHECK FINAL: "+check)
         if(result == None):
             rep = "-Error de sintaxis en esta línea " + "\n"+ " "+str(lineaif)+" : "+check + 2*"\n" 
             respuesta.insert(END,rep)   
