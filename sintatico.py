@@ -4,32 +4,36 @@ import os
 from lexicoPython import tokens
 from lexicoPython import *
 
+ban = True
+
+mensaje = ""
 
 def p_cuerpo(p):
-    '''cuerpo : import
-              | funcionDeclaracion
-              | cuerpoEstructura'''
+    '''cuerpo : cuerpoEstructura
+              | cuerpo cuerpoEstructura
+                        '''
     p[0] = p[1]
 
-def p_cuerpoEstructuras(p):
-    '''cuerpoEstructura :  expression
-                        | comentario
-                        | asignacion
-                        | if
-                        | while   
-                        | for 
-                        | print  
-                        | funcion
-                        | inputF
-                        | openF 
-                        | comparacion 
-                        | operacionConectoresLogicos  
-                        | tupla
-                        | lista
-                        | diccionario
-                        | conjunto
-                        | append
-                        | remove'''
+def p_cuerpoEstructura(p):
+    ''' cuerpoEstructura : import  
+            | expression 
+            | comentario 
+            | asignacion
+            | if 
+            | while 
+            | for  
+            | print 
+            | inputF 
+            | openF 
+            | funcion 
+            | comparacion 
+            | operacionConectoresLogicos  
+            | tupla 
+            | lista 
+            | diccionario 
+            | conjunto 
+            | append 
+            | remove'''
     p[0] = p[1]
 
 
@@ -130,7 +134,7 @@ def p_diccionario(p):
 
 def p_lista(p):
     '''lista : CORCHETEIZQ valoresComa CORCHETEDER
-             | ID ASSIGN lista
+             | ID ASSIGN CORCHETEIZQ valoresComa CORCHETEDER
              | ID ASSIGN CORCHETEIZQ CORCHETEDER'''
     p[0] = "LISTA"
 
@@ -146,6 +150,7 @@ def p_conjunto(p):
 
 def p_comparacion(p):
     '''comparacion : ID operadorLogico expression
+    | ID operadorLogico CADENA
                    | BOOLEAN
                    | comparacion conectoresLogicos ID
                    | NOTS BOOLEAN
@@ -155,7 +160,6 @@ def p_comparacion(p):
                    | comparacion conectoresLogicos comparacion
                    | BOOLEAN EQUALS BOOLEAN
                    | BOOLEAN DIFERENTE BOOLEAN
-                   | factor operadorLogico factor
                    
                    '''
     p[0] = "COMPARACION"
@@ -180,35 +184,30 @@ def p_operacionConectoresLogicos(p):
     p[0] = "OPERACION CON CONECTORES LOGICOS"
 
 def p_if(p):
-    '''if : IF LPAREN comparacion RPAREN DOSPUNTOS cuerpoEstructura ELSE DOSPUNTOS cuerpoEstructura
-          | IF LPAREN comparacion RPAREN DOSPUNTOS cuerpoEstructura
-          | IF LPAREN ID RPAREN DOSPUNTOS cuerpoEstructura ELSE DOSPUNTOS cuerpoEstructura
-          | IF LPAREN ID RPAREN DOSPUNTOS cuerpoEstructura
-          | IF ID DOSPUNTOS cuerpoEstructura ELSE DOSPUNTOS cuerpoEstructura
-          | IF ID DOSPUNTOS cuerpoEstructura'''
+    '''if : IF LPAREN comparacion RPAREN DOSPUNTOS cuerpo
+          | IF comparacion DOSPUNTOS cuerpo
+          | IF ID DOSPUNTOS cuerpo
+          | IF LPAREN ID RPAREN DOSPUNTOS cuerpo
+          | if else
+        '''
     p[0] = "IF"
 
-
-#def p_else(p):
- #   '''else : ELSE DOSPUNTOS'''
-  #  p[0] = "ELSE"
+def p_else(p):
+    '''else : ELSE DOSPUNTOS cuerpo'''
+    p[0] = "ELSE"
 
 def p_while(p):
-    '''while : WHILE LPAREN comparacion RPAREN DOSPUNTOS cuerpoEstructura
-             | WHILE LPAREN ID RPAREN DOSPUNTOS cuerpoEstructura
-             | WHILE ID DOSPUNTOS cuerpoEstructura'''
+    '''while : WHILE LPAREN comparacion RPAREN DOSPUNTOS 
+             | WHILE comparacion DOSPUNTOS 
+             | WHILE ID DOSPUNTOS '''
     p[0] = "while"
-def p_dentroFor(p):
-    '''dentroFor : NUMBER
-                 | NUMBER COMA NUMBER
-                 | NUMBER COMA NUMBER COMA NUMBER'''
-    p[0] = "dentroFor"
+
 def p_for(p):
-    '''for : FOR ID IN RANGE LPAREN dentroFor RPAREN DOSPUNTOS cuerpoEstructura
-           | FOR ID IN ID DOSPUNTOS cuerpoEstructura
-           | FOR ID IN lista DOSPUNTOS cuerpoEstructura
-           | FOR ID IN tupla DOSPUNTOS cuerpoEstructura
-           | FOR ID IN conjunto DOSPUNTOS cuerpoEstructura'''
+    '''for : FOR ID IN RANGE LPAREN NUMBER RPAREN DOSPUNTOS cuerpo
+           | FOR ID IN ID DOSPUNTOS cuerpo
+           | FOR ID IN lista DOSPUNTOS 
+           | FOR ID IN tupla DOSPUNTOS 
+           | FOR ID IN conjunto DOSPUNTOS  '''
     p[0] = "FOR"
 
 def p_print(p):
@@ -227,23 +226,15 @@ def p_open(p):
              | ID ASSIGN OPEN LPAREN CADENA COMA CADENA RPAREN
              | ID ASSIGN OPEN LPAREN ID COMA CADENA RPAREN'''
     p[0] = "OPEN"
-def p_parametros(p):
-    '''parametros : ID
-                  | expression
-                  | parametros COMA ID
-                  | parametros COMA expression'''
-    p[0] = "parametros"
-def p_funcionDeclaracion(p):
-    '''funcionDeclaracion :  DEF ID LPAREN parametros RPAREN DOSPUNTOS cuerpoEstructura RETURN parametros
-                           | DEF ID LPAREN RPAREN DOSPUNTOS cuerpoEstructura RETURN parametros
-                           | DEF ID LPAREN RPAREN DOSPUNTOS cuerpoEstructura
-                           | DEF ID LPAREN parametros RPAREN DOSPUNTOS cuerpoEstructura'''
-    p[0] = "DECLARACION FUNCION"
-def p_funcion(p):
-    '''funcion :  ID LPAREN RPAREN
-               | ID LPAREN parametros RPAREN'''
-    p[0] = "FUNCION"
 
+def p_funcion(p):
+    '''funcion : DEF ID LPAREN valoresID RPAREN DOSPUNTOS cuerpo
+                | DEF ID LPAREN RPAREN DOSPUNTOS cuerpo
+                | DEF ID LPAREN valoresID RPAREN DOSPUNTOS cuerpo return
+                | DEF ID LPAREN RPAREN DOSPUNTOS cuerpo return
+                | ID LPAREN RPAREN
+                | ID LPAREN valoresID RPAREN'''
+    p[0] = "FUNCION"
 
 def p_estructuraDatos(p):
     '''datos : lista
@@ -273,54 +264,53 @@ def p_import(p):
     p[0] = "IMPORT"
 
 
-
 # Error rule for syntax errors
 def p_error(p):
-    #if(p != None):
-    #    p.type = p.lineno
-    #    print("NON ERROR: " + p.value)
-    #else:
-    print("ilegal")
-    #return "Ilegal"
+    global ban
+    global mensaje
+    # global mensaje2
+    if p:
+        print("Error de sintaxis en esta línea: ", "token tipo: ",p.type," Valor: "+str(p.value))
+        mensaje += "-Error de sintaxis\n -En esta línea: "+ str(p.lineno)+"\n -token tipo: " + str(p.type) + " -Valor :"+str(p.value)+ "\n"
+        ban = False
+    else:
+        mensaje = "Error en la última línea"
+        ban = False
 
-# Build the parser
-sintaxis = yacc.yacc()
 
-def analizarS(linea):
+# Construir parser
+
+def sintacticoS(entrada):
+    lexer.lineno = 1
+    lexer.lexpos = 0
+    global ban
+    global mensaje
     parser = yacc.yacc()
-    #print(">> "+linea)
-    s = linea
-    result = parser.parse(s)
-    return result
+    result = parser.parse(entrada)
+    if (not ban):
+        listaErrores = []
+        listaErrores.append(mensaje)
+        ban = True
+        print(listaErrores)
+        mensaje = ""
+        return listaErrores
+    else:
+        listaErrores = []
+        ban = True
+        mensaje = ""
+        return listaErrores
 
-
+sintaxis = yacc.yacc()
 
 THIS_FOLDER = os.path.dirname(os.path.abspath(__file__))
 my_file = os.path.join(THIS_FOLDER, 'codigoPrueba.py')
 archivo = open(my_file,'r',encoding="utf-8")
 
+cadena = '''
+x = 7
+aveces = xo = 4
+'''
 
-lexer.lineno = 1
-lexer.lexpos = 0
-cadena = "if(pepechonga):\n\t2 else:\n3"
-result = analizarS(cadena)
-print(result)
+#print(sintacticoS(archivo.read()))
 
-""" cadena =     "if ( b > a and bandera):"
-analizador = lex.lex()
-analizador.input(cadena)
-tok = analizador.token()
-print(tok)
-
-analizador.lineno = 1
-analizador.lexpos = 0
-parser = yacc.yacc()
-s = archivo.read()
-#print(s)  
-cadena = s.replace("\n"," ") 
-print(cadena)
-
-result = parser.parse(cadena)
-
-print(result) """
 

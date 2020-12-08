@@ -21,11 +21,9 @@ reserved = { **otros,**conectoresLogicos, **tipo_datos,**estructuras_control, **
 t_CADENA = r'(\"[a-zA-Z0-9.*\w\W]*\")|(\'[a-zA-Z0-9.*\w\W]*\')'
 t_SALTOLINEA = r'\"\\n\"'
 
-tokens_puntuacion = ('DOSPUNTOS','COMILLAS','COMILLASSIMPLES','COMA','PUNTOCOMA','PUNTO','SUBGUION')
+tokens_puntuacion = ('DOSPUNTOS','COMA','PUNTOCOMA','PUNTO','SUBGUION')
 #puntuacion
 t_DOSPUNTOS = r'\:'
-t_COMILLAS = r'\"'
-t_COMILLASSIMPLES = r'\''
 t_COMA = r'\,'
 t_PUNTOCOMA = r'\;'
 t_PUNTO = r'\.'
@@ -92,7 +90,7 @@ t_ignore  = ' \t'
 
 def t_newline(t):
     r'\n+'
-    t.lexer.lineno += len(t.value)
+    t.lexer.lineno += t.value.count("\n")
 
 def t_error(t):
     t.lexer.skip(1)
