@@ -197,17 +197,17 @@ def p_else(p):
     p[0] = "ELSE"
 
 def p_while(p):
-    '''while : WHILE LPAREN comparacion RPAREN DOSPUNTOS 
-             | WHILE comparacion DOSPUNTOS 
-             | WHILE ID DOSPUNTOS '''
+    '''while : WHILE LPAREN comparacion RPAREN DOSPUNTOS cuerpo
+             | WHILE comparacion DOSPUNTOS cuerpo
+             | WHILE ID DOSPUNTOS cuerpo'''
     p[0] = "while"
 
 def p_for(p):
     '''for : FOR ID IN RANGE LPAREN NUMBER RPAREN DOSPUNTOS cuerpo
            | FOR ID IN ID DOSPUNTOS cuerpo
-           | FOR ID IN lista DOSPUNTOS 
-           | FOR ID IN tupla DOSPUNTOS 
-           | FOR ID IN conjunto DOSPUNTOS  '''
+           | FOR ID IN lista DOSPUNTOS cuerpo
+           | FOR ID IN tupla DOSPUNTOS cuerpo
+           | FOR ID IN conjunto DOSPUNTOS cuerpo '''
     p[0] = "FOR"
 
 def p_print(p):
@@ -264,21 +264,18 @@ def p_import(p):
     p[0] = "IMPORT"
 
 
-# Error rule for syntax errors
 def p_error(p):
     global ban
     global mensaje
-    # global mensaje2
-    if p:
+    if p == None:
+        mensaje = "Error en la última línea"
+        ban = False
+    else:
         print("Error de sintaxis en esta línea: ", "token tipo: ",p.type," Valor: "+str(p.value))
         mensaje += "-Error de sintaxis\n -En esta línea: "+ str(p.lineno)+"\n -token tipo: " + str(p.type) + " -Valor :"+str(p.value)+ "\n"
         ban = False
-    else:
-        mensaje = "Error en la última línea"
-        ban = False
+        
 
-
-# Construir parser
 
 def sintacticoS(entrada):
     lexer.lineno = 1

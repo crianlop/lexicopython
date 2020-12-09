@@ -2,8 +2,9 @@ import numpy
 
 lista = []
 entrada = input()
+vacio = ""
 nombreArchivo = "archivo.py"
-if(entrada != ""): 
+if(entrada != vacio): 
     archivo = open(entrada,'r')
 else:
     archivo = open(nombreArchivo,'r')
